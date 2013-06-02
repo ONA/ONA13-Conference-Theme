@@ -8,6 +8,8 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
+ wp_enqueue_script( 'ubermenu_extension', get_template_directory_uri().'/js/uberMenu_extension.js', array('ubermenu'), false, true );
+ 
 ?><!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
@@ -30,6 +32,7 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
 <?php wp_head(); ?>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/isotope/jquery.isotope.min.js"></script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -43,14 +46,24 @@
         
         <?php $header_image = get_header_image();
 		if ( ! empty( $header_image ) ) : ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
-		<?php endif; ?>
-        <img src="http://ona13.journalists.org/wp-content/uploads/2013/03/date-box2.png" style="margin-left: -4px;">
+			<a href="<?=esc_url( home_url( '/' ) ); ?>"><img src="<?=esc_url( $header_image ); ?>" class="header-image" width="<?=get_custom_header()->width; ?>" height="<?=get_custom_header()->height; ?>" alt="" /></a>
+		<? endif; ?>
+        	<div id="header_info">
+            	<div>
+                    <p>October 17-19, 2013</p>
+                    <p>Atlanta, GA</p>
+                </div>
+                <div>
+                	<? include (TEMPLATEPATH . '-child/searchform.php'); ?>
+                </div>
+            </div>
+        <!-- <img src="http://ona13.journalists.org/wp-content/uploads/2013/03/date-box2.png" style="margin-left: -4px;"> -->
         </div>
         </div>
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
+			<!--  I don't think we need this with the uberMenu
+            	<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3> -->
 			<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
 		</nav><!-- #site-navigation -->

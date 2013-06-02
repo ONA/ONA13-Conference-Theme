@@ -145,7 +145,6 @@ img {
 .comment-content th {
 	font-size: 16px;
 	/*font-size: 0.785714286rem;*/
-	line-height: 2.181818182;
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #636363;
@@ -315,10 +314,11 @@ video {
 .entry-content img,
 .comment-content img,
 .widget img,
-img.header-image,
 .author-avatar img,
 img.wp-post-image {
-	/* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
+	/* 
+	Add fancy borders to all WordPress-added images but not things like badges and icons and the like 
+	*/
 	border-radius: 3px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
@@ -488,6 +488,9 @@ a:hover {
 	padding: 0 1.714285714rem;
 	background-color: #fff;*/
 }
+.wrapper {
+	margin:0 4%;
+}
 .site-content {
 	/*margin: 24px 0 0;
 	margin: 1.714285714rem 0 0;*/
@@ -533,21 +536,42 @@ a:hover {
 	color: #757575;
 }
 .header-image {
-	/*margin-top: 24px;
-	margin-top: 1.714285714rem;*/
-	border-radius: 0px !important;
+	/*
+	margin-top: 24px;
+	margin-top: 1.714285714rem;
 	box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.2) !important;
+	*/
+	border-radius: 0px !important;
+	float:left;
 }
 
 #header-background {
+	background: #FFF9EB;
+	/*
+	max-height: 140px;
     background: url(http://ona13.journalists.org/wp-content/uploads/2013/03/header-background4.png);
-    max-height: 140px;
+	*/
 }
-
 #header-container {
     max-width: 1100px;
-	margin-left: auto;
-	margin-right: auto;
+	margin:0 auto;
+	overflow:auto;
+}
+#header_info {
+	clear: left;
+	margin: 0 30px;
+	position: relative;
+	top: -7px;
+}
+#header_info > div {
+
+}
+#header_info > div p {
+	font-size: 1.7em;
+	font-family: 'Source Sans Pro', sans-serif;
+	line-height: 120%;
+	text-transform: uppercase;
+	color: rgb(125, 117, 150);
 }
 
 /* Navigation Menu */
@@ -589,20 +613,15 @@ section[role="banner"] {
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
-	margin-bottom: 40px;
+	margin-bottom: 25px;
 	/*margin-bottom: 3.428571429rem;*/
 	word-wrap: break-word;
 }
 .widget {
-    background: white;
-    padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 20px;
 	padding-bottom: 20px;
-    box-shadow: -2px -2px 6px rgba(100, 100, 100, 0.3);
 }
 .widget-area .widget h3 {
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 	/*margin-bottom: 1.714285714rem;*/
 }
 .widget-area .widget p,
@@ -704,6 +723,17 @@ footer[role="contentinfo"] h2 {
      background: #9999CC;
      height: 36px;
 }
+/* Added by Adam; removed from inline styles */
+footer {
+	overflow: auto;
+}
+footer h1,
+footer h2 {
+	color: #FFFAEC;	
+}
+footer .left {
+	float:left;
+}
 
 /* =Main content and comment content
 -------------------------------------------------------------- */
@@ -720,10 +750,11 @@ footer[role="contentinfo"] h2 {
 	margin-bottom: 1.714285714rem;
 }
 .entry-header .entry-title {
-	font-size: 20px;
-	font-size: 1.428571429rem;
-	line-height: 1.2;
-	font-weight: normal;
+	font-size: 22px;
+	color: #1f1f1f;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 900;
+	text-transform: uppercase;
 }
 .entry-header .entry-title a {
 	text-decoration: none;
@@ -1392,6 +1423,24 @@ a.comment-edit-link:hover {
 	margin: 0.571428571rem 1.714285714rem 0.571428571rem 0;
 }
 
+/* =Nav hacks
+-------------------------------------------------------------- */
+#megaMenu ul.megaMenu > li {
+	width:14%;
+}
+#megaMenu li.menu-item.ss-nav-menu-mega-floatRight {
+	width:4%;
+}
+#megaMenu.megaMenuHorizontal ul.megaMenu > li > a, 
+#megaMenu.megaMenuHorizontal ul.megaMenu > li > span.um-anchoremulator {
+	padding:16px 0;
+	text-align:center;
+}
+@media only screen and (max-width: 767px) {
+	#megaMenu.megaResponsive ul.megaMenu li.ss-nav-menu-mega-floatRight {
+		display:none;
+	}
+}
 
 /* =Widgets
 -------------------------------------------------------------- */
@@ -1458,8 +1507,14 @@ img#wpstats {
 /* =Media queries
 -------------------------------------------------------------- */
 
-/* Minimum width of 600 pixels. */
-@media screen and (min-width: 600px) {
+/* Minimum width of 650 pixels. */
+@media screen and (min-width: 670px) {
+	body {
+		background-color: #e6e6e6;
+	}
+	.wrapper {
+		margin:0 2%;
+	}
 	.author-avatar {
 		float: left;
 		margin-top: 8px;
@@ -1479,14 +1534,14 @@ img#wpstats {
 		float: left;
 		width: 65%;
 		background-color: white;
-		padding: 40px;
+		padding: 20px 3%;
 		box-shadow: 2px 2px 6px rgba(100, 100, 100, 0.3);
 	}
 	body.template-front-page .site-content,
 	body.single-attachment .site-content,
 	body.full-width .site-content,
 	body.template-student-newsroom-page .site-content {
-		width: 100%;
+		width: 94%;
 	}
 	body.template-front-page .site-content {
 	    padding: 10px;
@@ -1504,12 +1559,17 @@ img#wpstats {
 		}
 	.widget-area {
 		float: right;
-		width: 24%;
+		width: 27%;
 	}
 	
 	#secondary.widget-area{
-	/*box-shadow: -2px -2px 6px rgba(100, 100, 100, 0.3);*/
-}
+		/*box-shadow: -2px -2px 6px rgba(100, 100, 100, 0.3);*/
+	}
+	.widget {
+		background: white;
+		padding: 20px;
+		box-shadow: 2px 2px 6px rgba(100, 100, 100, 0.3);
+	}
 	.site-header h1,
 	.site-header h2 {
 		text-align: left;
@@ -1597,11 +1657,7 @@ img#wpstats {
 	}
 	.entry-header .entry-title {
 		font-size: 28px;
-		color: #1f1f1f;
 		/*font-size: 1.571428571rem;*/
-		font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 900;
-		text-transform: uppercase;
 	}
 	#respond form input[type="text"] {
 		width: 46.333333333%;
@@ -1684,12 +1740,13 @@ img#wpstats {
 		margin-left: 3.428571429rem;
 	}
 }
-
+@media screen and (min-width: 1100px) {
+	#header_info {
+		padding-top: 40px !important;
+	}
+}
 /* Minimum width of 960 pixels. */
 @media screen and (min-width: 960px) {
-	body {
-		background-color: #e6e6e6;
-	}
 	body .site {
 		/*padding: 0 40px;
 		padding: 0 2.857142857rem;
@@ -1710,6 +1767,53 @@ img#wpstats {
 		box-shadow: none;
 	}
 }
+@media screen and (min-width: 767px) {
+	/* Same breakpoint as UberMenu */
+	#header_info {
+		display:block;
+		padding-top: 20px;
+		clear: none;
+		margin: 0;
+		position: relative;
+		top: 0;
+	}
+	#header_info > div {
+		float:left;
+		padding-left: 40px;
+		width:295px
+	}
+	#header_info input[type="text"] {
+		width:208px;	
+	}
+	#megaMenu.megaMenuHorizontal #megaUber.megaMenu {
+		width: 98%;
+	}
+}
+@media screen and (max-width: 766px) {
+	#header_info > div:first-child {
+		display:none;
+	}
+	#header_info > div {
+		margin-bottom:10px;
+	}
+	#header_info input {
+		padding:5px 1%;	
+		font-size: 14px;
+	}
+	#header_info input[type="text"] {
+		width:75%;	
+	}
+	#header_info input[type="submit"] {
+		width:21%;	
+	}
+}
+@media screen and (min-width: 550px) {
+	footer .right {
+		float:right;
+		text-align:right;
+	}
+}
+
 
 
 /* =Print
@@ -1742,25 +1846,7 @@ img#wpstats {
 		max-width: 100%;
 		position: relative !important;
 	}
-	.site-header {
-		margin-bottom: 72px;
-		margin-bottom: 5.142857143rem;
-		text-align: left;
-	}
-	.site-header h1 {
-		font-size: 21pt;
-		line-height: 1;
-		text-align: left;
-	}
-	.site-header h2 {
-		color: #000;
-		font-size: 10pt;
-		text-align: left;
-	}
-	.site-header h1 a,
-	.site-header h2 a {
-		color: #000;
-	}
+	.site-header,
 	.author-avatar,
 	#colophon,
 	#respond,
@@ -1876,4 +1962,58 @@ ona13-button {
 
 
 
+}
+
+
+/* --------------------------------------  */
+/* Overrides Added by Adam
+/* --------------------------------------  */
+
+/* Overrides for UberMenu */
+#megaMenu {
+	margin-bottom:20px;
+}
+#megaMenu .megaMenuToggle-icon{
+	display:inline-block;
+	background: #999;
+	background: rgba(206, 206, 206, 1 );
+	height:2px;
+	width:16px;
+	position:relative;
+	float:right;
+	margin-top:10px;
+}
+.megaMenuToggle-icon:before{
+	content:'';
+	position:absolute;
+	background: #999;
+	background: rgba(206, 206, 206, 1 );	
+	height:2px;
+	width:16px;
+	top:-4px;
+	left: 0px;
+}
+.megaMenuToggle-icon:after{
+	content:'';
+	position:absolute;
+	background: #999;
+	background: rgba(206, 206, 206, 1 );
+	height:2px;
+	width:16px;
+	top:-8px;
+	left: 0px;
+}
+#megaMenu #megaMenuToggle {
+	padding: 20px 15px 20px 34px;
+}
+.megaMenu li:first-of-type {
+	margin-left:1%;
+}
+@media screen and (min-width: 766px) {
+	#megaMenu.megaMenuHorizontal ul.megaMenu > li:first-child > a {
+		border-left: 1px solid #d1d1d1 !important;
+	}
+	#megaMenu.megaMenuHorizontal ul.megaMenu > li.menu-item-object-page:nth-child(6) > a {
+		border-right: 1px solid #d1d1d1 !important;
+	}
 }

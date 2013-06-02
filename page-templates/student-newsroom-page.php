@@ -31,5 +31,4 @@ get_header(); ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
 
-<?php get_sidebar( 'student-newsroom' ); ?>
 <?php get_footer(); ?>
