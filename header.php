@@ -54,7 +54,7 @@
                     <p>Atlanta, GA</p>
                 </div>
                 <div>
-                	<? include (TEMPLATEPATH . '-child/searchform.php'); ?>
+                	<? locate_template( array( 'searchform.php' ), true ) ?>
                 </div>
             </div>
         <!-- <img src="http://ona13.journalists.org/wp-content/uploads/2013/03/date-box2.png" style="margin-left: -4px;"> -->
