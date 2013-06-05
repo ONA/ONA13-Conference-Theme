@@ -41,4 +41,5 @@ add_action( 'wp_enqueue_scripts', 'ona13_wp_enqueue_scripts' );
 function ona13_wp_enqueue_scripts() {
 
 	wp_enqueue_script( 'jquery-isotope', get_stylesheet_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'uberMenu_extension', get_stylesheet_directory_uri() . '/js/uberMenu_extension.js', array( 'jquery', 'ubermenu' ) );
 }
