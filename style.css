@@ -1973,6 +1973,9 @@ ona13-button {
 #megaMenu {
 	margin-bottom:20px;
 }
+#megaMenu .submenu {
+	box-shadow:1px 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
 #megaMenu .megaMenuToggle-icon{
 	display:inline-block;
 	background: #999;
@@ -2008,6 +2011,15 @@ ona13-button {
 }
 .megaMenu li:first-of-type {
 	margin-left:1%;
+}
+.blog #megaMenu.megaFullWidth {
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+#megaMenu.megaMenuHorizontal ul.megaMenu .ss-nav-menu-mega-floatRight a {
+	border-left: 0;	
+}
+#megaMenu.megaMenuHorizontal ul.megaMenu .ss-nav-menu-mega-floatRight a img {
+	margin:0 auto;
 }
 @media screen and (min-width: 766px) {
 	#megaMenu.megaMenuHorizontal ul.megaMenu > li:first-child > a {
