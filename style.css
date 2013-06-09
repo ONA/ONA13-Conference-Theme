@@ -1788,6 +1788,9 @@ img#wpstats {
 	#megaMenu.megaMenuHorizontal #megaUber.megaMenu {
 		width: 98%;
 	}
+	body #megaMenu.ubermenu-sticky ul.megaMenu {
+		margin: 0;	
+	}
 }
 @media screen and (max-width: 766px) {
 	#header_info > div:first-child {
@@ -1805,6 +1808,9 @@ img#wpstats {
 	}
 	#header_info input[type="submit"] {
 		width:21%;	
+	}
+	#megaMenu.megaMenuHorizontal #megaUber.megaMenu {
+		width:100%;	
 	}
 }
 @media screen and (min-width: 550px) {
@@ -2030,9 +2036,7 @@ body #megaMenu.ubermenu-sticky ul.megaMenu {
 	padding-left:0;
 	max-width:none;	
 }
-#megaMenu.megaMenuHorizontal #megaUber.megaMenu {
-	width:100%;	
-}
+
 @media screen and (min-width: 766px) {
 	#megaMenu.megaMenuHorizontal ul.megaMenu > li:first-child > a {
 		border-left: 1px solid #d1d1d1 !important;
