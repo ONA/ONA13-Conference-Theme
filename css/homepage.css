@@ -2,9 +2,140 @@
 /* CSS Document */
 
 
+.lead_text p {
+	font-size:1.6em;
+	line-height:170%;
+	font-family: 'Roboto Slab', serif;
+	font-weight:300;
+}
+.lead_text .button {
+	background: #392C72;
+	border-radius: 10px;
+	padding: 15px 0;
+	margin: 15px 0 25px;
+	color: rgb(255, 255, 255);
+	font-size: 25px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.button:hover {
+	background: rgb(98, 86, 150);	
+}
+.headlines {
+	margin-bottom:20px;	
+	border-bottom: 1px dotted #ccc;
+	padding-bottom:20px;	
+}
+.headlines li {
+	padding:15px 0 0 15px;
+}
+.headlines .title {
+	background: #9999CC;
+	padding:10px 0 10px 15px;
+	position: relative;
+}
+.headlines .title a {
+	font-weight:700;
+	color: #fff;
+	text-transform:uppercase;	
+}
+.headlines a span {
+	color: #bbb;
+	font-size: 0.8em;
+}
+.headlines .more a {
+	font-weight:700;
+}
 
+.headlines li a {
+	font-weight:400;
+}
+.home_widget {
+	background: rgb(238, 238, 238);
+	min-height: 100px;
+	margin: 0 2% 20px;
+	float: left;
+	padding: 15px 2% 5px;
+	border-radius: 10px;
+	text-align: center;
+	width: 92%;
+}
+.home_widget img {
+	width:20px;
+	height:20px;
+	border: 1px solid #fff;
+	margin:0 auto 10px;
+	display:table-cell;
+}
+.home_widget h4 a {
+	font-size: 1.5em;
+	color: rgb(138, 138, 138);
+	text-shadow: 1px 1px 0px #ffffff;
+    filter: dropshadow(color=#ffffff, offx=1, offy=1);
+}
+.home_widget p {
+	margin: 10px 0;
+	line-height:150%;
+	color: rgb(158, 158, 158);
+}
+.home_widget p a {
+	color: rgb(138, 138, 138);
+}
+.home_widget a:hover {
+	text-decoration:underline;
+}
+.site-content h3 {
+	text-align: center;
+	font-size:22px;
+	border-bottom:1px dotted #ccc;
+	margin:20px 0 30px;
+	height:12px;	
+}
+h3 span {
+	background: #fff;
+	padding:0 15px;	
+}	
+	
 @media screen and (min-width:670px){
 	.home .site-content {
-		width:94%;	
+		width:97%;	
+		padding:20px 2%;
+	}
+	#content > div {
+		overflow:auto;	
+	}
+	.lead_text {
+		width:63%;
+		margin: 0 2% 20px;
+		float:left;
+	}
+	.headlines {
+		width:29%;
+		margin: 0 1% 0 2%;
+		float:left;
+		padding:3px 0 8px;
+		border-bottom:0;
+	}
+	.headlines li {
+		border-left:1px solid #ccc;
+	}
+	.headlines .title:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		border-width: 0 16px 16px 0;
+		border-style: solid;
+		border-color: #fff #fff #392C72 #392C72;
+	}
+	.home_widget {
+		width: 25%;
+		margin: 0 2% 20px;
+		float: left;
+		padding: 15px 2% 5px;
+	}
+	div > .home_widget:nth-of-type(2) {
+		width:26%;	
 	}
 }
