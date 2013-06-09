@@ -1,5 +1,6 @@
 	<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
+        	<? if ( is_page() ) { ?>
         	<aside id="pagenav" class="widget widget_text">
             	<h3 class="widget-title">Related pages</h3>
                 <? 	if ( is_page() ) {
@@ -21,6 +22,7 @@
 					echo '</ul>';
 				} ?>
             </aside>
+            <? } ?>
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 		</div><!-- #secondary -->
 	<?php endif; ?>
