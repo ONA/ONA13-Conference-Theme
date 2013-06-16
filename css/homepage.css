@@ -40,17 +40,7 @@
 	color: #fff;
 	text-transform:uppercase;	
 }
-.headlines a span {
-	color: #bbb;
-	font-size: 0.8em;
-}
-.headlines .more a {
-	font-weight:700;
-}
 
-.headlines li a {
-	font-weight:400;
-}
 .home_widget {
 	background: rgb(238, 238, 238);
 	min-height: 100px;
@@ -70,14 +60,14 @@
 }
 .home_widget h4 a {
 	font-size: 1.5em;
-	color: rgb(138, 138, 138);
+	color: rgb(104, 102, 102);
 	text-shadow: 1px 1px 0px #ffffff;
     filter: dropshadow(color=#ffffff, offx=1, offy=1);
 }
 .home_widget p {
 	margin: 10px 0;
 	line-height:150%;
-	color: rgb(158, 158, 158);
+	color: rgb(104, 102, 102);
 }
 .home_widget p a {
 	color: rgb(138, 138, 138);
