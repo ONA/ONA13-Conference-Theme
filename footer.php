@@ -1,46 +1,49 @@
 <div style="clear:both;"></div>
     </div><!-- #main .wrapper -->
     </div><!-- #page -->
-    <div id="footer-icon"><img src="http://ona13.journalists.org/wp-content/uploads/2013/03/icon3.png" style="
-    margin-top: -40px;
-"></div>
+    <div id="footer-icon">
+    	<img src="http://ona13.journalists.org/wp-content/uploads/2013/03/icon3.png" />
+    </div>
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info" id="footer-container">
-		<!--	<?php do_action( 'twentytwelve_credits' ); ?>
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentytwelve' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentytwelve' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentytwelve' ), 'WordPress' ); ?></a> -->
-         <div style="display:inline; float:left;">
-         <h1 style="color: #FFFAEC;">Have a question?</h1>
-         <p>Send us a note at <a href="mailto:ona13@journalists.org">ona13@journalists.org</a>.</p>
-         <p>Or, if you have a specific inquiry:</p>
-         <h2  style="color: #FFFAEC;">Student Newsroom</h2>
-         <a href="mailto:ona13newsroom@journalists.org">ona13newsroom@journalists.org</a>
-         <h2  style="color: #FFFAEC;">Sponsorships</h2>
-         <a href="mailto:tregan@journalists.org">tregan@journalists.org</a>
-         <h2  style="color: #FFFAEC;">Midway</h2>
-         <a href="mailto:ona13midway@journalists.org">ona13midway@journalists.org</a>
-		</div>
-        <div style="display:inline; float:right;">
-         <h1 style="color: #FFFAEC; text-align:right">Conference Committee</h1>
-      
-         <h2  style="color: #FFFAEC; text-align:right">Conference Chairs</h2>
-         <p style="text-align:right;">Olivia Ma, Google +</p>
-         <p style="text-align:right;">Alicia Stewart, CNN</p>
-         <h2  style="color: #FFFAEC; text-align:right">Board Adviser</h2>
-         <p style="text-align:right;">Meredith Artley, CNN</p>
-         <h2  style="color: #FFFAEC; text-align:right">Programming Chair</h2>
-         <p style="text-align:right;"><a href="http://lifeandcode.tumblr.com/" target="_blank">Lisa Williams</a>, @lisawilliams</p>
-      
-         <h2  style="color: #FFFAEC; text-align:right">Volunteer Chair</h2>
-         <p style="text-align:right;"><a href="mailto:ona13volunteers@journalists.org">Laura Cochran</a>, Digital First Media</p>
-         <h2  style="color: #FFFAEC; text-align:right">Student Newsroom Chairs</h2>
-         <p style="text-align:right;"><a href="mailto:ona13newsroom@journalists.org">Michelle Johnson</a>, Boston University</p>
-         <p style="text-align:right;"><a href="mailto:ona13newsroom@journalists.org">Katia Hetter</a>, CNN</p>
-         <h2  style="color: #FFFAEC; text-align:right">Website</h2>
-         <p style="text-align:right;">Daniel Bachhuber, Automattic</p>
-        
-		</div>
-        <div style="clear:both;"></div>
+        	<div>
+                <h2>Have a question?</h2>
+                <p>Send us a note at <a href="mailto:ona13@journalists.org">ona13@journalists.org</a>.</p>
+                <p>Or, if you have a specific inquiry:</p>
+                <h4>Student Newsroom</h4>
+                <p><a href="mailto:ona13newsroom@journalists.org">ona13newsroom@journalists.org</a></p>
+                <h4>Sponsorships</h4>
+                <p><a href="mailto:jessica@journalists.org">jessica@journalists.org</a></p>
+                <h4>Midway</h4>
+                <p><a href="mailto:ona13midway@journalists.org">ona13midway@journalists.org</a></p>
+            </div>
+            <div class="committee">
+                <h3>Conference Committee</h3>
+                <div>
+                    <h4>Conference Chairs</h4>
+                    <p>Olivia Ma, Google +</p>
+                    <p>Alicia Stewart, CNN</p>
+                    <h4>Board Adviser</h4>
+                    <p>Meredith Artley, CNN</p>
+                    <h4>Programming Chair</h4>
+                    <p><a href="http://lifeandcode.tumblr.com/" target="_blank">Lisa Williams</a>, @lisawilliams</p>
+                 </div>
+                 <div>
+                    <h4>Volunteer Chair</h4>
+                    <p><a href="mailto:ona13volunteers@journalists.org">Laura Cochran</a>, Digital First Media</p>
+                    <h4>Student Newsroom Chairs</h4>
+                    <p><a href="mailto:ona13newsroom@journalists.org">Michelle Johnson</a>, Boston University</p>
+                    <p><a href="mailto:ona13newsroom@journalists.org">Katia Hetter</a>, CNN</p>
+                    <h4>Website</h4>
+                    <p>Daniel Bachhuber, Automattic</p>
+                    <p>Adam Nekola</p>
+                </div>
+			</div>
         </div><!-- .footer-container -->
+        <div class="footnotes">
+        	<img src="http://ona13.journalists.org/wp-content/uploads/2013/06/ONA-white-web-e1371412367339.png" />
+            <p>&copy;<? echo date("Y");?> <a href="http://www.journalists.org">Online News Association</a> | Site built with <a href="http://www.wordpress.org">Wordpress and the <a href="http://wordpress.org/themes/twentytwelve">Twenty Twelve</a> theme | Icons courtesy of <a href="http://veodesign.com/2011/en/09/07/somicro-27-free-simple-social-media-icons/">Veo Design</a></p>
+        </div>
 	</footer><!-- #colophon -->
 
 <?php wp_footer(); ?>

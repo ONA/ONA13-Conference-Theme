@@ -683,38 +683,54 @@ footer[role="contentinfo"] p {
      color: #FFFAEC;
 }
 
+/* --- Footer styles below edited by Adam --- */
 
 #footer-container h1, h2, h3, h4 {
      font-family: 'Source Sans Pro', sans-serif;
      font-weight: 900;
      text-transform: uppercase;
-}
-
-footer[role="contentinfo"] h1 {
-     font-size: 22px;
-}
-
-footer[role="contentinfo"] h2 {
-     font-size: 20px;
+	 line-height:1;
+	 padding-bottom: 8px;
 }
 
 footer[role="contentinfo"] h2 {
-     font-size: 18px;
+    font-size: 35px;
+	padding-top: 5px;
+}
+footer[role="contentinfo"] h3 {
+    font-size: 22px;
+}
+footer[role="contentinfo"] h4 {
+    font-size: 16px;
+	padding-top: 8px;
 }
 
-footer[role="contentinfo"] h2 {
-     font-size: 16px;
-}
-
-#footer-container {
+footer > div {
     max-width: 1020px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 20px;
+	overflow:auto;
+	color: #FFFAEC;
 }
-
+#footer-container > div {
+	margin-top:10px;
+	float:left;	
+	width:50%;
+}
+#footer-container .committee {
+	width: 48%;
+	padding: 15px 0 15px 2%;
+	background: rgb(77, 56, 129);
+	border-radius: 10px;
+}
+.committee > div {
+	width: 47%;
+	margin-right: 3%;
+	float: left;
+}
 #footer-icon{
      margin: 60px auto 0;
      text-align: center;
@@ -723,16 +739,37 @@ footer[role="contentinfo"] h2 {
      background: #9999CC;
      height: 36px;
 }
-/* Added by Adam; removed from inline styles */
-footer {
-	overflow: auto;
+#footer-icon img {
+	position: relative;
+	top: -40px;
 }
-footer h1,
-footer h2 {
-	color: #FFFAEC;	
+.footnotes {
+	margin-top:20px;
+	border-top:1px dotted #FFFAEC;	
 }
-footer .left {
+.footnotes img {
 	float:left;
+	margin-right:20px;
+}
+.footnotes p {
+	margin-top: 52px;
+	text-align: right;
+}
+@media screen and (max-width: 669px) {
+	#footer-container > div {
+		width: 100%;	
+	}
+	#footer-container .committee {
+		clear: left;
+		width: 98%;	
+	}
+	.footnotes img {
+		float:none;
+	}
+	.footnotes p {
+		margin-top: 0;
+		text-align: left;
+	}
 }
 
 /* =Main content and comment content
@@ -1779,7 +1816,7 @@ img#wpstats {
 	}
 	#header_info > div {
 		float:left;
-		padding-left: 40px;
+		padding-left: 35px;
 		width:295px
 	}
 	#header_info input[type="text"] {
@@ -2066,4 +2103,28 @@ box-shadow: none;
 margin-left: 0;
 position: relative;
 left: -5px;
+background:#392C72;
+border: 1px solid #392C72;
+color: #fff;
+text-transform:uppercase;
+font-weight: 700;
+}
+
+/* Page styling */
+
+.headlines a span {
+	color: #bbb;
+	font-size: 0.8em;
+}
+.headlines .more a {
+	font-weight:700;
+}
+.headlines li a {
+	font-weight:400;
+}
+.widget-area .widget .headlines li {
+	line-height:1;
+}
+.widget .headlines li {
+	padding-bottom:15px;
 }
