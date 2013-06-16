@@ -17,7 +17,7 @@ get_header(); ?>
         <!-- Main Info -->
         <div>
         	<div class="lead_text">
-            	<p>The Online News Association's 2013 Conference & Awards Banquet is the premier gathering of highly engaged digital journalists shaping the future of media. Spend three full days learning about new tools and technologies, network with peers from all over the map and celebrate excellence at the Online Journalism Awards.</p>
+            	<p>The Online News Association 2013 Conference & Awards Banquet is the premier gathering of highly engaged digital journalists shaping the future of media. Learn about new tools and technologies, network with peers from around the world and celebrate excellence at the Online Journalism Awards.</p>
                 <a href="<? echo home_url(); ?>/register/"><div class="button">Register today</div></a>
             </div>
             <ul class="headlines">
