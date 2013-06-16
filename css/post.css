@@ -1,0 +1,15 @@
+
+.entry-header .entry-title {
+margin:10px 0 15px;
+font-family: 'Roboto Slab', serif;
+font-weight:400;	
+font-size:37px;
+text-transform: none;
+}
+.entry-header p {
+font-size: 11px;
+text-transform: uppercase;
+}
+.entry-header p span {
+font-weight:bold;	
+}
