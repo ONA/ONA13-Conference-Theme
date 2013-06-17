@@ -80,7 +80,7 @@
 	font-size:22px;
 	border-bottom:1px dotted #ccc;
 	margin:20px 0 30px;
-	height:12px;	
+	height:4px;	
 }
 h3 span {
 	background: #fff;
@@ -88,8 +88,9 @@ h3 span {
 }	
 	
 @media screen and (min-width:670px){
-	.home .site-content {
-		width:97%;	
+	body.home .site-content,
+	body.full-width.home .site-content {
+		width:96%;	
 		padding:20px 2%;
 	}
 	#content > div {
