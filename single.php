@@ -16,7 +16,12 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php //get_template_part( 'content', get_post_format() ); ?>
+				<? if (has_post_thumbnail( $post->ID ) ): ?>
+				<? $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+                <div id="article_img" style="height:<?=$image[2];?>px;">
+                	<img src="<?=$image[0];?>" width="<?=$image[1];?>" height="<?=$image[2];?>"/>
+                </div>
+                <? endif; ?>
                 <article>
                     <header class="entry-header">
                         <h1 class="entry-title"><? the_title();?></h1>

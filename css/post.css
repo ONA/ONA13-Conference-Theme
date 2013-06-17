@@ -13,3 +13,22 @@ text-transform: uppercase;
 .entry-header p span {
 font-weight:bold;	
 }
+.entry-content {
+width: 85%;	
+}
+#article_img {
+height:50px; 
+max-width:100%;
+margin: 10px 0 20px;	
+background: #eee;
+border-radius:8px;
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+overflow:hidden;
+}
+#article_img img {
+margin:0 auto;	
+border-radius:8px;
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+}
