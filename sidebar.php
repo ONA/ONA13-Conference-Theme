@@ -1,6 +1,6 @@
 	<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
-        	
+        	<? if ( is_singular() ) { ?>
         	<aside id="pagenav" class="widget widget_text">
             <? 	if ( is_page() ) {
 					echo '<ul>';
@@ -20,7 +20,7 @@
 						'child_of' => $top_page,
 						'title_li' => ''
 					));
-				} else if (in_category( 'news' )) {
+				} else if (in_category( 'news' ) && is_single() ) {
 					echo '<ul class="headlines">';
 					echo '<h3 class="widget-title">Recent News</h3>';
 					$args = array(
@@ -42,6 +42,7 @@
 				} 
 				echo '</ul>'; ?>
             </aside>
+            <? } ?>
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 		</div><!-- #secondary -->
 	<?php endif; ?>
