@@ -733,7 +733,6 @@ footer > div {
 }
 #footer-icon{
      margin: 60px auto 0;
-     text-align: center;
      position: relative;
      z-index: 10;
      background: #9999CC;
@@ -742,6 +741,7 @@ footer > div {
 #footer-icon img {
 	position: relative;
 	top: -40px;
+	left: 30px;
 }
 .footnotes {
 	margin-top:20px;
@@ -762,6 +762,12 @@ footer > div {
 	#footer-container .committee {
 		clear: left;
 		width: 98%;	
+	}
+	#footer-icon{
+		text-align:center;
+	}
+	#footer-icon img {
+		left:auto;
 	}
 	.footnotes img {
 		float:none;

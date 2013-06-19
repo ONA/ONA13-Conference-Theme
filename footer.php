@@ -2,7 +2,9 @@
     </div><!-- #main .wrapper -->
     </div><!-- #page -->
     <div id="footer-icon">
+    	<div class="site">
     	<img src="http://ona13.journalists.org/wp-content/uploads/2013/03/icon3.png" />
+        </div>
     </div>
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info" id="footer-container">
@@ -42,7 +44,7 @@
         </div><!-- .footer-container -->
         <div class="footnotes">
         	<img src="http://ona13.journalists.org/wp-content/uploads/2013/06/ONA-white-web-e1371412367339.png" />
-            <p>&copy;<? echo date("Y");?> <a href="http://www.journalists.org">Online News Association</a> | Site built with <a href="http://www.wordpress.org">Wordpress and the <a href="http://wordpress.org/themes/twentytwelve">Twenty Twelve</a> theme | Icons courtesy of <a href="http://veodesign.com/2011/en/09/07/somicro-27-free-simple-social-media-icons/">Veo Design</a></p>
+            <p>&copy;<? echo date("Y");?> <a href="http://www.journalists.org">Online News Association</a> | Site built with <a href="http://www.wordpress.org">Wordpress</a> and the <a href="http://wordpress.org/themes/twentytwelve">Twenty Twelve</a> theme | Icons courtesy of <a href="http://veodesign.com/2011/en/09/07/somicro-27-free-simple-social-media-icons/">Veo Design</a></p>
         </div>
 	</footer><!-- #colophon -->
 
