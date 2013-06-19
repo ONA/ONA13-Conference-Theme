@@ -27,7 +27,7 @@
                     <p>Alicia Stewart, CNN</p>
                     <h4>Board Adviser</h4>
                     <p>Meredith Artley, CNN</p>
-                    <h4>Programming Chair</h4>
+                    <h4>Program Chair</h4>
                     <p><a href="http://lifeandcode.tumblr.com/" target="_blank">Lisa Williams</a>, @lisawilliams</p>
                  </div>
                  <div>
