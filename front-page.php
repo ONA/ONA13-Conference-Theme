@@ -53,9 +53,9 @@ get_header(); ?>
         </div>
         
         <!-- Sponsors -->
-        <div>
+        <div class="sponsors">
         	<h3><span>Sponsors</span></h3>
-        	<div></div>
+        	<div><p>Sponsorships are still available for ONA13. <a href="/sponsor/sponsor-packages/">Learn more &rarr;</a></p></div>
         </div>
 
 		</div><!-- #content -->

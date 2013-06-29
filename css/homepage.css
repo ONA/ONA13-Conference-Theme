@@ -3,12 +3,13 @@
 
 
 .lead_text p {
-	font-size:1.6em;
+	font-size:1.7em;
 	line-height:170%;
 	font-family: 'Roboto Slab', serif;
+	font-family: 'Source Sans Pro', serif;
 	font-weight:300;
 }
-.lead_text .button {
+div.button {
 	background: #392C72;
 	border-radius: 10px;
 	padding: 15px 0;
@@ -52,11 +53,13 @@
 	width: 92%;
 }
 .home_widget img {
-	width:20px;
-	height:20px;
-	border: 1px solid #fff;
+	width:30px;
+	height:30px;
 	margin:0 auto 10px;
 	display:table-cell;
+}
+.home_widget h4 {
+	padding-bottom:0;
 }
 .home_widget h4 a {
 	font-size: 1.5em;
@@ -86,6 +89,10 @@ h3 span {
 	background: #fff;
 	padding:0 15px;	
 }	
+.sponsors p {
+	text-align:center;
+	margin-bottom:20px;	
+}
 	
 @media screen and (min-width:670px){
 	body.home .site-content,

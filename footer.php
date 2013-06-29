@@ -44,7 +44,7 @@
         </div><!-- .footer-container -->
         <div class="footnotes">
         	<img src="http://ona13.journalists.org/wp-content/uploads/2013/06/ONA-white-web-e1371412367339.png" />
-            <p>&copy;<? echo date("Y");?> <a href="http://www.journalists.org">Online News Association</a> | Site built with <a href="http://www.wordpress.org">Wordpress</a> and the <a href="http://wordpress.org/themes/twentytwelve">Twenty Twelve</a> theme | Icons courtesy of <a href="http://veodesign.com/2011/en/09/07/somicro-27-free-simple-social-media-icons/">Veo Design</a></p>
+            <p>&copy;<? echo date("Y");?> <a href="http://www.journalists.org">Online News Association</a> | Site built with <a href="http://www.wordpress.org">Wordpress</a> and the <a href="http://wordpress.org/themes/twentytwelve">Twenty Twelve</a> theme<br />Social meida icons courtesy of <a href="http://veodesign.com/2011/en/09/07/somicro-27-free-simple-social-media-icons/">Veo Design</a> | Other icons by <a href="http://www.augustinteractive.com/">August Interactive</a></p>
         </div>
 	</footer><!-- #colophon -->
 
