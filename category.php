@@ -28,7 +28,7 @@ get_header(); ?>
                 	<? if ( has_post_thumbnail() ) {
                     	the_post_thumbnail('thumbnail');
                     } else { ?>
-                    
+                    	<img class="attachment-thumbnail wp-post-image" src="<? echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" />
                     <? } ?>
                     <div>
                         <h2><a href="<? the_permalink();?>" title="<? the_title();?>" ><? the_title();?></a></h2>
