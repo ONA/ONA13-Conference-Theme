@@ -1,0 +1,36 @@
+.archive-title {
+font-size: 43px;
+color: rgb(177, 177, 177);	
+}
+h2 {
+clear:none;
+text-transform: none;
+padding-bottom:13px;
+}
+h2 a {
+font-weight: 400;
+font-size: 2em;
+}
+img.wp-post-image {
+	float: left;
+	margin-right:20px;	
+}
+
+.news_item {
+	overflow:auto;
+	margin-bottom:20px;	
+	padding-bottom:20px;
+	border-bottom:1px dotted #ccc;
+}
+.news_item div {
+margin-left:170px;
+}
+.news_item .date {
+font-size: 11px;
+text-transform: uppercase;
+padding-bottom:10px;
+}
+.news_item .excerpt {
+line-height: 170%;
+font-size: 0.9em;
+}

@@ -4,14 +4,15 @@
  *
  * @subpackage Twenty_Twelve_Child for ONA
  */
-
+wp_enqueue_style("category");
 get_header(); ?>
 
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
        
 
-		<?php if ( have_posts() ) : ?>
+		<?php 
+		if ( have_posts() ) : ?>
 			<header class="archive-header">
 				<h1 class="archive-title"><span><?= single_cat_title( '', false ); ?></span></h1>
 
@@ -22,18 +23,20 @@ get_header(); ?>
 
 			<?php
 			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-
-				/* Include the post format-specific template for the content. If you want to
-				 * this in a child theme then include a file called called content-___.php
-				 * (where ___ is the post format) and that will be used instead.
-				 *
-				 * get_template_part( 'content', get_post_format() );
-				 *
-				 */
-				
-
-			endwhile;
+			while ( have_posts() ) : the_post(); ?>
+				<div class="news_item">
+                	<? if ( has_post_thumbnail() ) {
+                    	the_post_thumbnail('thumbnail');
+                    } else { ?>
+                    
+                    <? } ?>
+                    <div>
+                        <h2><a href="<? the_permalink();?>" title="<? the_title();?>" ><? the_title();?></a></h2>
+                        <p class="date"><? the_time('M d, Y'); ?></p>
+                        <p class="excerpt"><? the_excerpt_max_charlength(280);?></p>
+                    </div>
+                </div>
+			<? endwhile;
 
 			twentytwelve_content_nav( 'nav-below' );
 			?>

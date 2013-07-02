@@ -7,7 +7,6 @@
  * @since Twenty Twelve 1.0
  */
 wp_enqueue_style("post");
-wp_enqueue_style("google-sans-serif", "http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100", array(), null );
 
 get_header(); ?>
 
@@ -18,7 +17,7 @@ get_header(); ?>
 
 				<? if (has_post_thumbnail( $post->ID ) ): ?>
 				<? $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
-                <div id="article_img" style="height:<?=$image[2];?>px;">
+                <div id="article_img">
                 	<img src="<?=$image[0];?>" width="<?=$image[1];?>" height="<?=$image[2];?>"/>
                 </div>
                 <? endif; ?>

@@ -21,7 +21,7 @@
 <html <?php language_attributes(); ?>>
 <!--<![endif]-->
 <head>
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,900' rel='stylesheet' type='text/css'>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
 <title><?php wp_title( '|', true, 'right' ); ?></title>

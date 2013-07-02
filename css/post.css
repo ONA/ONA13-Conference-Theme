@@ -1,9 +1,9 @@
-
 .entry-header .entry-title {
 margin:10px 0 15px;
-font-family: 'Roboto Slab', serif;
+/*font-family: 'Roboto Slab', serif;*/
+font-family: 'Source Sans Pro', serif;
 font-weight:400;	
-font-size:37px;
+font-size:50px;
 text-transform: none;
 }
 .entry-header p {
@@ -19,6 +19,7 @@ width: 85%;
 #article_img {
 height:50px; 
 max-width:100%;
+height:auto;
 margin: 10px 0 20px;	
 background: #eee;
 border-radius:8px;
@@ -31,4 +32,11 @@ margin:0 auto;
 border-radius:8px;
 -moz-border-radius:8px;
 -webkit-border-radius:8px;
+max-width:100%;
+height:auto;
+}
+@media screen and (max-width:670px){
+	.entry-header .entry-title {
+		font-size:35px;	
+	}
 }

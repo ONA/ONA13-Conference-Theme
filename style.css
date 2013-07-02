@@ -320,7 +320,8 @@ img.wp-post-image {
 	Add fancy borders to all WordPress-added images but not things like badges and icons and the like 
 	*/
 	border-radius: 3px;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	/* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); */
+	box-shadow: none;
 }
 .wp-caption {
 	max-width: 100%; /* Keep wide captions from overflowing their container. */
@@ -569,6 +570,7 @@ a:hover {
 #header_info > div p {
 	font-size: 1.7em;
 	font-family: 'Source Sans Pro', sans-serif;
+	font-weight:100;
 	line-height: 120%;
 	text-transform: uppercase;
 	color: rgb(125, 117, 150);

@@ -138,7 +138,7 @@ function ona13_wp_enqueue_scripts() {
  
 wp_register_style("homepage", get_stylesheet_directory_uri()."/css/homepage.css", array("twentytwelve-fonts", "twentytwelve-style"));
 wp_register_style("post", get_stylesheet_directory_uri()."/css/post.css", array("twentytwelve-fonts", "twentytwelve-style"));
-
+wp_register_style("category", get_stylesheet_directory_uri()."/css/category.css", array("twentytwelve-fonts", "twentytwelve-style"));
 
 
 
@@ -338,4 +338,38 @@ class UberMenuONA13 extends UberMenuWalker{
 	}
 }
 
+/* Allows for shorter excerpts when this function is used */
+function the_excerpt_max_charlength($charlength) {
+	$excerpt = get_the_excerpt();
+	$charlength++;
+
+	if ( mb_strlen( $excerpt ) > $charlength ) {
+		$subex = mb_substr( $excerpt, 0, $charlength - 5 );
+		$exwords = explode( ' ', $subex );
+		$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+		if ( $excut < 0 ) {
+			echo mb_substr( $subex, 0, $excut );
+		} else {
+			echo $subex;
+		}
+		echo '[...]';
+	} else {
+		echo $excerpt;
+	}
+}
+
+/* Overriding this pagination function because it seems backwards */
+function twentytwelve_content_nav( $html_id ) {
+	global $wp_query;
+
+	$html_id = esc_attr( $html_id );
+
+	if ( $wp_query->max_num_pages > 1 ) : ?>
+		<nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
+			<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentytwelve' ); ?></h3>
+			<div class="nav-previous alignleft"><?php previous_posts_link( __( '<span class="meta-nav">&larr;</span> Newer posts', 'twentytwelve' ) ); ?></div>
+            <div class="nav-next alignright"><?php next_posts_link( __( 'Older posts <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?></div>
+		</nav><!-- #<?php echo $html_id; ?> .navigation -->
+	<?php endif;
+}
 ?>
