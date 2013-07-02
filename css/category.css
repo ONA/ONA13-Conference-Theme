@@ -1,6 +1,9 @@
 .archive-title {
 font-size: 43px;
 color: rgb(177, 177, 177);	
+padding-top: 11px;
+text-transform: none;
+font-weight:300;
 }
 h2 {
 clear:none;
@@ -12,15 +15,15 @@ font-weight: 400;
 font-size: 2em;
 }
 img.wp-post-image {
-	float: left;
-	margin-right:20px;	
+float: left;
+margin-right:20px;	
 }
 
 .news_item {
-	overflow:auto;
-	margin-bottom:20px;	
-	padding-bottom:20px;
-	border-bottom:1px dotted #ccc;
+overflow:auto;
+margin-bottom:20px;	
+padding-bottom:20px;
+border-bottom:1px dotted #ccc;
 }
 .news_item div {
 margin-left:170px;

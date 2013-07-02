@@ -23,9 +23,10 @@
 				} else if (in_category( 'news' ) && is_single() ) {
 					echo '<ul class="headlines">';
 					echo '<h3 class="widget-title">Recent News</h3>';
+					$category_id = get_cat_ID('News');
 					$args = array(
 					'numberposts' => 5,
-					'category' => 4,
+					'category' => $category_id,
     				'exclude' => get_the_ID(),
 					'orderby' => 'post_date',
 					'order' => 'DESC',

@@ -7,7 +7,6 @@
  * @since ONA13 1.0
  */
 wp_enqueue_style("homepage");
-wp_enqueue_style("google-sans-serif", "http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100", array(), null );
 
 get_header(); ?>
 
@@ -22,8 +21,10 @@ get_header(); ?>
             </div>
             <ul class="headlines">
             	<li class="title"><a href="<? echo home_url(); ?>/category/news/">Recent News</a></li>
-            <? $args = array(
+            <? $category_id = get_cat_ID('News');
+				$args = array(
 				'numberposts' => 5,
+				'category' => $category_id,
 				'orderby' => 'post_date',
 				'order' => 'DESC',
 				'post_type' => 'post',
