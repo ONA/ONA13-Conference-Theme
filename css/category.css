@@ -5,6 +5,14 @@ padding-top: 11px;
 text-transform: none;
 font-weight:300;
 }
+.archive-title span {
+font-weight: 100;
+font-size: 35px;
+font-family: "Source Sans Pro", sans-serif;	
+background: rgb(207, 207, 207);
+color: #fff;
+padding: 0 10px;
+}
 h2 {
 clear:none;
 text-transform: none;
