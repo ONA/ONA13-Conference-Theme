@@ -2082,6 +2082,9 @@ body #megaMenu.megaFullWidth {
 #megaMenu.megaMenuHorizontal ul.megaMenu .ss-nav-menu-mega-floatRight a img {
 	margin:0 auto;
 }
+#megaMenu.ubermenu-sticky {
+	background:#fff;	
+}
 body #megaMenu.ubermenu-sticky ul.megaMenu {
 	padding-left:0;
 }
@@ -2110,6 +2113,7 @@ border-top-right-radius: 0px;
 border-bottom-right-radius: 0px;
 }
 #searchform input[type="submit"] {
+-webkit-appearance: none;
 -webkit-border-top-left-radius: 0px;
 -webkit-border-bottom-left-radius: 0px;
 -moz-border-radius-topleft: 0px;

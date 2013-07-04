@@ -36,6 +36,11 @@ border-radius:8px;
 max-width:100%;
 height:auto;
 }
+@media screen and (max-width:900px){
+	.entry-content {
+		width: 100%;
+	}
+}
 @media screen and (max-width:670px){
 	.entry-header .entry-title {
 		font-size:35px;	
