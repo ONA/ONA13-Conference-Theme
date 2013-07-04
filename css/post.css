@@ -1,10 +1,11 @@
 .entry-header .entry-title {
-margin:10px 0 15px;
-/*font-family: 'Roboto Slab', serif;*/
+margin: 10px 0 25px;
 font-family: 'Source Sans Pro', serif;
-font-weight:400;	
-font-size:50px;
+font-weight: 400;
+font-size: 50px;
 text-transform: none;
+padding-bottom: 20px;
+border-bottom: 1px dotted #CCC;
 }
 .entry-header p {
 font-size: 11px;
