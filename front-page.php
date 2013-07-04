@@ -23,7 +23,7 @@ get_header(); ?>
             	<li class="title"><a href="<? echo home_url(); ?>/category/news/">Recent News</a></li>
             <? $category_id = get_cat_ID('News');
 				$args = array(
-				'numberposts' => 4,
+				'numberposts' => 3,
 				'category' => $category_id,
 				'orderby' => 'post_date',
 				'order' => 'DESC',
@@ -33,7 +33,7 @@ get_header(); ?>
 				$recent_posts = wp_get_recent_posts( $args );
 				foreach( $recent_posts as $recent ){
 					echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
-					the_time(get_option('date_format'));
+					echo get_the_time(get_option('date_format'), $recent["ID"]);
 					echo '</span></a></li> ';
 				}
 			?>
