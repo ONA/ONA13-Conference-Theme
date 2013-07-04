@@ -1553,6 +1553,11 @@ img#wpstats {
 -------------------------------------------------------------- */
 
 /* Minimum width of 650 pixels. */
+@media screen and (max-width: 669px) {
+	body.custom-background {
+		background-color: #fff !important;
+	}
+}
 @media screen and (min-width: 670px) {
 	body {
 		background-color: #e6e6e6;
