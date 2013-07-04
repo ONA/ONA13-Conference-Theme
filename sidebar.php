@@ -14,7 +14,7 @@
 						$top_page = array_pop($ancestors);
 						$uri = get_page_uri($top_page);
 						$page = get_page($top_page);
-						echo '<li><a href="'. $uri .'">'.$page->post_title.'</a></li>';
+						echo '<li><a href="../">'.$page->post_title.'</a></li>';
 					}
 					wp_list_pages(array(
 						'child_of' => $top_page,
