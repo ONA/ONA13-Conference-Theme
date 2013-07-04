@@ -2079,12 +2079,11 @@ body #megaMenu.megaFullWidth {
 }
 body #megaMenu.ubermenu-sticky ul.megaMenu {
 	padding-left:0;
-	max-width:none;	
 }
 #megaMenu.megaMenuHorizontal ul.megaMenu,
-#megaMenu.ubermenu-sticky ul.megaMenu {
+body #megaMenu.ubermenu-sticky ul.megaMenu {
 	max-width:none !important;	
-	margin:0;
+	margin:0 !important;
 }
 
 @media screen and (min-width: 766px) {
