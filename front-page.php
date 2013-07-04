@@ -14,7 +14,7 @@ get_header(); ?>
 		<div id="content" role="main">
         
         <!-- Main Info -->
-        <div>
+        <div class="lead_package">
         	<div class="lead_text">
             	<p>The Online News Association 2013 Conference & Awards Banquet is the premier gathering of highly engaged digital journalists shaping the future of media. Learn about new tools and technologies, network with peers from around the world and celebrate excellence at the Online Journalism Awards.</p>
                 <a href="<? echo home_url(); ?>/register/"><div class="button">Register today</div></a>
@@ -23,7 +23,7 @@ get_header(); ?>
             	<li class="title"><a href="<? echo home_url(); ?>/category/news/">Recent News</a></li>
             <? $category_id = get_cat_ID('News');
 				$args = array(
-				'numberposts' => 5,
+				'numberposts' => 4,
 				'category' => $category_id,
 				'orderby' => 'post_date',
 				'order' => 'DESC',

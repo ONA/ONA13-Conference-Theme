@@ -2081,6 +2081,11 @@ body #megaMenu.ubermenu-sticky ul.megaMenu {
 	padding-left:0;
 	max-width:none;	
 }
+#megaMenu.megaMenuHorizontal ul.megaMenu,
+#megaMenu.ubermenu-sticky ul.megaMenu {
+	max-width:none !important;	
+	margin:0;
+}
 
 @media screen and (min-width: 766px) {
 	#megaMenu.megaMenuHorizontal ul.megaMenu > li:first-child > a {
@@ -2129,10 +2134,23 @@ font-weight: 700;
 }
 .headlines li a {
 	font-weight:400;
+	line-height: 125%;
 }
 .widget-area .widget .headlines li {
 	line-height:1;
 }
 .widget .headlines li {
 	padding-bottom:15px;
+}
+/* Button style can be used in posts */
+div.button {
+	background: #392C72;
+	border-radius: 10px;
+	padding: 15px 0;
+	margin: 15px 0 25px;
+	color: rgb(255, 255, 255);
+	font-size: 25px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
 }

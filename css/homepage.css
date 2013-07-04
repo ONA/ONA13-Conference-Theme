@@ -9,17 +9,6 @@
 	font-family: 'Source Sans Pro', serif;
 	font-weight:300;
 }
-div.button {
-	background: #392C72;
-	border-radius: 10px;
-	padding: 15px 0;
-	margin: 15px 0 25px;
-	color: rgb(255, 255, 255);
-	font-size: 25px;
-	text-align: center;
-	text-transform: uppercase;
-	font-weight: bold;
-}
 .button:hover {
 	background: rgb(98, 86, 150);	
 }
@@ -103,9 +92,12 @@ h3 span {
 	#content > div {
 		overflow:auto;	
 	}
+	.lead_package {
+		margin-bottom:20px;	
+	}
 	.lead_text {
 		width:63%;
-		margin: 0 2% 20px;
+		margin: 0 2%;
 		float:left;
 	}
 	.headlines {
