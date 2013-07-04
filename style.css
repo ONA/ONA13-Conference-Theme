@@ -2082,7 +2082,7 @@ body #megaMenu.megaFullWidth {
 #megaMenu.megaMenuHorizontal ul.megaMenu .ss-nav-menu-mega-floatRight a img {
 	margin:0 auto;
 }
-#megaMenu.ubermenu-sticky {
+body #megaMenu.ubermenu-sticky {
 	background:#fff;	
 }
 body #megaMenu.ubermenu-sticky ul.megaMenu {
