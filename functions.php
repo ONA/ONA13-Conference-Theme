@@ -1,5 +1,12 @@
 <?php
 
+require_once dirname( __FILE__ ) . '/inc/class-ona-session.php';
+require_once dirname( __FILE__ ) . '/inc/post-types.php';
+
+if ( defined( 'WP_CLI' ) && WP_CLI )
+	require_once dirname( __FILE__ ) . '/inc/class-ona13-cli-command.php';
+
+
 add_filter( 'body_class', 'ona13_body_class' );
 function ona13_body_class( $classes ) {
 	if ( is_page_template( 'page-templates/student-newsroom-page.php' ) ) {
@@ -12,68 +19,7 @@ function ona13_body_class( $classes ) {
 	return $classes;
 }
 
-class Home_Card extends WP_Widget {
- /* Declares the Featured_Sidebar_Widget class */
-    function Home_Card(){
-		$widget_ops = array('description' => 'Widget for homepage.' );
-    	//$control_ops = array('width' => 300, 'height' => 300);
-    	$this->WP_Widget('Home_Card','Home Card', $widget_ops);
-		$this->widget_count = 1;
-    }
 
-  /* Displays the Widget */
-    function widget($args, $instance){
-      global $widget_count;
-	  extract($args);
-      echo preg_replace('/widget_count/i', 'position-'.$this->widget_count, $before_widget);	      if ($instance['icon']) { ?>
-        <img src="<?=$instance['icon'];?>" alt="">
-      <? } ?>
-        <h4><a href="<?=$instance['link'];?>" title="<?=$instance['title']?>"><?=wptexturize($instance['title']);?></a></h4>
-        <p><?=wptexturize($instance['text']);?></p>
-        <p><a href="<?=$instance['link'];?>">More &rarr;</a></p>
-      <?php
-      echo $after_widget;
-	  $this->widget_count++;
-  }
-
-  /* Saves the widgets settings */
-	function update($new_instance, $old_instance){
-		$instance = $old_instance;
-		$instance['title'] = strip_tags(stripslashes($new_instance['title']));
-		$instance['link'] = strip_tags(stripslashes($new_instance['link']));
-		$instance['icon'] = strip_tags(stripslashes($new_instance['icon']));
-		$instance['text'] = strip_tags(stripslashes($new_instance['text']));		
-		return $instance;
-	}
-
-  /* Creates the edit form for the widget */
-    function form($instance){
-      $instance = wp_parse_args( (array) $instance, array('title'=>'', 'link'=>'', 'icon'=>'', 'text'=>'') );
-	  $title = htmlspecialchars($instance['title']);
-      $link = htmlspecialchars($instance['link']);
-	  $image = htmlspecialchars($instance['icon']);
-	  $text = htmlspecialchars($instance['text']);	  
-	  ?>
-      
-            <p><label for="<?=$this->get_field_name('title');?>">Title</label>
-      <input id="<?=$this->get_field_id('title')?>" name="<?=$this->get_field_name('title');?>" class="widefat" type="text" value="<?=$title;?>" /></p>
-      
-            <p><label for="<?=$this->get_field_name('link');?>">Link</label>
-      <input id="<?=$this->get_field_id('link')?>" name="<?=$this->get_field_name('link');?>" class="widefat" type="text" value="<?=$link;?>" /></p>
-
-			 <p><label for="<?=$this->get_field_name('icon');?>">Icon URL</label>
-      <input id="<?=$this->get_field_id('icon')?>" name="<?=$this->get_field_name('icon');?>" class="widefat" type="text" value="<?=$image;?>" /></p>
-			
-             <p><label for="<?=$this->get_field_name('text');?>">Text</label>
-      <textarea id="<?=$this->get_field_id('text')?>" name="<?=$this->get_field_name('text');?>" class="widefat" cols="20" rows="5" type="text"><?=$text;?></textarea></p>
-            
-	  <?php
-  }
-
-}// END class
-
-/* ---------------------------------- */
-/* Create and remove sidebars/widgets */
 
 add_action( 'widgets_init', 'ona13_widgets_init', 11);
 
@@ -126,7 +72,7 @@ function ona13_widgets_init() {
 	unregister_widget( "WP_Widget_Archives" );
 	unregister_widget( "WP_Widget_Recent_Posts" );
 	
-	register_widget('Home_Card');
+	// register_widget('Home_Card');
 }
 
 add_action( 'wp_enqueue_scripts', 'ona13_wp_enqueue_scripts' );
@@ -142,6 +88,9 @@ function ona13_wp_enqueue_scripts() {
 	wp_enqueue_script( 'jquery-isotope', get_stylesheet_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ) );
 	wp_enqueue_script( 'uberMenu_extension', get_stylesheet_directory_uri() . '/js/uberMenu_extension.js', array( 'jquery', 'ubermenu' ) );
 }
+
+
+return;
 
 
 /*  
