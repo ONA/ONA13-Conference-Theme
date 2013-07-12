@@ -1,0 +1,146 @@
+h1 {
+	margin-top:10px	
+}
+.left {
+	float:left;
+	width:45%;
+	margin-right:3%;
+	line-height:140%;
+}
+.left > p {
+	line-height:160%;
+}
+.right {
+	float:right;
+	width:48%;
+	background:#eee;
+	padding:0 2% 15px;	
+	margin-bottom:15px;
+	line-height:170%;
+	font-size:1.3em;
+	font-weight:100;
+}
+.right p {
+	padding-top:15px;	
+	font-family:'Source Sans Pro', serif;
+}
+.key,
+.schedule_nav,
+.entry-content {
+	overflow:auto;
+	margin-top:15px;
+}
+.key label,
+.schedule_nav label,
+.schedule_nav div {
+	float:left;
+}
+.key label,
+.schedule_nav label {
+	padding:6px 0;
+	font-weight:bold;
+	font-size:22px;
+}
+.schedule_nav label {
+	width: 29%;
+	cursor:pointer;
+}
+.schedule_nav label:hover {
+	zoom: 1;
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+}
+.key > div {
+	overflow:auto;
+	margin-bottom:15px;
+}
+.key div div {
+	padding:7px 0 0;
+}
+.key label {
+	width: 77px;
+	padding:6px 10px 6px 0;
+	margin-right: 10px;
+	border-right: 1px dotted #ccc;
+	font-size:22px;
+}
+.schedule_nav {
+	clear:both;
+	padding:15px 0;
+	border-top: 1px dotted #ccc;
+	border-bottom: 1px dotted #ccc;
+}
+.key div:last-of-type,
+.schedule_nav > div:last-of-type {
+	border-right: 0;
+	margin-right: 0;
+	padding-right: 0;	
+}
+.schedule_nav > div {
+	padding:0 1%;
+	width: 31%;
+	border-right: 1px dotted #ccc;
+}
+.schedule_nav div div {
+	padding:10px 1%;
+	width:18%;
+	font-weight:bold;
+	color:#fff;	
+	margin-right:3%;
+	text-align:center;
+}
+.schedule_nav div div:hover {
+	zoom: 1;
+	filter: alpha(opacity=70);
+	opacity: 0.7;
+	cursor: pointer;	
+}
+.key .listen {color: #4D3881;}
+.key .solve {color: #A92A00;}
+.key .make {color: #DCBE62;}
+.schedule_nav .listen {background: #4D3881;}
+.schedule_nav .solve {background: #A92A00;}
+.schedule_nav .make {background: #DCBE62;}
+tr {border-left: 8px solid #eee;}
+tr.listen {border-left: 8px solid #4D3881;}
+tr.solve {border-left: 8px solid #A92A00;}
+tr.make {border-left: 8px solid #DCBE62;}
+tr td:first-of-type,
+tr.listen td:first-of-type,
+tr.solve td:first-of-type,
+tr.make td:first-of-type {
+	padding-left:15px;	
+}
+
+@media screen and (max-width:900px){
+	.schedule_nav label {
+		width: 100%;
+		text-align:center
+	}
+	.schedule_nav div div:first-of-type {
+		clear:left;
+	}
+	.schedule_nav div div{
+		width:29%;
+		margin:0 1%;
+	}
+}
+
+@media screen and (max-width:550px){
+	.key div {
+		float:left;
+		wudth:33%;
+	}
+	.key div div {
+		display:none;
+	}
+	.key label {
+		border-right:0;
+		margin-right:0;
+		width:auto;
+		font-size:15px;
+	}
+	.right {
+		font-size:1.1em;
+	}
+}
