@@ -4,7 +4,6 @@
  *
  * @subpackage Twenty_Twelve_Child for ONA
  */
-wp_enqueue_style("category");
 get_header(); ?>
 
 	<section id="primary" class="site-content">

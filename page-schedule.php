@@ -18,9 +18,6 @@ function scheduleClass($classes) {
 	// return the $classes array
 	return $classes;
 }
-wp_enqueue_style("schedule");
-wp_enqueue_script("schedule-filter");
-
 get_header(); ?>
 
 	<div id="primary" class="site-content">

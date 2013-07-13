@@ -6,8 +6,6 @@
  * @subpackage ONA13
  * @since ONA13 1.0
  */
-wp_enqueue_style("homepage");
-
 get_header(); ?>
 
 	<div id="primary" class="site-content">
