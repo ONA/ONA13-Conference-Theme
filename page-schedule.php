@@ -26,7 +26,7 @@ get_header(); ?>
             	<header class="entry-header">
                 	<h1 class="entry-title"><? the_title();?></h1>
                 </header>
-                <p>Tri-tip corned beef chuck, beef short loin shoulder frankfurter ham. Flank ball tip hamburger, pastrami pancetta turducken fatback brisket doner. Pork loin pastrami ball tip pig. Corned beef doner pork chop strip steak pastrami beef ribs. Ball tip cow jowl flank ground round rump beef ribs tri-tip kielbasa andouille turducken.</p>
+                <p></p>
                 <div class="key">
                     <div>
                     	<label class="listen">Listen</label>
