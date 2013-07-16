@@ -1,5 +1,12 @@
 <?php
 
+require_once dirname( __FILE__ ) . '/inc/class-ona-session.php';
+require_once dirname( __FILE__ ) . '/inc/post-types.php';
+
+if ( defined( 'WP_CLI' ) && WP_CLI )
+	require_once dirname( __FILE__ ) . '/inc/class-ona13-cli-command.php';
+
+
 add_filter( 'body_class', 'ona13_body_class' );
 function ona13_body_class( $classes ) {
 	if ( is_page_template( 'page-templates/student-newsroom-page.php' ) ) {
