@@ -26,7 +26,7 @@ get_header(); ?>
             	<header class="entry-header">
                 	<h1 class="entry-title"><? the_title();?></h1>
                 </header>
-                <p></p>
+                <p>Welcome to the first edition of our program. For a complete description of <strong>Listen</strong>, <strong>Solve</strong> and <strong>Make</strong> and details on the conference, take a look at our <a href="http://ona13.journalists.org/2013/07/12/join-us-at-ona13-the-town-hall-for-journalism/" target="_blank">blog post</a>. You can organize your view by clicking on  Day 1, 2 or 3 or the L, S, and M buttons at the top of the schedule. Look for more sessions and speakers in the coming weeks and an interactive version will be rolled out in August.</p>
                 <div class="key">
                     <div>
                     	<label class="listen">Listen</label>
@@ -43,9 +43,10 @@ get_header(); ?>
                 </div>
             </div>
             <div class="right">
-            	<p><strong>Engage:</strong> with technology, the local community and one another. </p>
-                <p><strong>Innovate:</strong> New ideas and approaches to solving challenges and creating compelling stories.</p>
-                <p><strong>Inspire:</strong> Motivating conversations with inspiring people reminding us why we do what we do and how to manage it better and grow.</p>
+                <p><strong>ONA13 Guiding Principles</strong></p>
+            	<p><strong>Engage</strong> with technology, the journalism community and each other.</p>
+                <p><strong>Innovate</strong> ideas and approaches to challenges and creating compelling stories.</p>
+                <p><strong>Inspire</strong> through conversations with dedicated professionals who remind us why we do what we do.</p>
             </div>
             <div class="schedule_nav">
             	<div>
