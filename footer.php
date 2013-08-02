@@ -29,6 +29,7 @@
                     <p>Meredith Artley, CNN</p>
                     <h4>Program Chair</h4>
                     <p><a href="http://lifeandcode.tumblr.com/" target="_blank">Lisa Williams</a>, @lisawilliams</p>
+                     <p>Chrys Wu</a>, Matchstrike LLC, @macdiva</p>
                  </div>
                  <div>
                     <h4>Volunteer Chair</h4>
