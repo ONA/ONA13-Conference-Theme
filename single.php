@@ -26,7 +26,16 @@ get_header(); ?>
                         <? the_time('M d, Y'); ?>
                         </p>
                     </header>
+                    <div class="sponsor">
+                        <img src="http://ona13.journalists.org/wp-content/uploads/2013/07/3-google-web-300px.png" style="max-height:20px;" />
+                        <p><span>Sponsor</span>ONA13 is sponsored by <a href="http://www.google.com">Google</a>, makers of Google Glass</p>
+                    </div>
                     <div class="entry-content">
+                    	<div class="shoulderbox">
+                        	<p class="sponsored">Sponsor</p>
+                            <p>ONA13 is sponsored by <a href="http://www.google.com">Google</a>, makers of Google Glass</p>
+                            <img src="http://ona13.journalists.org/wp-content/uploads/2013/07/3-google-web-300px.png" style="max-width:120px;" />
+                        </div>
                         <? the_content();?>
                     </div>
                     <footer class="entry-meta">

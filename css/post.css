@@ -36,6 +36,51 @@ border-radius:8px;
 max-width:100%;
 height:auto;
 }
+/* Sponsors / Advertisements */
+#content .sponsor {
+border-radius:5px;
+background:#DBDBF9;	
+padding:10px;
+margin-bottom:25px;
+margin-left:-10px;
+color: #7760A8;
+font-family:'Source Sans Pro', serif;
+font-weight:300;
+font-size:1.2em;
+}
+#content .sponsor span {
+color:#fff;
+text-transform:uppercase;
+padding-right:15px;
+padding-bottom:2px;
+font-size:10px;
+position: relative;
+top: -2px;
+}
+#content .sponsor a:hover {
+text-decoration:underline;	
+}
+#content .sponsor img {
+float:right;
+}
+/* ----- */
+#content .shoulderbox {
+float:right;
+margin:0 -60px 20px 20px;
+background:#eee;	
+padding:15px;
+width:120px;
+}
+#content .shoulderbox .sponsored {
+color:#fff;
+text-transform:uppercase;	
+}
+#content .shoulderbox p {
+text-align:center;	
+font-family:'Source Sans Pro', serif;
+margin-bottom:10px;
+}
+
 @media screen and (max-width:900px){
 	.entry-content {
 		width: 100%;
