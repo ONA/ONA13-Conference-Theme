@@ -1,0 +1,200 @@
+.session-start-time {
+	float:left; 
+	width:10%;
+	padding:25px 0 10px;
+	font-family:'Source Sans Pro', serif;
+}
+
+ul.session-list {
+	font-family:'Source Sans Pro', serif;
+	width:90%;
+	padding-top:15px;
+	padding-left:20px;
+	border-left:1px solid #ccc;
+	overflow:auto;
+	box-sizing:border-box;
+	border-bottom:1px dotted #ccc;
+}
+.single-session {
+	margin-bottom:15px;
+	background: rgba(233, 233, 233, 0.7);
+	border: 1px solid rgba(116, 116, 116, 0.2);
+	border-radius: 10px;
+	text-shadow: 1px 1px 0 rgba(255,255,255,.25);
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.25);	
+}
+.single-session:hover {
+	background: rgba(230, 230, 230, 1);
+	border: 1px solid rgba(116, 116, 116, 0.4);
+}
+.session-list > a:nth-of-type(3n+1) .single-session{
+	clear:both;
+}
+.session-list > a > li {
+	box-sizing:border-box;
+	padding:10px;
+	margin-right:2%;
+	width: 31%;
+	float:left;	
+}
+.session-count-1 > a > li { width:98%;}
+.session-count-2 > a > li { width:48%; }
+
+h4.session-title {
+	font-family:'Source Sans Pro', serif;
+	color:#222;
+	font-weight:400;
+	text-transform:none;
+}
+ul.session-details {}
+
+.session-description {display:none;}
+
+
+/* Top content */
+
+h1 {
+	margin-top:10px	
+}
+.left {
+	float:left;
+	width:45%;
+	margin-right:3%;
+	line-height:140%;
+}
+.left > p {
+	line-height:160%;
+}
+.right {
+	float:right;
+	width:48%;
+	background:#eee;
+	padding:0 2% 15px;	
+	margin-bottom:15px;
+	line-height:170%;
+	font-size:1.3em;
+	font-weight:100;
+}
+.right p {
+	padding-top:15px;	
+	font-family:'Source Sans Pro', serif;
+}
+
+/* Schedule nav */
+
+.schedule_nav {
+	overflow:auto;
+	margin:35px 0;
+	clear:both;
+	padding:15px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px dotted #ccc;
+}
+.key {margin-top:15px;}
+.key label,
+.schedule_nav label,
+.schedule_nav div {
+	float:left;
+}
+.key label,
+.schedule_nav label {
+	padding:6px 0;
+	font-weight:bold;
+	font-size:22px;
+}
+.schedule_nav label {
+	width: 29%;
+	cursor:pointer;
+}
+.schedule_nav label:hover {
+	zoom: 1;
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+}
+.key > div {
+	overflow:auto;
+	margin-bottom:15px;
+}
+.key div div {
+	padding:7px 0 0;
+}
+.key label {
+	width: 77px;
+	padding:6px 10px 6px 0;
+	margin-right: 10px;
+	border-right: 1px dotted #ccc;
+	font-size:22px;
+}
+.key div:last-of-type,
+.schedule_nav > div:last-of-type {
+	border-right: 0;
+	margin-right: 0;
+	padding-right: 0;	
+}
+.schedule_nav > div {
+	padding:0 1%;
+	width: 31%;
+	border-right: 1px dotted #ccc;
+}
+.schedule_nav div div {
+	padding:10px 1%;
+	width:18%;
+	font-weight:bold;
+	color:#fff;	
+	margin-right:3%;
+	text-align:center;
+}
+.schedule_nav div div:hover {
+	zoom: 1;
+	filter: alpha(opacity=70);
+	opacity: 0.7;
+	cursor: pointer;	
+}
+.key .listen {color: #4D3881;}
+.key .solve {color: #A92A00;}
+.key .make {color: #DCBE62;}
+.schedule_nav .listen {background: #4D3881;}
+.schedule_nav .solve {background: #A92A00;}
+.schedule_nav .make {background: #DCBE62;}
+
+/* Sponsors */
+.sponsors {
+margin-top:35px;
+clear:both;	
+}
+.sponsors p {
+margin-bottom:15px;
+text-align:center;
+}
+.sponsors .logos {
+	overflow:auto;	
+	margin: 0 auto;
+	display: table;
+	margin-bottom:10px;
+}
+.sponsors .logos img,
+.sponsors .logos .more {
+	float:left;
+}
+.sponsors .more {
+	margin-left:15px;
+	padding:18px;
+	border-radius:10px;
+	border:2px dashed #aaa;
+	color:#aaa;
+	background:#eee;
+}
+
+@media screen and (max-width:900px){
+	.schedule_nav label {
+		width: 100%;
+		text-align:center
+	}
+	.schedule_nav div div:first-of-type {
+		clear:left;
+	}
+	.schedule_nav div div{
+		width:29%;
+		margin:0 1%;
+	}
+}
