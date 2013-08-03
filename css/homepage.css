@@ -66,21 +66,28 @@
 }
 .home_widget a:hover {
 	text-decoration:underline;
-}
-.site-content h3 {
-	text-align: center;
-	font-size:22px;
-	border-bottom:1px dotted #ccc;
-	margin:20px 0 30px;
-	height:4px;	
-}
-h3 span {
-	background: #fff;
-	padding:0 15px;	
 }	
 .sponsors p {
 	text-align:center;
 	margin-bottom:20px;	
+}
+.sponsors .logos {
+	overflow:auto;	
+	margin: 0 auto;
+	display: table;
+	margin-bottom:10px;
+}
+.sponsors .logos img,
+.sponsors .logos .more {
+	float:left;
+}
+.sponsors .more {
+	margin-left:15px;
+	padding:18px;
+	border-radius:10px;
+	border:2px dashed #aaa;
+	color:#aaa;
+	background:#eee;
 }
 	
 @media screen and (min-width:670px){

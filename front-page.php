@@ -54,6 +54,12 @@ get_header(); ?>
         <!-- Sponsors -->
         <div class="sponsors">
         	<h3><span>Sponsors</span></h3>
+            <div class="logos">
+            	<img src="http://ona13.journalists.org/wp-content/uploads/2013/07/3-google-web-300px.png" style="max-height:60px;" />
+            	<div class="more">Your logo here</div>
+                <div class="more">Your logo here</div>
+                <div class="more">Your logo here</div>
+            </div>
         	<div><p>Sponsorships are still available for ONA13. <a href="/sponsor/sponsor-packages/">Learn more &rarr;</a></p></div>
         </div>
 

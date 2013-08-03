@@ -2162,3 +2162,15 @@ div.button {
 	text-transform: uppercase;
 	font-weight: bold;
 }
+/* h3 seperator */
+.site-content h3 {
+	text-align: center;
+	font-size:22px;
+	border-bottom:1px dotted #ccc;
+	margin:20px 0 30px;
+	height:4px;	
+}
+h3 span {
+	background: #fff;
+	padding:0 15px;	
+}
