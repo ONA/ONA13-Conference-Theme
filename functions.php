@@ -7,6 +7,137 @@ if ( defined( 'WP_CLI' ) && WP_CLI )
 	require_once dirname( __FILE__ ) . '/inc/class-ona13-cli-command.php';
 
 
+
+/* ADMIN extension */
+
+if( is_admin() ) {
+	add_action( 'add_meta_boxes', 'featured_sponsor_metabox' );
+	add_action( 'save_post', 'featured_sponsor_save' );
+	add_action( 'add_meta_boxes', 'sponsor_extras_metabox' );
+	add_action( 'save_post', 'sponsor_extras_save' );
+	
+	/* Adds "FEATURED SPONSOR" box to posts and sessions */
+	function featured_sponsor_metabox() {
+		$screens = array( 'post', 'ona_session' );
+		remove_meta_box('formatdiv', 'post', 'side');
+		foreach ($screens as $screen) {
+			add_meta_box( 'myplugin_sectionid', __( 'Featured Sponsor', 'myplugin_textdomain' ),
+				'featured_sponsor_print', $screen, 'side'
+			);
+		}
+	}
+	
+	/* Prints "FEATURED SPONSOR" box */
+	function featured_sponsor_print( $post ) {
+		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
+		$value = get_post_meta( $post->ID, '_assigned_sponsor', true );
+		echo '<label for="post_sponsor">';
+		   _e("Select a sponsor:", 'myplugin_textdomain' );
+		echo '</label> ';
+		echo '<select id="post_sponsor" name="post_sponsor" style="max-width: 100%;">';
+		echo '<option value="">None</option>';
+		$args = array( 'post_type' => 'sponsors', 'posts_per_page' => -1 );
+		$loop = new WP_Query( $args );
+		while ( $loop->have_posts() ) { $loop->the_post();
+			$selected = "";
+			if (esc_attr($value) == get_the_ID()){
+				$selected = ' selected="selected"';	
+			}
+			echo '<option value="'.get_the_ID().'"'.$selected.'>'.get_the_title().'</option>';
+		}
+		echo '</select>';
+	}
+	
+	/* Saves "FEATURED SPONSOR" content */
+	function featured_sponsor_save( $post_id ) {
+		if ( 'page' == $_REQUEST['post_type'] ) {
+			if ( ! current_user_can( 'edit_page', $post_id ) )
+				return;
+		} else {
+			if ( ! current_user_can( 'edit_post', $post_id ) )
+				return;
+		}
+		if ( ! isset( $_POST['myplugin_noncename'] ) || ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename( __FILE__ ) ) )
+		  return;
+		$post_ID = $_POST['post_ID'];
+		$mydata = sanitize_text_field( $_POST['post_sponsor'] );
+		add_post_meta($post_ID, '_assigned_sponsor', $mydata, true) or
+		update_post_meta($post_ID, '_assigned_sponsor', $mydata);
+	}
+	
+	/* ----------------------------------------------- */
+	/* Adds "SPONSOR EXTRAS" box to posts and sessions */
+	function sponsor_extras_metabox() {
+		$screens = array( 'sponsors' );
+		foreach ($screens as $screen) {
+			add_meta_box( 'myplugin_sectionid', __( 'Sponsor Metadata', 'myplugin_textdomain' ),
+				'sponsor_extras_print', $screen
+			);
+		}
+	}
+	
+	/* Prints "SPONSOR EXTRAS" box */
+	function sponsor_extras_print( $post ) {
+		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
+		$url = get_post_meta( $post->ID, '_sponsor_url', true );
+		
+		// URL
+		// 3 images
+		echo '<label for="sponsor_url">';
+		   _e("Sponsor's external URL:", 'myplugin_textdomain' );
+		echo '</label> ';
+		echo '<input type="text" id="sponsor_url" name="sponsor_url" style="max-width: 100%;" />';
+	}
+	
+	/* Saves "SPONSOR EXTRAS" content */
+	function sponsor_extras_save( $post_id ) {
+		if ( 'page' == $_REQUEST['post_type'] ) {
+			if ( ! current_user_can( 'edit_page', $post_id ) )
+				return;
+		} else {
+			if ( ! current_user_can( 'edit_post', $post_id ) )
+				return;
+		}
+		if ( ! isset( $_POST['myplugin_noncename'] ) || ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename( __FILE__ ) ) )
+		  return;
+		$post_ID = $_POST['post_ID'];
+		$mydata = sanitize_text_field( $_POST['sponsor_url'] );
+		add_post_meta($post_ID, '_sponsor_url', $mydata, true) or
+		update_post_meta($post_ID, '_sponsor_url', $mydata);
+	}
+}
+/* End ADMIN */
+
+/* Custom SPONSOR post */
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+	register_post_type( 'Sponsors',
+		array(
+			'labels' => array(
+				'name' => __( 'Sponsors' ),
+				'singular_name' => __( 'Sponsor' )
+			),
+		'public' => true,
+		'has_archive' => true,
+		'rewrite' => array('slug' => 'sponsor'),
+		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' )
+		)
+	);
+}
+/* End SPONSORS */
+
+/* Custom thumbnail sizes for sponsors */
+if ( function_exists( 'add_theme_support' ) ) {
+	add_theme_support( 'post-thumbnails' );
+    // set_post_thumbnail_size( 150, 150 ); // default Post Thumbnail dimensions   
+}
+if ( function_exists( 'add_image_size' ) ) { 
+	add_image_size( 'sponsor-banner', 200, 25 ); //max 200 pixels wide, 25 tall
+	add_image_size( 'sponsor-shoulder', 120, 200 ); //max 120 pixels wide, 200 tall
+	add_image_size( 'sponsor-row', 140, 140 ); //max 120 pixels wide, 250 tall
+}
+
+
 add_filter( 'body_class', 'ona13_body_class' );
 function ona13_body_class( $classes ) {
 	if ( is_page_template( 'page-templates/student-newsroom-page.php' ) ) {
@@ -79,6 +210,63 @@ class Home_Card extends WP_Widget {
 
 }// END class
 
+/* Sponsor widget to display logo */
+class Sponsor_Logo extends WP_Widget {
+ /* Declares the Featured_Sidebar_Widget class */
+    function Sponsor_Logo(){
+		$widget_ops = array('description' => 'Widget for rows of logos.' );
+    	$this->WP_Widget('Sponsor_Logo','Sponsor Logo', $widget_ops);
+		$this->widget_count = 1;
+    }
+
+  /* Displays the Widget */
+    function widget($args, $instance){
+      global $widget_count;
+	  extract($args);
+      echo preg_replace('/widget_count/i', 'position-'.$this->widget_count, $before_widget);
+	  if ($instance['sponsor'] != '') {
+		  $sponsor_link = get_permalink($instance['sponsor']);?>
+		  <a href="<?=$sponsor_link?>">
+		  <? if ( has_post_thumbnail($instance['sponsor']) ) { 
+				echo get_the_post_thumbnail($instance['sponsor'], 'sponsor-row' ); 
+			} ?>
+		  </a>
+      <?php
+	  } else {
+		echo '<div class="more">Your logo here</div>';  
+	  }
+      echo $after_widget;
+	  $this->widget_count++;
+  }
+
+  /* Saves the widgets settings */
+	function update($new_instance, $old_instance){
+		$instance = $old_instance;
+		$instance['sponsor'] = strip_tags(stripslashes($new_instance['sponsor']));	
+		return $instance;
+	}
+
+  /* Creates the edit form for the widget */
+    function form($instance){
+      $instance = wp_parse_args( (array) $instance, array('sponsor'=>'') );
+	  $sponsor = $instance['sponsor']; ?>
+            <select id="<?=$this->get_field_id('sponsor')?>" name="<?=$this->get_field_name('sponsor')?>" class="widefat">
+				<option value="">None</option>
+	<?	$args = array( 'post_type' => 'sponsors', 'posts_per_page' => -1 );
+		$loop = new WP_Query( $args );
+		while ( $loop->have_posts() ) { $loop->the_post();
+			$selected = "";
+			if ($sponsor == get_the_ID()){
+				$selected = ' selected="selected"';	
+			}
+			echo '<option value="'.get_the_ID().'"'.$selected.'>'.get_the_title().'</option>';
+		} ?>
+			</select>
+	  <?php
+  }
+
+}// END class
+
 /* ---------------------------------- */
 /* Create and remove sidebars/widgets */
 
@@ -122,6 +310,38 @@ function ona13_widgets_init() {
 		'after_title' => '</h4>'
 	) );
 	
+	register_sidebar( array(
+		'name' => __( 'Sponsors - Home', 'twentytwelve' ),
+		'id' => 'sponsors',
+		'description' => __( 'List of sponsor logos for the bottom of the home page', 'twentytwelve' ),
+		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
+		'after_widget' => '</div>'
+	) );
+	
+	register_sidebar( array(
+		'name' => __( 'Sponsors - Day 1', 'twentytwelve' ),
+		'id' => 'sponsors1',
+		'description' => __( 'List of sponsor logos for Day 1 on session page', 'twentytwelve' ),
+		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
+		'after_widget' => '</div>'
+	) );
+	
+	register_sidebar( array(
+		'name' => __( 'Sponsors - Day 2', 'twentytwelve' ),
+		'id' => 'sponsors2',
+		'description' => __( 'List of sponsor logos for Day 2 on session page', 'twentytwelve' ),
+		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
+		'after_widget' => '</div>'
+	) );
+	
+	register_sidebar( array(
+		'name' => __( 'Sponsors - Day 3', 'twentytwelve' ),
+		'id' => 'sponsors3',
+		'description' => __( 'List of sponsor logos for Day 3 on session page', 'twentytwelve' ),
+		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
+		'after_widget' => '</div>'
+	) );
+	
 	unregister_sidebar( "sidebar-2" );
 	unregister_sidebar( "sidebar-3" );
 	unregister_widget( "WP_Widget_Calendar" );
@@ -134,14 +354,19 @@ function ona13_widgets_init() {
 	unregister_widget( "WP_Widget_Recent_Posts" );
 	
 	register_widget('Home_Card');
+	register_widget('Sponsor_Logo');
 }
 
+/* -------------------------------- */
+/* Scripts and Styles declared here */
 
 function ona13_wp_enqueue_scripts() {
 	wp_register_style("homepage", get_stylesheet_directory_uri()."/css/homepage.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("post", get_stylesheet_directory_uri()."/css/post.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("category", get_stylesheet_directory_uri()."/css/category.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("schedule", get_stylesheet_directory_uri()."/css/schedule.css", array("twentytwelve-fonts", "twentytwelve-style"));
+	wp_register_style("sponsor", get_stylesheet_directory_uri()."/css/sponsor.css", array("twentytwelve-fonts", "twentytwelve-style"));
+	wp_register_style("session", get_stylesheet_directory_uri()."/css/session.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("session_archive", get_stylesheet_directory_uri()."/css/session_archive.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	
 	wp_register_script("schedule-filter", get_stylesheet_directory_uri()."/js/schedule-filter.js", array("jquery"));
@@ -150,6 +375,11 @@ function ona13_wp_enqueue_scripts() {
 		wp_enqueue_style("homepage");
 	} else if( is_single() ) {
 		wp_enqueue_style("post");
+		if (get_post_type() == 'ona_session'){
+			wp_enqueue_style("session");
+		} else if (get_post_type() == 'sponsors'){
+			wp_enqueue_style("sponsor");
+		}
 	} else if( is_post_type_archive('ona_session') ) {
 		wp_enqueue_style("session_archive");
 		wp_enqueue_script("schedule-filter");

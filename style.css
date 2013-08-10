@@ -2174,3 +2174,35 @@ h3 span {
 	background: #fff;
 	padding:0 15px;	
 }
+
+/* Sponsors */
+.sponsor-row {
+margin-top:35px;
+clear:both;	
+}
+.sponsor-row p {
+margin:15px 0;
+text-align:center;
+}
+.sponsor-row .logos {
+	overflow:auto;	
+	margin: 0 auto;
+	display: table;
+	margin-bottom:10px;
+}
+.sponsor-row .logos > img,
+.sponsor-row .logos .more,
+.sponsor-row .sponsor_widget  {
+	float:left;
+	margin-left:15px;
+}
+.sponsor-row .logos div:first-child {
+	margin-left:0;	
+}
+.sponsor-row .more {
+	padding:18px;
+	border-radius:10px;
+	border:2px dashed #aaa;
+	color:#aaa;
+	background:#eee;
+}

@@ -25,9 +25,9 @@
 		$sessions = new WP_Query( $args );
 	
 		$session_days = array(
-			'09/20/2012',
-			'09/21/2012',
-			'09/22/2012',
+			'10/17/2013',
+			'10/18/2013',
+			'10/19/2013',
 		);
 
 		// Some crafty shit to put the current date at the top
@@ -110,7 +110,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 ?>
 
 <div id="session-day-<?php echo $day_slugify; ?>" class="session-day">
-	<div class="sponsors">
+	<div class="sponsor-row">
     	<p>ONA13 is sponsored in part by:</p>
         <div class="logos">
             <div class="more">Your logo here</div>

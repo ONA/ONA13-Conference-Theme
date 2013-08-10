@@ -157,33 +157,6 @@ h1 {
 .schedule_nav .solve {background: #A92A00;}
 .schedule_nav .make {background: #DCBE62;}
 
-/* Sponsors */
-.sponsors {
-margin-top:35px;
-clear:both;	
-}
-.sponsors p {
-margin-bottom:15px;
-text-align:center;
-}
-.sponsors .logos {
-	overflow:auto;	
-	margin: 0 auto;
-	display: table;
-	margin-bottom:10px;
-}
-.sponsors .logos img,
-.sponsors .logos .more {
-	float:left;
-}
-.sponsors .more {
-	margin-left:15px;
-	padding:18px;
-	border-radius:10px;
-	border:2px dashed #aaa;
-	color:#aaa;
-	background:#eee;
-}
 
 @media screen and (max-width:900px){
 	.schedule_nav label {

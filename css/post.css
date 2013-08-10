@@ -48,38 +48,26 @@ font-family:'Source Sans Pro', serif;
 font-weight:300;
 font-size:1.2em;
 }
-#content .sponsor span {
+#content .sponsor p {
+padding-left:80px;
+line-height: 140%;
+}
+#content .sponsor div {
+padding-top: 5px;
 color:#fff;
 text-transform:uppercase;
-padding-right:15px;
-padding-bottom:2px;
 font-size:10px;
-position: relative;
-top: -2px;
+float:left;
+width:80px;
 }
 #content .sponsor a:hover {
 text-decoration:underline;	
 }
 #content .sponsor img {
 float:right;
+margin-left:30px;
 }
-/* ----- */
-#content .shoulderbox {
-float:right;
-margin:0 -60px 20px 20px;
-background:#eee;	
-padding:15px;
-width:120px;
-}
-#content .shoulderbox .sponsored {
-color:#fff;
-text-transform:uppercase;	
-}
-#content .shoulderbox p {
-text-align:center;	
-font-family:'Source Sans Pro', serif;
-margin-bottom:10px;
-}
+
 
 @media screen and (max-width:900px){
 	.entry-content {

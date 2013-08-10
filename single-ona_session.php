@@ -20,9 +20,22 @@
                     </ul>
                     <div class="entry-content">
                     	<div class="presenters"></div>
+                        <? if ( $sponsor = get_post_meta( get_the_ID(), '_assigned_sponsor' )) { 
+							$sponsor_name = get_the_title($sponsor[0]); 
+							$sponsor_link = get_permalink($sponsor[0]);?>
+                       	<div class="shoulderbox">
+                        	<p class="sponsored">Sponsor</p>
+                            <p>ONA13 is sponsored by <a href="<?=$sponsor_link?>"><?=$sponsor_name?></a>, makers of Google Glass</p>
+                            <? if ( has_post_thumbnail($sponsor[0]) ) { 
+								 echo get_the_post_thumbnail($sponsor[0], 'sponsor-shoulder' ); 
+							} ?>
+                        </div>
+                        <? } ?>
                         <?=$session->get_description();?>
                         <div class="resources"></div>
                     </div>
+                    
+                    
                     <footer class="entry-meta">
                     
                     </footer>

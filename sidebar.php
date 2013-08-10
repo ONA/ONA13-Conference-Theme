@@ -1,4 +1,6 @@
-	<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+	<? if ( get_post_type() == 'ona_session' ) : 
+			include ('sidebars/sidebar-session.php');
+	   elseif ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
         	<? if ( is_singular() ) { ?>
         	<aside id="pagenav" class="widget widget_text">
