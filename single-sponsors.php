@@ -22,6 +22,54 @@ get_header(); ?>
 							 echo the_post_thumbnail( 'medium' ); 
 						} ?>
                         <? the_content();?>
+                        <div class="sponsored">
+                            <?	// Column for SPONSORED SESSIONS by this sponsor
+							$args = array(
+								'meta_key' => '_assigned_sponsor',
+                				'meta_value' => $post->ID,
+								'numberposts' => 5,
+								'exclude' => $post->ID,
+								'orderby' => 'post_date',
+								'order' => 'DESC',
+								'post_type' => 'ona_session',
+								'post_status' => 'publish');
+							$recent_posts = wp_get_recent_posts( $args );
+							if(count($recent_posts) > 0) { 
+								echo '<ul class="headlines">';
+								echo '<h4 class="widget-title">Sponsored Sessions</h4>'; 
+							}
+							foreach( $recent_posts as $recent ){
+								echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
+								echo get_the_time(get_option('date_format'), $recent["ID"]);
+								echo '</span></a></li> ';
+							} 
+							if(count($recent_posts) > 0) { 
+								echo '</ul>';
+							} 
+                            // Column for SPONSORED POSTS by this sponsor
+							$args = array(
+								'meta_key' => '_assigned_sponsor',
+                				'meta_value' => $post->ID,
+								'numberposts' => 5,
+								'exclude' => $post->ID,
+								'orderby' => 'post_date',
+								'order' => 'DESC',
+								'post_type' => 'post',
+								'post_status' => 'publish');
+							$recent_posts = wp_get_recent_posts( $args );
+							if(count($recent_posts) > 0) { 
+								echo '<ul class="headlines">';
+								echo '<h4 class="widget-title">Sponsored Posts</h4>'; 
+							}
+							foreach( $recent_posts as $recent ){
+								echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
+								echo get_the_time(get_option('date_format'), $recent["ID"]);
+								echo '</span></a></li> ';
+							} 
+							if(count($recent_posts) > 0) { 
+								echo '</ul>';
+							} ?>
+                        </div>
                     </div>
 				</article>
 

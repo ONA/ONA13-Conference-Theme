@@ -67,8 +67,28 @@ text-decoration:underline;
 float:right;
 margin-left:30px;
 }
+#content .headlines {
+list-style:none;
+}
+#content .headlines li {
+margin:0;
+}
+.sponsored {
+overflow:auto;
+}
+.sponsored h4 {
+margin: 15px 0 5px;
+}
 
-
+@media screen and (min-width:800px){
+	#content .headlines {
+		width:47%;
+		float:left;
+	}
+	#content .headlines:first-child {
+		margin-right:6%;
+	}
+}
 @media screen and (max-width:900px){
 	.entry-content {
 		width: 100%;
