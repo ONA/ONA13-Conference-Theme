@@ -320,7 +320,7 @@ function ona13_widgets_init() {
 	
 	register_sidebar( array(
 		'name' => __( 'Sponsors - Day 1', 'twentytwelve' ),
-		'id' => 'sponsors1',
+		'id' => 'sponsors0',
 		'description' => __( 'List of sponsor logos for Day 1 on session page', 'twentytwelve' ),
 		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
 		'after_widget' => '</div>'
@@ -328,7 +328,7 @@ function ona13_widgets_init() {
 	
 	register_sidebar( array(
 		'name' => __( 'Sponsors - Day 2', 'twentytwelve' ),
-		'id' => 'sponsors2',
+		'id' => 'sponsors1',
 		'description' => __( 'List of sponsor logos for Day 2 on session page', 'twentytwelve' ),
 		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
 		'after_widget' => '</div>'
@@ -336,7 +336,7 @@ function ona13_widgets_init() {
 	
 	register_sidebar( array(
 		'name' => __( 'Sponsors - Day 3', 'twentytwelve' ),
-		'id' => 'sponsors3',
+		'id' => 'sponsors2',
 		'description' => __( 'List of sponsor logos for Day 3 on session page', 'twentytwelve' ),
 		'before_widget' => '<div id="%1$s" class="sponsor_widget %2$s">',
 		'after_widget' => '</div>'

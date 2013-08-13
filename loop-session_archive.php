@@ -113,9 +113,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 	<div class="sponsor-row">
     	<p>ONA13 is sponsored in part by:</p>
         <div class="logos">
-            <div class="more">Your logo here</div>
-            <div class="more">Your logo here</div>
-            <div class="more">Your logo here</div>
+            <?php dynamic_sidebar( 'sponsors'.$i ); ?>
         </div>
     </div>
     <div class="schedule_nav">
