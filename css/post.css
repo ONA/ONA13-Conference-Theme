@@ -75,6 +75,7 @@ margin:0;
 }
 .sponsored {
 overflow:auto;
+clear: both;
 }
 .sponsored h4 {
 margin: 15px 0 5px;

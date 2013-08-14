@@ -80,14 +80,26 @@ if( is_admin() ) {
 	function sponsor_extras_print( $post ) {
 		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
 		$url = get_post_meta( $post->ID, '_sponsor_url', true );
-		
+		$level = get_post_meta( $post->ID, '_sponsor_level', true );
 		// URL
-		// 3 images
 		echo '<label for="sponsor_url">';
 		   _e("Sponsor's external URL:", 'myplugin_textdomain' );
 		echo '</label> ';
-		echo '<input type="text" id="sponsor_url" name="sponsor_url" style="max-width: 100%;" />';
-	}
+		echo '<input type="text" id="sponsor_url" name="sponsor_url" style="width: 100%;" value="'.$url.'"/>
+			<br /><br />';
+		// Sponsor Level ?>
+		<label for="sponsor_level">Select sponsor level:</label>
+		<select id="sponsor_level" name="sponsor_level" style="max-width: 100%;">
+			<option value="Exhibitors"<? if($level=="Exhibitors"){?> selected="selected"<? }?>>Exhibitors</option>
+			<option value="ONAngel"<? if($level=="ONAngel"){?> selected="selected"<? }?>>ONAngel</option>
+            <option value="Diamond"<? if($level=="Diamond"){?> selected="selected"<? }?>>Diamond</option>
+            <option value="Platinum"<? if($level=="Platinum"){?> selected="selected"<? }?>>Platinum</option>
+            <option value="Gold"<? if($level=="Gold"){?> selected="selected"<? }?>>Gold</option>
+            <option value="Silver"<? if($level=="Silver"){?> selected="selected"<? }?>>Silver</option>
+            <option value="Bronze"<? if($level=="Bronze"){?> selected="selected"<? }?>>Bronze</option>
+            <option value="Supporters"<? if($level=="Supporters"){?> selected="selected"<? }?>>Supporters</option>
+		</select>
+	<? }
 	
 	/* Saves "SPONSOR EXTRAS" content */
 	function sponsor_extras_save( $post_id ) {
@@ -102,8 +114,11 @@ if( is_admin() ) {
 		  return;
 		$post_ID = $_POST['post_ID'];
 		$mydata = sanitize_text_field( $_POST['sponsor_url'] );
+		$mydata = sanitize_text_field( $_POST['sponsor_level'] );
 		add_post_meta($post_ID, '_sponsor_url', $mydata, true) or
 		update_post_meta($post_ID, '_sponsor_url', $mydata);
+		add_post_meta($post_ID, '_sponsor_level', $mydata, true) or
+		update_post_meta($post_ID, '_sponsor_level', $mydata);
 	}
 }
 /* End ADMIN */
@@ -119,7 +134,6 @@ function create_post_type() {
 			),
 		'public' => true,
 		'has_archive' => true,
-		'rewrite' => array('slug' => 'sponsor'),
 		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' )
 		)
 	);

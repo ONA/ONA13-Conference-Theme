@@ -2206,3 +2206,15 @@ text-align:center;
 	color:#aaa;
 	background:#eee;
 }
+.sponsor-page .entry-header {
+margin-bottom: 1em;
+}
+.sponsor-page .entry-header .entry-title {
+text-transform:none;	
+font-size: 1.4em;
+}
+.sponsor-page  .attachment-medium {
+float:right;
+margin-left:20px;
+margin-bottom:20px;	
+}

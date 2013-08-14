@@ -21,7 +21,9 @@ get_header(); ?>
                     	<? if ( has_post_thumbnail() ) { 
 							 echo the_post_thumbnail( 'medium' ); 
 						} ?>
-                        <? the_content();?>
+                        <? the_content();
+						$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );?>
+                        <p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
                         <div class="sponsored">
                             <?	// Column for SPONSORED SESSIONS by this sponsor
 							$args = array(
