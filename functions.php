@@ -113,12 +113,12 @@ if( is_admin() ) {
 		if ( ! isset( $_POST['myplugin_noncename'] ) || ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename( __FILE__ ) ) )
 		  return;
 		$post_ID = $_POST['post_ID'];
-		$mydata = sanitize_text_field( $_POST['sponsor_url'] );
-		$mydata = sanitize_text_field( $_POST['sponsor_level'] );
-		add_post_meta($post_ID, '_sponsor_url', $mydata, true) or
-		update_post_meta($post_ID, '_sponsor_url', $mydata);
-		add_post_meta($post_ID, '_sponsor_level', $mydata, true) or
-		update_post_meta($post_ID, '_sponsor_level', $mydata);
+		$url = sanitize_text_field( $_POST['sponsor_url'] );
+		$level = sanitize_text_field( $_POST['sponsor_level'] );
+		add_post_meta($post_ID, '_sponsor_url', $url, true) or
+		update_post_meta($post_ID, '_sponsor_url', $url);
+		add_post_meta($post_ID, '_sponsor_level', $level, true) or
+		update_post_meta($post_ID, '_sponsor_level', $level);
 	}
 }
 /* End ADMIN */
