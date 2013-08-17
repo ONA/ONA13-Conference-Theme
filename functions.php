@@ -239,7 +239,7 @@ class Sponsor_Logo extends WP_Widget {
 	  extract($args);
       echo preg_replace('/widget_count/i', 'position-'.$this->widget_count, $before_widget);
 	  if ($instance['sponsor'] != '') {
-		  $sponsor_link = get_permalink($instance['sponsor']);?>
+		  $sponsor_link = get_post_meta( $instance['sponsor'], '_sponsor_url', true );?>
 		  <a href="<?=$sponsor_link?>">
 		  <? if ( has_post_thumbnail($instance['sponsor']) ) { 
 				echo get_the_post_thumbnail($instance['sponsor'], 'sponsor-row' ); 

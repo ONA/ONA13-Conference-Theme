@@ -11,7 +11,8 @@ get_header(); ?>
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
 
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php while ( have_posts() ) : the_post(); 
+				$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );?>
 
                 <article>
                     <header class="entry-header">
@@ -19,10 +20,11 @@ get_header(); ?>
                     </header>
                     <div class="entry-content">
                     	<? if ( has_post_thumbnail() ) { 
+							 echo "<a href='".$external_link."'>";
 							 echo the_post_thumbnail( 'medium' ); 
+							 echo "</a>";
 						} ?>
-                        <? the_content();
-						$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );?>
+                        <? the_content();?>
                         <p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
                         <div class="sponsored">
                             <?	// Column for SPONSORED SESSIONS by this sponsor
