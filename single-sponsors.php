@@ -12,13 +12,19 @@ get_header(); ?>
 		<div id="content" role="main">
 
 			<?php while ( have_posts() ) : the_post(); 
-				$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );?>
+				$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
+				$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true ); ?>
 
                 <article>
                     <header class="entry-header">
                         <h1 class="entry-title"><? the_title();?></h1>
                     </header>
                     <div class="entry-content">
+						<? if($sponsor_level!="Exhibitors"){ ?>
+                        <div class="sponsor-level"><?=$sponsor_level;?> Sponsor</div>
+                        <? } else { ?>
+                        <div class="sponsor-level">Exhibitor</div>
+                        <? } ?>
                     	<? if ( has_post_thumbnail() ) { 
 							 echo "<a href='".$external_link."'>";
 							 echo the_post_thumbnail( 'medium' ); 

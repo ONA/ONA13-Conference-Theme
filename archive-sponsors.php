@@ -11,27 +11,52 @@
 
 			<?php
 			/* Start the Loop */
-			while ( have_posts() ) : the_post(); ?>
-
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            	
-                <header class="entry-header">
-                    <h1 class="entry-title"><a href="<?php the_permalink(); ?> "><?php the_title(); ?></a></h1>
-                </header>
-        
-                <div class="entry-content">
-					<? if ( has_post_thumbnail() ) { 
-                         echo the_post_thumbnail( 'medium' ); 
-                    } 
-					the_content(); 
+			//
+			// We need to order these by groups of sponsor level
+			//
+			
+			$sponsor_level_array = array("ONAngel", "Diamond", "Platinum", "Gold", "Silver", "Bronze", "Supporters", "Exhibitors");
+			//
+			foreach ( $sponsor_level_array as $level ) {
+				$args = array (
+					'post_type'=> 'sponsors',
+					'post_status'  => 'publish',
+					'orderby'=> 'title',
+					'order'=> 'ASC',
+					'pagination' => false,
+					'meta_query' => array(
+						array(
+							'key' => '_sponsor_level',
+							'compare' => '=',
+							'value' => $level
+						)
+					)
+		  		 ); 
+				$my_query = new WP_Query($args);
+				echo '<h2>'.$level.'</h2>';
+				
+				while ( $my_query->have_posts() ) : $my_query->the_post(); 
 					$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
-					?>
-                    <p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
-                </div><!-- .entry-content -->
-            </article><!-- #post -->	
+					$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true );?>
+	
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="<?php the_permalink(); ?> "><?php the_title(); ?></a></h1>
+					</header>
+			
+					<div class="entry-content">
+						<? if ( has_post_thumbnail() ) { 
+							 echo the_post_thumbnail( 'medium' ); 
+						} 
+						the_content(); ?>
+						<p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
+					</div><!-- .entry-content -->
+				</article><!-- #post -->	
 
-			<? endwhile;
-
+			<? 	wp_reset_postdata();
+				endwhile;
+			}
 		endif; ?>
 			
 

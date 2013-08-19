@@ -29,13 +29,14 @@ get_header(); ?>
                     <? if ( $sponsor = get_post_meta( get_the_ID(), '_assigned_sponsor' )) { 
 						$sponsor_name = get_the_title($sponsor[0]); 
 						$sponsor_link = get_permalink($sponsor[0]);
-						$external_link = get_post_meta( $sponsor[0], '_sponsor_url', true );?>
+						$external_link = get_post_meta( $sponsor[0], '_sponsor_url', true );
+						$tagline = get_post_meta( $sponsor[0], '_sponsor_tagline', true );?>
                     <div class="sponsor">
                         <? if ( has_post_thumbnail($sponsor[0]) ) { 
 							echo "<a href='".$external_link."'>".get_the_post_thumbnail($sponsor[0], 'sponsor-banner' )."</a>"; 
 						} ?>
                         <div>Sponsor</div>
-                        <p>ONA13 is sponsored by <a href="<?=$sponsor_link?>"><?=$sponsor_name?></a>, makers of Google Glass</p>
+                        <p>ONA13 is sponsored by <a href="<?=$sponsor_link?>"><?=$sponsor_name?></a><? if($tagline){?>, <? echo $tagline; } ?></p>
                     </div>
                     <? } ?>
                     <div class="entry-content">

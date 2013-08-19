@@ -80,12 +80,19 @@ if( is_admin() ) {
 	function sponsor_extras_print( $post ) {
 		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
 		$url = get_post_meta( $post->ID, '_sponsor_url', true );
+		$tagline = get_post_meta( $post->ID, '_sponsor_tagline', true );
 		$level = get_post_meta( $post->ID, '_sponsor_level', true );
 		// URL
 		echo '<label for="sponsor_url">';
 		   _e("Sponsor's external URL:", 'myplugin_textdomain' );
 		echo '</label> ';
 		echo '<input type="text" id="sponsor_url" name="sponsor_url" style="width: 100%;" value="'.$url.'"/>
+			<br /><br />';
+		// URL
+		echo '<label for="sponsor_tagline">';
+		   _e("Sponsor tagline:", 'myplugin_textdomain' );
+		echo '</label> ';
+		echo '<input type="text" id="sponsor_tagline" name="sponsor_tagline" style="width: 100%;" value="'.$tagline.'"/>
 			<br /><br />';
 		// Sponsor Level ?>
 		<label for="sponsor_level">Select sponsor level:</label>
@@ -114,11 +121,14 @@ if( is_admin() ) {
 		  return;
 		$post_ID = $_POST['post_ID'];
 		$url = sanitize_text_field( $_POST['sponsor_url'] );
+		$tagline = sanitize_text_field( $_POST['sponsor_tagline'] );
 		$level = sanitize_text_field( $_POST['sponsor_level'] );
 		add_post_meta($post_ID, '_sponsor_url', $url, true) or
-		update_post_meta($post_ID, '_sponsor_url', $url);
+			update_post_meta($post_ID, '_sponsor_url', $url);
+		add_post_meta($post_ID, '_sponsor_tagline', $tagline, true) or
+			update_post_meta($post_ID, '_sponsor_tagline', $tagline);
 		add_post_meta($post_ID, '_sponsor_level', $level, true) or
-		update_post_meta($post_ID, '_sponsor_level', $level);
+			update_post_meta($post_ID, '_sponsor_level', $level);
 	}
 }
 /* End ADMIN */
