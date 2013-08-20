@@ -427,8 +427,13 @@ function ONA_display_related_by_tag(){
 	if ($tags) {
 		echo '<div class="related">';
 		$tag_ids = array();
-		foreach($tags as $each_tag) 
+		$tagged = "Other content related to ";
+		foreach($tags as $each_tag) {
 			$tag_ids[] = $each_tag->term_id;
+			$tagged .= '"<b>'.$each_tag->name.'</b>,"';
+		}
+		$tagged = substr($tagged, 0, -2);
+		echo "<div class='topics'>".$tagged.'":</div>';
 		// Two queries
 		$queries = array('post' => 'Posts', 'ona_session' => 'Sessions');
 		// Let's get posts

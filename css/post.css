@@ -81,6 +81,9 @@ border-top: 1px dotted #ccc;
 .related h4 {
 margin: 15px 0 5px;
 }
+.related .topics {
+margin-top:15px;	
+}
 
 @media screen and (min-width:800px){
 	#content .headlines {
