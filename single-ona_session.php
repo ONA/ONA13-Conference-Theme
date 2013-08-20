@@ -20,7 +20,8 @@
                     </ul>
                     <div class="entry-content">
                     	<div class="presenters"></div>
-                        <? if ( $sponsor = get_post_meta( get_the_ID(), '_assigned_sponsor' )) { 
+                        <? $sponsor = get_post_meta( get_the_ID(), '_assigned_sponsor' );
+						if ( $sponsor[0] != "") { 
 							$sponsor_name = get_the_title($sponsor[0]); 
 							$sponsor_link = get_permalink($sponsor[0]);
 							$external_link = get_post_meta( $sponsor[0], '_sponsor_url', true );
@@ -33,8 +34,9 @@
 							} ?>
                         </div>
                         <? } ?>
-                        <?=$session->get_description();?>
+                        <p><?=$session->get_description();?></p>
                         <div class="resources"></div>
+                        <? ONA_display_related_by_tag(); ?>
                     </div>
                     
                     
@@ -42,12 +44,6 @@
                     
                     </footer>
 				</article>
-
-				<nav class="nav-single">
-					<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentytwelve' ); ?></h3>
-					<span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentytwelve' ) . '</span> %title' ); ?></span>
-					<span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentytwelve' ) . '</span>' ); ?></span>
-				</nav><!-- .nav-single -->
 
 				<?php comments_template( '', true ); ?>
 

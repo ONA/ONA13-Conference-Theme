@@ -32,7 +32,7 @@ get_header(); ?>
 						} ?>
                         <? the_content();?>
                         <p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
-                        <div class="sponsored">
+                        <div class="related">
                             <?	// Column for SPONSORED SESSIONS by this sponsor
 							$args = array(
 								'meta_key' => '_assigned_sponsor',

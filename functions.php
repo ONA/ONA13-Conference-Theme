@@ -419,6 +419,53 @@ function ona13_wp_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'ona13_wp_enqueue_scripts' );
 
+/* Function to display related content based on tag */
+
+function ONA_display_related_by_tag(){
+	global $post;
+	$tags = wp_get_post_tags($post->ID);
+	if ($tags) {
+		echo '<div class="related">';
+		$tag_ids = array();
+		foreach($tags as $each_tag) 
+			$tag_ids[] = $each_tag->term_id;
+		// Two queries
+		$queries = array('post' => 'Posts', 'ona_session' => 'Sessions');
+		// Let's get posts
+		foreach($queries as $key => $value){
+			$args = array(
+				'post_type' => $key,
+				'tag__in' => $tag_ids,
+				'post__not_in' => array($post->ID), 
+				'orderby'=> 'date', 
+				'showposts' => 5,
+				'ignore_sticky_posts' => 1 
+			);	 
+			$query = new WP_Query($args);
+			 
+			if( $query->have_posts() ) {
+				echo '<ul class="headlines">';
+				echo '<h4 class="widget-title">Related '.$value.'</h4>';		 
+				while ($query->have_posts()) {
+					$query->the_post(); ?>
+					<li><a href="<? the_permalink() ?>" title="<? the_title_attribute(); ?>" ><? the_title(); ?><br/><span><? the_time('M d, Y'); ?></span></a></li>
+				<? }
+				echo '</ul>';
+			}
+			wp_reset_query();
+		}
+		echo '</div>';
+	}
+}
+	
+
+
+
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
 
 /*  
  * Need to change UberMenuWalker to UberMenuONA13 in ubermenu.php

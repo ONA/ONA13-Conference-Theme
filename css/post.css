@@ -73,11 +73,12 @@ list-style:none;
 #content .headlines li {
 margin:0;
 }
-.sponsored {
+.related {
 overflow:auto;
 clear: both;
+border-top: 1px dotted #ccc;
 }
-.sponsored h4 {
+.related h4 {
 margin: 15px 0 5px;
 }
 
