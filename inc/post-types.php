@@ -41,7 +41,8 @@ add_action( 'init', function() {
 				'title',
 				'thumbnail',
 				'zoninator_zones'
-			)
+			),
+		'taxonomies' => array('post_tag') 
 		);
 	register_post_type( ONA_Session::$post_type, $args );
 
