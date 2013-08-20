@@ -1,5 +1,7 @@
 	<? if ( get_post_type() == 'ona_session' ) : 
 			include ('sidebars/sidebar-session.php');
+	   elseif ( get_post_type() == 'sponsors' ) : 
+			include ('sidebars/sidebar-sponsor.php');
 	   elseif ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
         	<? if ( is_singular() ) { ?>
