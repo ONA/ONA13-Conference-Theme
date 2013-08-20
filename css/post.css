@@ -73,6 +73,9 @@ list-style:none;
 #content .headlines li {
 margin:0;
 }
+.addthis_toolbox {
+margin-bottom:30px;
+}
 .related {
 overflow:auto;
 clear: both;
