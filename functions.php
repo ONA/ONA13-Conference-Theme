@@ -37,13 +37,13 @@ if( is_admin() ) {
 		echo '<select id="post_sponsor" name="post_sponsor" style="max-width: 100%;">';
 		echo '<option value="">None</option>';
 		$args = array( 'post_type' => 'sponsors', 'posts_per_page' => -1 );
-		$loop = new WP_Query( $args );
-		while ( $loop->have_posts() ) { $loop->the_post();
+		$recent_posts = wp_get_recent_posts( $args );
+		foreach( $recent_posts as $recent ){
 			$selected = "";
-			if (esc_attr($value) == get_the_ID()){
+			if (esc_attr($value) == $recent["ID"]){
 				$selected = ' selected="selected"';	
 			}
-			echo '<option value="'.get_the_ID().'"'.$selected.'>'.get_the_title().'</option>';
+			echo '<option value="'.$recent["ID"].'"'.$selected.'>'.$recent["post_title"].'</option>';
 		}
 		echo '</select>';
 	}
