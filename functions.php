@@ -447,16 +447,17 @@ function ONA_display_related_by_tag(){
 				'ignore_sticky_posts' => 1 
 			);	 
 			$query = new WP_Query($args);
-			 
+			echo '<ul class="headlines">';
 			if( $query->have_posts() ) {
-				echo '<ul class="headlines">';
 				echo '<h4 class="widget-title">Related '.$value.'</h4>';		 
 				while ($query->have_posts()) {
 					$query->the_post(); ?>
 					<li><a href="<? the_permalink() ?>" title="<? the_title_attribute(); ?>" ><? the_title(); ?><br/><span><? the_time('M d, Y'); ?></span></a></li>
 				<? }
-				echo '</ul>';
+			} else {
+				echo '<h4 class="widget-title">No related '.$value.'</h4>';
 			}
+			echo '</ul>';
 			wp_reset_query();
 		}
 		echo '</div>';
