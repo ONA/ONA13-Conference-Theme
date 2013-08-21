@@ -40,7 +40,7 @@ height:auto;
 #content .sponsor {
 border-radius:5px;
 background:#DBDBF9;	
-padding:10px;
+padding:10px 10px 10px 0;
 margin-bottom:25px;
 margin-left:-10px;
 color: #7760A8;
@@ -53,12 +53,13 @@ padding-left:80px;
 line-height: 140%;
 }
 #content .sponsor div {
-padding-top: 5px;
+padding: 3px 10px;
 color:#fff;
 text-transform:uppercase;
 font-size:10px;
 float:left;
-width:80px;
+margin-top: 2px;
+background: #330066;
 }
 #content .sponsor a:hover {
 text-decoration:underline;	
