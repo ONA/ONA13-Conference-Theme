@@ -15,6 +15,8 @@ if( is_admin() ) {
 	add_action( 'save_post', 'featured_sponsor_save' );
 	add_action( 'add_meta_boxes', 'sponsor_extras_metabox' );
 	add_action( 'save_post', 'sponsor_extras_save' );
+	add_action( 'add_meta_boxes', 'post_featured_image_position_metabox' );
+	add_action( 'save_post', 'post_featured_image_position_save' );
 	
 	/* Adds "FEATURED SPONSOR" box to posts and sessions */
 	function featured_sponsor_metabox() {
@@ -63,6 +65,42 @@ if( is_admin() ) {
 		$mydata = sanitize_text_field( $_POST['post_sponsor'] );
 		add_post_meta($post_ID, '_assigned_sponsor', $mydata, true) or
 		update_post_meta($post_ID, '_assigned_sponsor', $mydata);
+	}
+	
+	/* ----------------------------------------------- */
+	/* Adds "FEATURED IMAGE POSITION" box to posts and sessions */
+	function post_featured_image_position_metabox() {
+		$screens = array( 'post' );
+		foreach ($screens as $screen) {
+			add_meta_box( 'myplugin_sectionid', __( 'Position Featured Image', 'myplugin_textdomain' ),
+				'post_featured_image_position_print', $screen, 'side'
+			);
+		}
+	}
+	
+	/* Prints "FEATURED IMAGE POSITION" box */
+	function post_featured_image_position_print( $post ) {
+		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
+		$value = get_post_meta( $post->ID, '_featured_image_position', true );
+		echo '<label for="featured_image_position">';
+		   _e("Position Featured Image:", 'myplugin_textdomain' );
+		echo '</label> ';
+		echo '<select id="featured_image_position" name="featured_image_position" style="width: 100%;">';
+			echo '<option value="">Normal, within body</option>';
+			echo '<option value="big">Big, above headline</option>';
+		echo '</select>';
+	}
+	
+	/* Saves "FEATURED IMAGE POSITION" content */
+	function post_featured_image_position_save( $post_id ) {
+		if ( ! current_user_can( 'edit_post', $post_id ) )
+			return;
+		if ( ! isset( $_POST['myplugin_noncename'] ) || ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename( __FILE__ ) ) )
+		  return;
+		$post_ID = $_POST['post_ID'];
+		$mydata = sanitize_text_field( $_POST['featured_image_position'] );
+		add_post_meta($post_ID, '_featured_image_position', $mydata, true) or
+		update_post_meta($post_ID, '_featured_image_position', $mydata);
 	}
 	
 	/* ----------------------------------------------- */

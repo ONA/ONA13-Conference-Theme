@@ -13,12 +13,14 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<? if (has_post_thumbnail( $post->ID ) ): ?>
-				<? $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+				<? if (has_post_thumbnail( $post->ID ) ): 
+					$featured_pos = get_post_meta( $sponsor[0], '_featured_image_position', true );
+					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); 
+					if ($featured_pos == 'big') { ?>
                 <div id="article_img">
                 	<img src="<?=$image[0];?>" width="<?=$image[1];?>" height="<?=$image[2];?>"/>
                 </div>
-                <? endif; ?>
+                <? 	} endif; ?>
                 <article>
                     <header class="entry-header">
                         <h1 class="entry-title"><? the_title();?></h1>
@@ -41,6 +43,10 @@ get_header(); ?>
                     </div>
                     <? } ?>
                     <div class="entry-content">
+                    	<? if (isset($image) && ($featured_pos == '' || !isset($featured_pos))) { 
+							// Small featured ?>
+                        	<img src="<?=$image[0];?>" class="small-featured"/>
+                        <? } ?>
                         <? the_content();?>
                         <!-- AddThis Button BEGIN -->
                         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">

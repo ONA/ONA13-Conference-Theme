@@ -88,6 +88,12 @@ margin: 15px 0 5px;
 .related .topics {
 margin-top:15px;	
 }
+img.small-featured {
+float: right;
+max-width: 380px;
+margin-bottom: 20px;
+margin-left: 20px;
+}
 
 @media screen and (min-width:800px){
 	#content .headlines {
