@@ -135,16 +135,16 @@ if( is_admin() ) {
 		// Sponsor Level ?>
 		<label for="sponsor_level">Select sponsor level:</label>
 		<select id="sponsor_level" name="sponsor_level" style="max-width: 100%;">
-			<option value="Exhibitors"<? if($level=="Exhibitors"){?> selected="selected"<? }?>>Exhibitors</option>
-			<option value="ONAngel"<? if($level=="ONAngel"){?> selected="selected"<? }?>>ONAngel</option>
-            <option value="Diamond"<? if($level=="Diamond"){?> selected="selected"<? }?>>Diamond</option>
-            <option value="Platinum"<? if($level=="Platinum"){?> selected="selected"<? }?>>Platinum</option>
-            <option value="Gold"<? if($level=="Gold"){?> selected="selected"<? }?>>Gold</option>
-            <option value="Silver"<? if($level=="Silver"){?> selected="selected"<? }?>>Silver</option>
-            <option value="Bronze"<? if($level=="Bronze"){?> selected="selected"<? }?>>Bronze</option>
-            <option value="Supporters"<? if($level=="Supporters"){?> selected="selected"<? }?>>Supporters</option>
+			<option value="Exhibitors"<?php if($level=="Exhibitors"){?> selected="selected"<?php }?>>Exhibitors</option>
+			<option value="ONAngel"<?php if($level=="ONAngel"){?> selected="selected"<?php }?>>ONAngel</option>
+            <option value="Diamond"<?php if($level=="Diamond"){?> selected="selected"<?php }?>>Diamond</option>
+            <option value="Platinum"<?php if($level=="Platinum"){?> selected="selected"<?php }?>>Platinum</option>
+            <option value="Gold"<?php if($level=="Gold"){?> selected="selected"<?php }?>>Gold</option>
+            <option value="Silver"<?php if($level=="Silver"){?> selected="selected"<?php }?>>Silver</option>
+            <option value="Bronze"<?php if($level=="Bronze"){?> selected="selected"<?php }?>>Bronze</option>
+            <option value="Supporters"<?php if($level=="Supporters"){?> selected="selected"<?php }?>>Supporters</option>
 		</select>
-	<? }
+	<?php }
 	
 	/* Saves "SPONSOR EXTRAS" content */
 	function sponsor_extras_save( $post_id ) {
@@ -226,11 +226,11 @@ class Home_Card extends WP_Widget {
       global $widget_count;
 	  extract($args);
       echo preg_replace('/widget_count/i', 'position-'.$this->widget_count, $before_widget);	      if ($instance['icon']) { ?>
-        <img src="<?=$instance['icon'];?>" alt="">
-      <? } ?>
-        <h4><a href="<?=$instance['link'];?>" title="<?=$instance['title']?>"><?=wptexturize($instance['title']);?></a></h4>
-        <p><?=wptexturize($instance['text']);?></p>
-        <p><a href="<?=$instance['link'];?>">More &rarr;</a></p>
+        <img src="<?php echo $instance['icon'];?>" alt="">
+      <?php } ?>
+        <h4><a href="<?php echo $instance['link'];?>" title="<?php echo $instance['title']?>"><?php echo wptexturize($instance['title']);?></a></h4>
+        <p><?php echo wptexturize($instance['text']);?></p>
+        <p><a href="<?php echo $instance['link'];?>">More &rarr;</a></p>
       <?php
       echo $after_widget;
 	  $this->widget_count++;
@@ -255,17 +255,17 @@ class Home_Card extends WP_Widget {
 	  $text = htmlspecialchars($instance['text']);	  
 	  ?>
       
-            <p><label for="<?=$this->get_field_name('title');?>">Title</label>
-      <input id="<?=$this->get_field_id('title')?>" name="<?=$this->get_field_name('title');?>" class="widefat" type="text" value="<?=$title;?>" /></p>
+            <p><label for="<?php echo $this->get_field_name('title');?>">Title</label>
+      <input id="<?php echo $this->get_field_id('title')?>" name="<?php echo $this->get_field_name('title');?>" class="widefat" type="text" value="<?php echo $title;?>" /></p>
       
-            <p><label for="<?=$this->get_field_name('link');?>">Link</label>
-      <input id="<?=$this->get_field_id('link')?>" name="<?=$this->get_field_name('link');?>" class="widefat" type="text" value="<?=$link;?>" /></p>
+            <p><label for="<?php echo $this->get_field_name('link');?>">Link</label>
+      <input id="<?php echo $this->get_field_id('link')?>" name="<?php echo $this->get_field_name('link');?>" class="widefat" type="text" value="<?php echo $link;?>" /></p>
 
-			 <p><label for="<?=$this->get_field_name('icon');?>">Icon URL</label>
-      <input id="<?=$this->get_field_id('icon')?>" name="<?=$this->get_field_name('icon');?>" class="widefat" type="text" value="<?=$image;?>" /></p>
+			 <p><label for="<?php echo $this->get_field_name('icon');?>">Icon URL</label>
+      <input id="<?php echo $this->get_field_id('icon')?>" name="<?php echo $this->get_field_name('icon');?>" class="widefat" type="text" value="<?php echo $image;?>" /></p>
 			
-             <p><label for="<?=$this->get_field_name('text');?>">Text</label>
-      <textarea id="<?=$this->get_field_id('text')?>" name="<?=$this->get_field_name('text');?>" class="widefat" cols="20" rows="5" type="text"><?=$text;?></textarea></p>
+             <p><label for="<?php echo $this->get_field_name('text');?>">Text</label>
+      <textarea id="<?php echo $this->get_field_id('text')?>" name="<?php echo $this->get_field_name('text');?>" class="widefat" cols="20" rows="5" type="text"><?php echo $text;?></textarea></p>
             
 	  <?php
   }
@@ -288,8 +288,8 @@ class Sponsor_Logo extends WP_Widget {
       echo preg_replace('/widget_count/i', 'position-'.$this->widget_count, $before_widget);
 	  if ($instance['sponsor'] != '') {
 		  $sponsor_link = get_post_meta( $instance['sponsor'], '_sponsor_url', true );?>
-		  <a href="<?=$sponsor_link?>">
-		  <? if ( has_post_thumbnail($instance['sponsor']) ) { 
+		  <a href="<?php echo $sponsor_link?>">
+		  <?php if ( has_post_thumbnail($instance['sponsor']) ) { 
 				echo get_the_post_thumbnail($instance['sponsor'], 'sponsor-row' ); 
 			} ?>
 		  </a>
@@ -312,7 +312,7 @@ class Sponsor_Logo extends WP_Widget {
     function form($instance){
       $instance = wp_parse_args( (array) $instance, array('sponsor'=>'') );
 	  $sponsor = $instance['sponsor']; ?>
-            <select id="<?=$this->get_field_id('sponsor')?>" name="<?=$this->get_field_name('sponsor')?>" class="widefat">
+            <select id="<?php echo $this->get_field_id('sponsor')?>" name="<?php echo $this->get_field_name('sponsor')?>" class="widefat">
 				<option value="">None</option>
 	<?	$args = array( 'post_type' => 'sponsors', 'posts_per_page' => -1 );
 		$loop = new WP_Query( $args );
@@ -490,8 +490,8 @@ function ONA_display_related_by_tag(){
 				echo '<h4 class="widget-title">Related '.$value.'</h4>';		 
 				while ($query->have_posts()) {
 					$query->the_post(); ?>
-					<li><a href="<? the_permalink() ?>" title="<? the_title_attribute(); ?>" ><? the_title(); ?><br/><span><? the_time('M d, Y'); ?></span></a></li>
-				<? }
+					<li><a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>" ><?php the_title(); ?><br/><span><?php the_time('M d, Y'); ?></span></a></li>
+				<?php }
 			} else {
 				echo '<h4 class="widget-title">No related '.$value.'</h4>';
 			}

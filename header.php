@@ -46,15 +46,15 @@
         
         <?php $header_image = get_header_image();
 		if ( ! empty( $header_image ) ) : ?>
-			<a href="<?=esc_url( home_url( '/' ) ); ?>"><img src="<?=esc_url( $header_image ); ?>" class="header-image" width="<?=get_custom_header()->width; ?>" height="<?=get_custom_header()->height; ?>" alt="" /></a>
-		<? endif; ?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
+		<?php endif; ?>
         	<div id="header_info">
             	<div>
                     <p>October 17-19, 2013</p>
                     <p>Atlanta, GA</p>
                 </div>
                 <div>
-                	<? locate_template( array( 'searchform.php' ), true ) ?>
+                	<?php locate_template( array( 'searchform.php' ), true ) ?>
                 </div>
             </div>
         <!-- <img src="http://ona13.journalists.org/wp-content/uploads/2013/03/date-box2.png" style="margin-left: -4px;"> -->
