@@ -286,7 +286,7 @@ class ONA_Session {
 	 * 
 	 * @return object|false
 	 */
-	public function get_type(){
+	public function get_session_type(){
 		$types = get_the_terms( $this->get_id(), 'session-type' );
 		if ( ! empty( $types ) && ! is_wp_error( $types ) )
 			return array_shift( $types );
@@ -299,8 +299,8 @@ class ONA_Session {
 	 * 
 	 * @return string
 	 */
-	public function get_type_name() {
-		if ( $type = $this->get_type() )
+	public function get_session_type_name() {
+		if ( $type = $this->get_session_type() )
 			return $type->name;
 		else
 			return '';
@@ -311,7 +311,7 @@ class ONA_Session {
 	 * 
 	 * @param string
 	 */
-	public function set_type( $slug ) {
+	public function set_session_type( $slug ) {
 		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-type' );
 	}
 

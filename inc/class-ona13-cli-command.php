@@ -7,7 +7,7 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 	private $session_fields = array(
 			array(
 					'csv_field'          => 'L-S-M Type',
-					'object_field'       => 'type',
+					'object_field'       => 'session_type',
 					'sanitize_callback'  => 'sanitize_title',
 					'comparison_callback'=> 'ONA13_CLI_Command::compare_to_term',
 				),
