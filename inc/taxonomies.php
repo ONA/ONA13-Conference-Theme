@@ -68,6 +68,38 @@ add_action( 'init', function() {
 		),
 	) );
 
+	register_taxonomy( 'session-format', array( 'ona_session' ), array(
+		'hierarchical'            => false,
+		'public'                  => true,
+		'show_in_nav_menus'       => true,
+		'show_ui'                 => true,
+		'query_var'               => true,
+		'rewrite'                 => true,
+		'capabilities'            => array(
+			'manage_terms'  => 'edit_posts',
+			'edit_terms'    => 'edit_posts',
+			'delete_terms'  => 'edit_posts',
+			'assign_terms'  => 'edit_posts'
+		),
+		'labels'                  => array(
+			'name'                       =>  __( 'Formats', 'ona13' ),
+			'singular_name'              =>  _x( 'Format', 'taxonomy general name', 'ona13' ),
+			'search_items'               =>  __( 'Search Formats', 'ona13' ),
+			'popular_items'              =>  __( 'Popular Formats', 'ona13' ),
+			'all_items'                  =>  __( 'All Formats', 'ona13' ),
+			'parent_item'                =>  __( 'Parent Format', 'ona13' ),
+			'parent_item_colon'          =>  __( 'Parent Format:', 'ona13' ),
+			'edit_item'                  =>  __( 'Edit Format', 'ona13' ),
+			'update_item'                =>  __( 'Update Format', 'ona13' ),
+			'add_new_item'               =>  __( 'New Format', 'ona13' ),
+			'new_item_name'              =>  __( 'New Format', 'ona13' ),
+			'separate_items_with_commas' =>  __( 'Formats separated by comma', 'ona13' ),
+			'add_or_remove_items'        =>  __( 'Add or remove Formats', 'ona13' ),
+			'choose_from_most_used'      =>  __( 'Choose from the most used Formats', 'ona13' ),
+			'menu_name'                  =>  __( 'Formats', 'ona13' ),
+		),
+	) );
+
 });
 
 /**
@@ -105,6 +137,24 @@ add_action( 'admin_init', function() {
 	foreach( $session_rooms as $session_room ) {
 		if ( ! in_array( $session_room, $existing_session_rooms ) )
 			wp_insert_term( $session_room, 'session-room' );
+	}
+
+	$session_formats = array(
+			'Core Conversation',
+			'Duo',
+			'Interactive',
+			'Keynote',
+			'Lightning Talk',
+			'Panel',
+			'Showcase',
+			'Simulation',
+			'Solo',
+			'Workshop',
+		);
+	$existing_session_formats = get_terms( 'session-format', array( 'hide_empty' => false, 'fields' => 'names' ) );
+	foreach( $session_formats as $session_format ) {
+		if ( ! in_array( $session_format, $existing_session_formats ) )
+			wp_insert_term( $session_format, 'session-format' );
 	}
 
 });

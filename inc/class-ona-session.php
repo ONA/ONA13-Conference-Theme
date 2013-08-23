@@ -316,6 +316,40 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get the format for this session
+	 * 
+	 * @return object|false
+	 */
+	public function get_session_format(){
+		$formats = get_the_terms( $this->get_id(), 'session-format' );
+		if ( ! empty( $formats ) && ! is_wp_error( $formats ) )
+			return array_shift( $formats );
+		else
+			return false;
+	}
+
+	/**
+	 * Get the format name for this session
+	 * 
+	 * @return string
+	 */
+	public function get_session_format_name() {
+		if ( $format = $this->get_session_format() )
+			return $format->name;
+		else
+			return '';
+	}
+
+	/**
+	 * Set the format for this session
+	 * 
+	 * @param string
+	 */
+	public function set_session_format( $slug ) {
+		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-format' );
+	}
+
+	/**
 	 * Get the room for this session
 	 * 
 	 * @return object|false

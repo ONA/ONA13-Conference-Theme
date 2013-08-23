@@ -33,6 +33,12 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 					'comparison_callback'=> 'ONA13_CLI_Command::compare_to_term',
 				),
 			array(
+					'csv_field'          => 'Session Format',
+					'object_field'       => 'session_format',
+					'sanitize_callback'  => 'sanitize_title',
+					'comparison_callback'=> 'ONA13_CLI_Command::compare_to_term',
+				),
+			array(
 					'csv_field'          => 'Start Time',
 					'object_field'       => 'start_time',
 					'sanitize_callback'  => 'strtotime',
