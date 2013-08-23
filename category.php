@@ -13,7 +13,7 @@ get_header(); ?>
 		<?php 
 		if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?= single_cat_title( '', false ); ?></h1>
+				<h1 class="archive-title"><?php echo  single_cat_title( '', false ); ?></h1>
 
 			<?php if ( category_description() ) : // Show an optional category description ?>
 				<div class="archive-meta"><?php echo category_description(); ?></div>
@@ -24,18 +24,18 @@ get_header(); ?>
 			/* Start the Loop */
 			while ( have_posts() ) : the_post(); ?>
 				<div class="news_item">
-                	<? if ( has_post_thumbnail() ) {
+                	<?php if ( has_post_thumbnail() ) {
                     	the_post_thumbnail('thumbnail');
                     } else { ?>
-                    	<img class="attachment-thumbnail wp-post-image" src="<? echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" />
-                    <? } ?>
+                    	<img class="attachment-thumbnail wp-post-image" src="<?php echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" />
+                    <?php } ?>
                     <div>
-                        <h2><a href="<? the_permalink();?>" title="<? the_title();?>" ><? the_title();?></a></h2>
-                        <p class="date"><? the_time('M d, Y'); ?></p>
-                        <p class="excerpt"><? the_excerpt_max_charlength(280);?></p>
+                        <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>" ><?php the_title();?></a></h2>
+                        <p class="date"><?php the_time('M d, Y'); ?></p>
+                        <p class="excerpt"><?php the_excerpt_max_charlength(280);?></p>
                     </div>
                 </div>
-			<? endwhile;
+			<?php endwhile;
 
 			twentytwelve_content_nav( 'nav-below' );
 			?>

@@ -23,15 +23,15 @@ get_header(); ?>
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class="news_item">
-                	<? if ( has_post_thumbnail() ) {
+                	<?php if ( has_post_thumbnail() ) {
                     	the_post_thumbnail('thumbnail');
                     } else { ?>
                     
-                    <? } ?>
+                    <?php } ?>
                     <div>
-                        <h2><a href="<? the_permalink();?>" title="<? the_title();?>" ><? the_title();?></a></h2>
-                        <p class="date"><? the_time('M d, Y'); ?></p>
-                        <p class="excerpt"><? the_excerpt_max_charlength(280);?></p>
+                        <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>" ><?php the_title();?></a></h2>
+                        <p class="date"><?php the_time('M d, Y'); ?></p>
+                        <p class="excerpt"><?php the_excerpt_max_charlength(280);?></p>
                     </div>
                 </div>
 			<?php endwhile; ?>

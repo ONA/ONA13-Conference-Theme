@@ -1,4 +1,4 @@
-<? get_header(); ?>
+<?php get_header(); ?>
 
 <div id="content-row" class="container_12">
 
@@ -46,15 +46,15 @@
 					</header>
 			
 					<div class="entry-content">
-						<? if ( has_post_thumbnail() ) { 
+						<?php if ( has_post_thumbnail() ) { 
 							 echo the_post_thumbnail( 'medium' ); 
 						} 
 						the_content(); ?>
-						<p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
+						<p><a href="<?php echo $external_link;?>"><?php echo $external_link;?></a></p>
 					</div><!-- .entry-content -->
 				</article><!-- #post -->	
 
-			<? 	wp_reset_postdata();
+			<?php 	wp_reset_postdata();
 				endwhile;
 			}
 		endif; ?>

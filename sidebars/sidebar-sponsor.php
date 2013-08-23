@@ -13,10 +13,10 @@
 						while ($query->have_posts()) {
             			$query->the_post();?>
 						<li><a href="<?php the_permalink() ?>" title="'.esc_attr($recent["post_title"]).'" ><?php the_title() ?></a></li>
-					<? } } 
+					<?php } } 
 					wp_reset_query(); ?>
-                    <li class="more"><a href="<? echo home_url(); ?>/sponsors/">More sponsors &rarr;</a></li>
+                    <li class="more"><a href="<?php echo home_url(); ?>/sponsors/">More sponsors &rarr;</a></li>
                 </ul>
             </aside>
-			<? dynamic_sidebar( 'sidebar-1' ); ?>
+			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 		</div><!-- #secondary -->

@@ -1,4 +1,4 @@
-<? 
+<?php 
 add_filter( 'body_class', 'session_body' );
 function session_body( $classes ) {
 	$classes[] = 'full-width';

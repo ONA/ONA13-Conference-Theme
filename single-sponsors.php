@@ -17,21 +17,21 @@ get_header(); ?>
 
                 <article>
                     <header class="entry-header">
-                        <h1 class="entry-title"><? the_title();?></h1>
+                        <h1 class="entry-title"><?php the_title();?></h1>
                     </header>
                     <div class="entry-content">
-						<? if($sponsor_level!="Exhibitors"){ ?>
-                        <div class="sponsor-level"><?=$sponsor_level;?> Sponsor</div>
-                        <? } else { ?>
+						<?php if($sponsor_level!="Exhibitors"){ ?>
+                        <div class="sponsor-level"><?php echo $sponsor_level;?> Sponsor</div>
+                        <?php } else { ?>
                         <div class="sponsor-level">Exhibitor</div>
-                        <? } ?>
-                    	<? if ( has_post_thumbnail() ) { 
+                        <?php } ?>
+                    	<?php if ( has_post_thumbnail() ) { 
 							 echo "<a href='".$external_link."'>";
 							 echo the_post_thumbnail( 'medium' ); 
 							 echo "</a>";
 						} ?>
-                        <? the_content();?>
-                        <p><a href="<?=$external_link;?>"><?=$external_link;?></a></p>
+                        <?php the_content();?>
+                        <p><a href="<?php echo $external_link;?>"><?php echo $external_link;?></a></p>
                         <div class="related">
                             <?	// Column for SPONSORED SESSIONS by this sponsor
 							$args = array(

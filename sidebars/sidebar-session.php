@@ -15,13 +15,13 @@
             <aside id="concurrent_sessions" class="widget widget_text">
             	<ul class="headlines">
                 	<h3 class="widget-title">Concurrent sessions</h3>
-                    <? foreach( $concurrent_sessions as $session ){
+                    <?php foreach( $concurrent_sessions as $session ){
 						echo '<li><a href="' . get_permalink($session["ID"]) . '" title="'.esc_attr($session["post_title"]).'" >' .   $session["post_title"].'<br/><span>Room ';
 						echo get_post_meta( get_the_ID(), 'session_room', true );
 						echo '</span></a></li> ';
 					} ?>
-                    <li class="more"><a href="<? echo home_url(); ?>/sessions/">More sessions &rarr;</a></li>
+                    <li class="more"><a href="<?php echo home_url(); ?>/sessions/">More sessions &rarr;</a></li>
                 </ul>
             </aside>
-            <? } ?>
+            <?php } ?>
 		</div><!-- #secondary -->

@@ -102,7 +102,7 @@
             </div>
 		<?php endif; ?>
 
-<? $i = -1;
+<?php $i = -1;
 foreach( $all_sessions as $session_day => $days_sessions ):
 	$day_full_name = date( 'l n.d', strtotime( $session_day ) );
 	$i++;
@@ -136,7 +136,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
             <div class="make">M</div>
         </div>
     </div>
-    <h3 id="title<?=$i;?>"><span><?=$day_full_name;?></span></h3>
+    <h3 id="title<?php echo $i;?>"><span><?php echo $day_full_name;?></span></h3>
     
 	<div class="day-sessions">
 	<?php foreach( $days_sessions as $start_time => $posts ): ?>

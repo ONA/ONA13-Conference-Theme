@@ -1,12 +1,12 @@
-	<? if ( get_post_type() == 'ona_session' ) : 
+	<?php if ( get_post_type() == 'ona_session' ) : 
 			include ('sidebars/sidebar-session.php');
 	   elseif ( get_post_type() == 'sponsors' ) : 
 			include ('sidebars/sidebar-sponsor.php');
 	   elseif ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
-        	<? if ( is_singular() ) { ?>
+        	<?php if ( is_singular() ) { ?>
         	<aside id="pagenav" class="widget widget_text">
-            <? 	if ( is_page() ) {
+            <?php 	if ( is_page() ) {
 					echo '<ul>';
 					echo '<h3 class="widget-title">Related pages</h3>';
 					global $post;
@@ -47,7 +47,7 @@
 				} 
 				echo '</ul>'; ?>
             </aside>
-            <? } ?>
+            <?php } ?>
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 		</div><!-- #secondary -->
 	<?php endif; ?>
