@@ -11,6 +11,11 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 					'sanitize_callback'  => 'sanitize_text_field',
 				),
 			array(
+					'csv_field'          => 'Session Slug',
+					'object_field'       => 'slug',
+					'sanitize_callback'  => 'sanitize_key',
+				),
+			array(
 					'csv_field'          => 'Session Description',
 					'object_field'       => 'description',
 					'sanitize_callback'  => 'wp_filter_post_kses',
@@ -37,22 +42,35 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 
 		list( $file ) = $args;
 
+		// The file might actually be a remote CSV (aka Google Doc)
+		if ( ! file_exists( $file ) ) {
+			$file_data = wp_remote_get( $file );
+			if ( ! wp_remote_retrieve_body( $file_data ) ) {
+				WP_CLI::error( sprintf( "Couldn't retrieve: %s", $file ) );
+			} else {
+				$data = wp_remote_retrieve_body( $file_data );
+				$tmp_file = 'session-import-temp.csv';
+				file_put_contents( $tmp_file, $data );
+				$file = $tmp_file;
+			}
+		}
+
 		WP_CLI::line();
 
 		foreach ( new \WP_CLI\Iterators\CSV( $file ) as $i => $csv_session ) {
 
 			// Uh oh, someone messed up the rows
-			if ( empty( $csv_session['ID'] ) )
+			if ( empty( $csv_session['Session Slug'] ) )
 				continue;
 
 			// If the session doesn't exist, let's create it first.
-			if ( false === ( $session = ONA_Session::get_by_session_id( (int)$csv_session['ID'] ) ) ) {
-				$post_id = wp_insert_post( array( 'post_type' => ONA_Session::$post_type ) );
+			$session_slug = sanitize_key( $csv_session['Session Slug'] );
+			if ( false === ( $session = ONA_Session::get_by_slug( $session_slug ) ) ) {
+				$post_id = wp_insert_post( array( 'post_type' => ONA_Session::$post_type, 'post_name' => $session_slug, 'post_status' => 'publish' ) );
 				$session = new ONA_Session( $post_id );
-				$session->set_session_id( $csv_session['ID'] );
-				WP_CLI::line( sprintf( "Inserting session #%d as post #%d", $csv_session['ID'], $session->get_id() ) );
+				WP_CLI::line( sprintf( "Inserting session '%s' as post #%d", $session_slug, $session->get_id() ) );
 			} else {
-				WP_CLI::line( sprintf( "Updating session #%d (post #%d)", $csv_session['ID'], $session->get_id() ) );
+				WP_CLI::line( sprintf( "Updating session '%s' (post #%d)", $session_slug, $session->get_id() ) );
 			}
 
 			foreach( $csv_session as $key => $value ) {
@@ -85,6 +103,10 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 			WP_CLI::line();
 			WP_CLI::line();
 		}
+
+		if ( ! empty( $tmp_file ) )
+			@unlink( $tmp_file );
+
 		WP_CLI::success( "Import complete" );
 	}
 
