@@ -6,6 +6,12 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 
 	private $session_fields = array(
 			array(
+					'csv_field'          => 'L-S-M Type',
+					'object_field'       => 'type',
+					'sanitize_callback'  => 'sanitize_title',
+					'comparison_callback'=> 'ONA13_CLI_Command::compare_to_term',
+				),
+			array(
 					'csv_field'          => 'Session Name',
 					'object_field'       => 'title',
 					'sanitize_callback'  => 'sanitize_text_field',
@@ -21,12 +27,18 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 					'sanitize_callback'  => 'wp_filter_post_kses',
 				),
 			array(
-					'csv_field'          => 'Start Date & Time',
+					'csv_field'          => 'Room',
+					'object_field'       => 'room',
+					'sanitize_callback'  => 'sanitize_title',
+					'comparison_callback'=> 'ONA13_CLI_Command::compare_to_term',
+				),
+			array(
+					'csv_field'          => 'Start Time',
 					'object_field'       => 'start_time',
 					'sanitize_callback'  => 'strtotime',
 				),
 			array(
-					'csv_field'          => 'End Date & Time',
+					'csv_field'          => 'End Time',
 					'object_field'       => 'end_time',
 					'sanitize_callback'  => 'strtotime',
 				),
@@ -89,7 +101,13 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 					$get_method = 'get_' . $session_field['object_field'];
 					$set_method = 'set_' . $session_field['object_field'];
 
-					if ( $new_value != $session->$get_method() ) {
+					// See whether the values should be updated
+					if ( isset( $session_field['comparison_callback'] ) && is_callable( $session_field['comparison_callback'] ) )
+						$update = call_user_func_array( $session_field['comparison_callback'], array( $new_value, $session->$get_method() ) );
+					else
+						$update = ( $new_value != $session->$get_method() );
+
+					if ( $update ) {
 						$session->$set_method( $new_value );
 						self::output_diff( $key, $new_value );
 					} else {
@@ -108,6 +126,21 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 			@unlink( $tmp_file );
 
 		WP_CLI::success( "Import complete" );
+	}
+
+	/**
+	 * Compare a value to a term
+	 * 
+	 * @return bool     True to update, false to not
+	 */
+	public static function compare_to_term( $new_value, $old_value ) {
+		if ( ! is_object( $old_value ) )
+			return true;
+
+		if ( $new_value != $old_value->slug )
+			return true;
+		else
+			return false;
 	}
 
 	/**
