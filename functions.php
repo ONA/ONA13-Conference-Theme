@@ -2,6 +2,7 @@
 
 require_once dirname( __FILE__ ) . '/inc/class-ona-session.php';
 require_once dirname( __FILE__ ) . '/inc/post-types.php';
+require_once dirname( __FILE__ ) . '/inc/taxonomies.php';
 
 if ( defined( 'WP_CLI' ) && WP_CLI )
 	require_once dirname( __FILE__ ) . '/inc/class-ona13-cli-command.php';
