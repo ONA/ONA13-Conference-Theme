@@ -280,5 +280,91 @@ class ONA_Session {
 	public function set_end_time( $time, $gmt = false ) {
 		$this->set_meta_time( 'end_time', $time, $gmt );
 	}
+
+	/**
+	 * Get the type for this session
+	 * 
+	 * @return object|false
+	 */
+	public function get_type(){
+		$types = get_the_terms( $this->get_id(), 'session-type' );
+		if ( ! empty( $types ) && ! is_wp_error( $types ) )
+			return array_shift( $types );
+		else
+			return false;
+	}
+
+	/**
+	 * Get the type name for this session
+	 * 
+	 * @return string
+	 */
+	public function get_type_name() {
+		if ( $type = $this->get_type() )
+			return $type->name;
+		else
+			return '';
+	}
+
+	/**
+	 * Set the type for this session
+	 * 
+	 * @param string
+	 */
+	public function set_type( $slug ) {
+		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-type' );
+	}
+
+	/**
+	 * Get the room for this session
+	 * 
+	 * @return object|false
+	 */
+	public function get_room(){
+		$rooms = get_the_terms( $this->get_id(), 'session-room' );
+		if ( ! empty( $rooms ) && ! is_wp_error( $rooms ) )
+			return array_shift( $rooms );
+		else
+			return false;
+	}
+
+	/**
+	 * Get the room name for this session
+	 * 
+	 * @return string
+	 */
+	public function get_room_name() {
+		if ( $room = $this->get_room() )
+			return $room->name;
+		else
+			return '';
+	}
+
+	/**
+	 * Set the room for this session
+	 * 
+	 * @param string
+	 */
+	public function set_room( $slug ) {
+		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-room' );
+	}
+
+	/**
+	 * Get the hashtag for a session
+	 * 
+	 * @return string
+	 */
+	public function get_hashtag() {
+		$this->get_meta( 'hashtag' );
+	}
+
+	/**
+	 * Set the hashtag for a session
+	 * 
+	 * @param string
+	 */
+	public function set_hashtag( $hashtag ) {
+		$this->set_meta( 'hashtag', $hashtag );
+	}
 	
 }
