@@ -15,9 +15,10 @@
             <aside id="concurrent_sessions" class="widget widget_text">
             	<ul class="headlines">
                 	<h3 class="widget-title">Concurrent sessions</h3>
-                    <?php foreach( $concurrent_sessions as $session ){
-						echo '<li><a href="' . get_permalink($session["ID"]) . '" title="'.esc_attr($session["post_title"]).'" >' .   $session["post_title"].'<br/><span>Room ';
-						echo get_post_meta( get_the_ID(), 'session_room', true );
+                    <?php foreach( $concurrent_sessions as $post ){
+                        $session = new ONA_Session( $post['ID'] );
+						echo '<li><a href="' . get_permalink( $session->get_id() ) . '" title="'.esc_attr( $session->get_title() ).'" >' . $session->get_title() . '<br/><span>';
+						echo $session->get_room_name();
 						echo '</span></a></li> ';
 					} ?>
                     <li class="more"><a href="<?php echo home_url(); ?>/sessions/">More sessions &rarr;</a></li>
