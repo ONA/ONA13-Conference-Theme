@@ -41,11 +41,13 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 			array(
 					'csv_field'          => 'Start Time',
 					'object_field'       => 'start_time',
+					'pre_sanitize_callback' => 'ONA13_CLI_Command::prepare_time_field',
 					'sanitize_callback'  => 'strtotime',
 				),
 			array(
 					'csv_field'          => 'End Time',
 					'object_field'       => 'end_time',
+					'pre_sanitize_callback' => 'ONA13_CLI_Command::prepare_time_field',
 					'sanitize_callback'  => 'strtotime',
 				),
 		);
@@ -102,6 +104,10 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 						continue;
 
 					$value = stripslashes( $value );
+					if ( isset( $session_field['pre_sanitize_callback'] ) && is_callable( $session_field['pre_sanitize_callback'] ) )
+						$value = call_user_func_array( $session_field['pre_sanitize_callback'], array( $value, $csv_session ) );
+
+
 					$new_value = call_user_func_array( $session_field['sanitize_callback'], array( $value ) );
 
 					$get_method = 'get_' . $session_field['object_field'];
@@ -147,6 +153,21 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 			return true;
 		else
 			return false;
+	}
+
+	/**
+	 * Prepare a time field to include the date as well
+	 */
+	public static function prepare_time_field( $new_value, $csv_row ) {
+		$dates = array(
+				'Thursday' => 'October 17',
+				'Friday' => 'October 18',
+				'Saturday' => 'October 19',
+			);
+		if ( isset( $dates[$csv_row['Day']] ) )
+			return $csv_row['Day'] . ', ' . $dates[$csv_row['Day']] . ' ' . $new_value;
+		else
+			return $new_value;
 	}
 
 	/**
