@@ -18,6 +18,16 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get a session object by its slug
+	 * 
+	 * @param string
+	 * @return ONA_Session object on success, false on failure
+	 */
+	public static function get_by_slug( $slug ) {
+		return self::get_by_value( 'post_name', $slug );
+	}
+
+	/**
 	 * Get a session object by its session ID
 	 * 
 	 * @param int
@@ -28,13 +38,30 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get a session object by its post value
+	 */
+	private static function get_by_value( $key, $value ) {
+		global $wpdb;
+
+		$post_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE {$key}=%s AND post_type=%s", $value, self::$post_type ) );
+		if ( ! $post_id || count( $post_id ) > 1 )
+			return false;
+
+		$session = new ONA_Session( $post_id );
+		if ( is_wp_error( $session ) )
+			return false;
+
+		return $session;
+	}
+
+	/**
 	 * Get a session object by its meta value
 	 */
 	private static function get_by_meta( $key, $value ) {
 		global $wpdb;
 
 		$post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key=%s AND meta_value=%s", $key, $value ) );
-		if ( ! $post_id )
+		if ( ! $post_id || count( $post_id ) > 1 )
 			return false;
 
 		$session = new ONA_Session( $post_id );
@@ -176,6 +203,24 @@ class ONA_Session {
 	 */
 	public function set_session_id( $session_id ) {
 		$this->set_meta( 'session_id', (int)$session_id );
+	}
+
+	/**
+	 * Get the unique slug identifier for a session
+	 * 
+	 * @return string
+	 */
+	public function get_slug() {
+		$this->get_value( 'post_name' );
+	}
+
+	/**
+	 * Set the unique slug identifier for a session
+	 * 
+	 * @param string
+	 */
+	public function set_slug( $slug ) {
+		$this->set_value( 'post_name', $slug );
 	}
 
 	/**
