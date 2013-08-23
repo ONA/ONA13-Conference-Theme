@@ -1,5 +1,5 @@
 		<div id="secondary" class="widget-area" role="complementary">
-		<?	// Get sessions with same start time
+		<?php // Get sessions with same start time
             global $session_start;
             $args = array(
                 'meta_key' => 'start_time',
