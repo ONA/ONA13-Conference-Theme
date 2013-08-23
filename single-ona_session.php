@@ -1,22 +1,20 @@
 <?php get_header(); ?>
 
-
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
 
 			<?php while ( have_posts() ) : the_post(); 
-				$session_id = get_post_meta( $post->ID, 'session_id', true );
-				$session_start = get_post_meta( $post->ID, 'start_time', true );
-				$session = ONA_Session::get_by_session_id( $session_id ); ?>
+				$session = new ONA_Session( get_the_ID() );
+                ?>
                 <article>
                     <header class="entry-header">
-                        <h1 class="entry-title"><?php echo $session->get_title();?></h1>
+                        <h1 class="entry-title"><?php echo $session->get_title(); ?></h1>
                     </header>
                     <ul class="session-meta">
-                    	<li class="day"><?php echo  date('l - g:i A', $session_start);?></li>
-                        <li class="room">Room</li>
-                        <li class="track type1">Track</li>
-                        <li class="hash">Hash</li>
+                    	<li class="day"><?php echo $session->get_start_time( 'l - g:i A' ); ?></li>
+                        <li class="room"><?php echo $session->get_room_name(); ?></li>
+                        <li class="track type1"><?php echo $session->get_session_type_name(); ?></li>
+                        <li class="hash"><?php echo ( $session->get_hashtag() ) ? $session->get_hashtag() : '<em>None</em>'; ?></li>
                     </ul>
                     <div class="entry-content">
                     	<div class="presenters"></div>
