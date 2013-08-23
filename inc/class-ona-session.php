@@ -18,6 +18,16 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get a session object by its slug
+	 * 
+	 * @param string
+	 * @return ONA_Session object on success, false on failure
+	 */
+	public static function get_by_slug( $slug ) {
+		return self::get_by_value( 'post_name', $slug );
+	}
+
+	/**
 	 * Get a session object by its session ID
 	 * 
 	 * @param int
@@ -28,13 +38,30 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get a session object by its post value
+	 */
+	private static function get_by_value( $key, $value ) {
+		global $wpdb;
+
+		$post_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE {$key}=%s AND post_type=%s", $value, self::$post_type ) );
+		if ( ! $post_id || count( $post_id ) > 1 )
+			return false;
+
+		$session = new ONA_Session( $post_id );
+		if ( is_wp_error( $session ) )
+			return false;
+
+		return $session;
+	}
+
+	/**
 	 * Get a session object by its meta value
 	 */
 	private static function get_by_meta( $key, $value ) {
 		global $wpdb;
 
 		$post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key=%s AND meta_value=%s", $key, $value ) );
-		if ( ! $post_id )
+		if ( ! $post_id || count( $post_id ) > 1 )
 			return false;
 
 		$session = new ONA_Session( $post_id );
@@ -179,6 +206,24 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get the unique slug identifier for a session
+	 * 
+	 * @return string
+	 */
+	public function get_slug() {
+		$this->get_value( 'post_name' );
+	}
+
+	/**
+	 * Set the unique slug identifier for a session
+	 * 
+	 * @param string
+	 */
+	public function set_slug( $slug ) {
+		$this->set_value( 'post_name', $slug );
+	}
+
+	/**
 	 * Get the description of a session.
 	 * 
 	 * @return string
@@ -234,6 +279,126 @@ class ONA_Session {
 	 */
 	public function set_end_time( $time, $gmt = false ) {
 		$this->set_meta_time( 'end_time', $time, $gmt );
+	}
+
+	/**
+	 * Get the type for this session
+	 * 
+	 * @return object|false
+	 */
+	public function get_session_type(){
+		$types = get_the_terms( $this->get_id(), 'session-type' );
+		if ( ! empty( $types ) && ! is_wp_error( $types ) )
+			return array_shift( $types );
+		else
+			return false;
+	}
+
+	/**
+	 * Get the type name for this session
+	 * 
+	 * @return string
+	 */
+	public function get_session_type_name() {
+		if ( $type = $this->get_session_type() )
+			return $type->name;
+		else
+			return '';
+	}
+
+	/**
+	 * Set the type for this session
+	 * 
+	 * @param string
+	 */
+	public function set_session_type( $slug ) {
+		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-type' );
+	}
+
+	/**
+	 * Get the format for this session
+	 * 
+	 * @return object|false
+	 */
+	public function get_session_format(){
+		$formats = get_the_terms( $this->get_id(), 'session-format' );
+		if ( ! empty( $formats ) && ! is_wp_error( $formats ) )
+			return array_shift( $formats );
+		else
+			return false;
+	}
+
+	/**
+	 * Get the format name for this session
+	 * 
+	 * @return string
+	 */
+	public function get_session_format_name() {
+		if ( $format = $this->get_session_format() )
+			return $format->name;
+		else
+			return '';
+	}
+
+	/**
+	 * Set the format for this session
+	 * 
+	 * @param string
+	 */
+	public function set_session_format( $slug ) {
+		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-format' );
+	}
+
+	/**
+	 * Get the room for this session
+	 * 
+	 * @return object|false
+	 */
+	public function get_room(){
+		$rooms = get_the_terms( $this->get_id(), 'session-room' );
+		if ( ! empty( $rooms ) && ! is_wp_error( $rooms ) )
+			return array_shift( $rooms );
+		else
+			return false;
+	}
+
+	/**
+	 * Get the room name for this session
+	 * 
+	 * @return string
+	 */
+	public function get_room_name() {
+		if ( $room = $this->get_room() )
+			return $room->name;
+		else
+			return '';
+	}
+
+	/**
+	 * Set the room for this session
+	 * 
+	 * @param string
+	 */
+	public function set_room( $slug ) {
+		wp_set_object_terms( $this->get_id(), array( $slug ), 'session-room' );
+	}
+
+	/**
+	 * Get the hashtag for a session
+	 * 
+	 * @return string
+	 */
+	public function get_hashtag() {
+		$this->get_meta( 'hashtag' );
+	}
+
+	/**
+	 * Set the hashtag for a session
+	 * 
+	 * @param string
+	 */
+	public function set_hashtag( $hashtag ) {
+		$this->set_meta( 'hashtag', $hashtag );
 	}
 	
 }
