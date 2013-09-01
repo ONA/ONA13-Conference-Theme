@@ -2133,9 +2133,16 @@ font-weight: 700;
 
 /* Page styling */
 
-.headlines a span {
+p.date {
 	color: #bbb;
 	font-size: 0.8em;
+	padding-top: 3px;
+}
+p.date span.Sponsored {
+	padding: 2px 5px 3px;
+	border-radius: 4px;
+	background: #99C;
+	color: #fff;
 }
 .headlines .more a {
 	font-weight:700;

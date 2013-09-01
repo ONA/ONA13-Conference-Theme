@@ -143,25 +143,13 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 		<div class="session-time-block">
 			<div class="session-start-time"><?php echo $start_time; ?></div>			
 			<ul class="session-list session-count-<?php echo count( $posts ); ?>">
-			<?php foreach( $posts as $post ): ?>
-				<?php setup_postdata( $post ); ?>
-				<?php
-					$session_details = array();
-					//$session_types = get_the_terms( $post->ID, 'ona12_session_types' );
-					if ( ! empty( $session_types ) ) {
-						$session_type = array_shift( $session_types );
-						$session_details[] = '<span class="session-type"><a href="' . get_term_link( $session_type ) . '">' . esc_html( $session_type->name ) . '</a></span>';
-					}
-					/* if ( $session_location = ONA_Session::get( 'location', get_the_ID(), 'object' ) )
-						$session_details[] = '<span class="session-location"><a href="' . get_term_link( $session_location ) . '">' . esc_html( $session_location->name ) . '</a></span>';
-					if ( $hashtag = ONA12_Session::get( 'hashtag' ) )
-						$session_details[] = '<span class="session-hashtag"><a target="_blank" href="https://twitter.com/i/#!/search/?q=' . urlencode( $hashtag ) . '">' . $hashtag . '</a></span>'; */
-				?>
+			<?php foreach( $posts as $post ): 
+				setup_postdata( $post ); 
+				$session = new ONA_Session( get_the_ID() ); ?>
                 <a href="<?php the_permalink(); ?>">
-				<li class="single-session">
-					<h4 class="session-title"><?php the_title(); ?></h4>
-					<ul class="session-details"><li><?php echo implode( '</li><li>', $session_details ); ?></li></ul>
-					<div class="session-description"><?php the_excerpt(); ?></div>
+				<li class="single-session <?php echo $session->get_session_type_name();?>">
+					<h4 class="session-title"><?php echo $session->get_title(); ?></h4>
+					<!--<div class="session-description"><?php the_excerpt(); ?></div>-->
 				</li>
                 </a>
 			<?php endforeach; ?>

@@ -16,7 +16,7 @@ padding: 0 10px;
 h2 {
 clear:none;
 text-transform: none;
-padding-bottom:13px;
+padding-bottom:10px;
 }
 h2 a {
 font-weight: 400;
@@ -34,14 +34,26 @@ padding-bottom:20px;
 border-bottom:1px dotted #ccc;
 }
 .news_item div {
-margin-left:170px;
+margin-left:70px;
 }
-.news_item .date {
-font-size: 11px;
-text-transform: uppercase;
-padding-bottom:10px;
+.news_item div.Sponsored {
+background: #F0F0F0;
+padding: 5px 0 13px;
+border-radius: 5px;
 }
 .news_item .excerpt {
 line-height: 170%;
 font-size: 0.9em;
+}
+
+h2.sponsor_level {
+font-size: 1.7em;
+font-weight: 400;
+padding-bottom: 10px;
+margin-top: 30px;
+margin-bottom: 20px;
+border-bottom: 1px #DDD dotted;
+text-transform: uppercase;
+background: #EEE;
+line-height: 20%;
 }
