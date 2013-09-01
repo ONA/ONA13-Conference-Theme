@@ -25,7 +25,7 @@ get_header(); ?>
                     <header class="entry-header">
                         <h1 class="entry-title"><?php the_title();?></h1>
                         <p><span>By <?php the_author();?> / </span>
-                        <?php the_time('M d, Y'); ?>
+                        <?php the_time('M j, Y'); ?>
                         </p>
                     </header>
                     <?php $sponsor = get_post_meta( get_the_ID(), '_assigned_sponsor' );
