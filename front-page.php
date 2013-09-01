@@ -18,8 +18,8 @@ get_header(); ?>
                 <a href="<?php echo home_url(); ?>/register/"><div class="button">Register today</div></a>
             </div>
             <ul class="headlines">
-            	<li class="title"><a href="<?php echo home_url(); ?>/category/news/">Recent News</a></li>
-            <?php $category_id = get_cat_ID('News');
+            	<li class="title"><a href="<?php echo home_url(); ?>/category/headlines/">Recent Headlines</a></li>
+            <?php $category_id = get_cat_ID('Headlines');
 				$args = array(
 				'numberposts' => 3,
 				'category' => $category_id,
@@ -30,12 +30,14 @@ get_header(); ?>
 			
 				$recent_posts = wp_get_recent_posts( $args );
 				foreach( $recent_posts as $recent ){
-					echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
-					echo get_the_time(get_option('date_format'), $recent["ID"]);
-					echo '</span></a></li> ';
+					$category = get_the_category($recent["ID"]); 
+					echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/>';
+					echo '<p class="date">'.get_the_time('M j, Y', $recent["ID"]);
+					echo ' | <span class="'.str_replace(' ', '-', $category[0]->cat_name).'">'.$category[0]->cat_name.'</span></p>';
+					echo '</a></li> ';
 				}
 			?>
-            	<li class="more"><a href="<?php echo home_url(); ?>/category/news/">More news &rarr;</a></li>
+            	<li class="more"><a href="<?php echo home_url(); ?>/category/headlines/">More headlines &rarr;</a></li>
             </ul>
         </div>
         
