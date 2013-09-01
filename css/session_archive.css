@@ -23,9 +23,29 @@ ul.session-list {
 	text-shadow: 1px 1px 0 rgba(255,255,255,.25);
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.25);	
 }
+.single-session.Listen {
+background: #e6e3fc;
+}
+.single-session.Solve {
+background: #ffbdb0;
+}
+.single-session.Make {
+background: #fff9eb;
+}
 .single-session:hover {
-	background: rgba(230, 230, 230, 1);
 	border: 1px solid rgba(116, 116, 116, 0.4);
+}
+.single-session:hover h4 {
+	color: #fff;
+}
+.single-session.Listen:hover {
+background: #4D3881;
+}
+.single-session.Solve:hover {
+background: #A92A00;
+}
+.single-session.Make:hover {
+background: #DCBE62;
 }
 .session-list > a:nth-of-type(3n+1) .single-session{
 	clear:both;

@@ -3,13 +3,13 @@ jQuery(document).ready(function(){
 	jQuery('.schedule_nav div div').click(function(e) {
         var button = jQuery(this).index()-1;
 		var day = jQuery(this).parent().index();
-		jQuery('tr').hide();
+		jQuery('.single-session').parent().hide();
 		if (button==0){
-			jQuery('tr.listen').show();
+			jQuery('.single-session.Listen').parent().show();
 		} else if (button==1){
-			jQuery('tr.solve').show();
+			jQuery('.single-session.Solve').parent().show();
 		} else if (button==2){
-			jQuery('tr.make').show();
+			jQuery('.single-session.Make').parent().show();
 		}
 		jQuery("html, body").animate({ scrollTop: jQuery('#title'+day).offset().top - 60 }, 1000);
     });
