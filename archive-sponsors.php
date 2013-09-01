@@ -35,6 +35,14 @@
 				$my_query = new WP_Query($args);
 				echo '<h2 class="sponsor_level">'.$level.'</h2>';
 				
+				if (!$my_query->have_posts()) { ?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="<?php echo home_url(); ?>/sponsor/sponsor-packages/">Sponsorships</a> are available at this level</h1>
+					</header>
+                </article>
+				<? }
 				while ( $my_query->have_posts() ) : $my_query->the_post(); 
 					$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
 					$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true );?>
