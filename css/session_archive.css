@@ -1,7 +1,10 @@
+.session-time-block {
+overflow: auto;
+}
 .session-start-time {
 	float:left; 
-	width:10%;
-	padding:25px 0 10px;
+	width:9%;
+	padding:25px 1% 10px 0;
 	font-family:'Source Sans Pro', serif;
 }
 
@@ -14,6 +17,7 @@ ul.session-list {
 	overflow:auto;
 	box-sizing:border-box;
 	border-bottom:1px dotted #ccc;
+	min-height: 65px;
 }
 .single-session {
 	margin-bottom:15px;
@@ -33,10 +37,11 @@ background: #ffbdb0;
 background: #fff9eb;
 }
 .single-session:hover {
-	border: 1px solid rgba(116, 116, 116, 0.4);
+background: rgba(230, 230, 230, 1);
+border: 1px solid rgba(116, 116, 116, 0.4);
 }
 .single-session:hover h4 {
-	color: #fff;
+color: #fff;
 }
 .single-session.Listen:hover {
 background: #4D3881;
@@ -177,7 +182,11 @@ h1 {
 .schedule_nav .solve {background: #A92A00;}
 .schedule_nav .make {background: #DCBE62;}
 
-
+@media screen and (max-width:650px) {	
+	.session-list > a > li {
+		width:98%;
+	}
+}
 @media screen and (max-width:900px){
 	.schedule_nav label {
 		width: 100%;
