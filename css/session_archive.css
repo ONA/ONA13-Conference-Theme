@@ -19,12 +19,15 @@ ul.session-list {
 	border-bottom:1px dotted #ccc;
 	min-height: 65px;
 }
+ul.session-list:hover {
+	background:#f1f1f1;
+}
 .single-session {
 	margin-bottom:15px;
-	background: rgba(233, 233, 233, 0.7);
+	background: #e5e5e5;
 	border: 1px solid rgba(116, 116, 116, 0.2);
 	border-radius: 10px;
-	text-shadow: 1px 1px 0 rgba(255,255,255,.25);
+	text-shadow: 1px 1px 0 rgba(255,255,255,.5);
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.25);	
 }
 .single-session.Listen {
@@ -39,6 +42,7 @@ background: #fff9eb;
 .single-session:hover {
 background: #C4C4C4;
 border: 1px solid rgba(116, 116, 116, 0.4);
+text-shadow: -1px -1px 0 rgba(0,0,0,.25);
 }
 .single-session:hover h4 {
 color: #fff;
