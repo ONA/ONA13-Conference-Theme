@@ -31,9 +31,14 @@ get_header(); ?>
 				$recent_posts = wp_get_recent_posts( $args );
 				foreach( $recent_posts as $recent ){
 					$category = get_the_category($recent["ID"]); 
+					$sponsor = get_post_meta( $recent["ID"], '_assigned_sponsor' );
 					echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/>';
 					echo '<p class="date">'.get_the_time('M j, Y', $recent["ID"]);
-					echo ' | <span class="'.str_replace(' ', '-', $category[0]->cat_name).'">'.$category[0]->cat_name.'</span></p>';
+					echo ' | <span>'.$category[0]->cat_name.'</span>';
+					if($sponsor) {
+						echo '<span class="Sponsored">Sponsored</span>';	
+					}
+					echo '</p>';
 					echo '</a></li> ';
 				}
 			?>

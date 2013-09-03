@@ -2138,6 +2138,9 @@ p.date {
 	font-size: 0.8em;
 	padding-top: 3px;
 }
+p.date span {
+	padding-right:5px;	
+}
 p.date span.Sponsored {
 	padding: 2px 5px 3px;
 	border-radius: 4px;
