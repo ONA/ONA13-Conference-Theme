@@ -33,37 +33,32 @@
 					)
 		  		 ); 
 				$my_query = new WP_Query($args);
-				echo '<h2 class="sponsor_level">'.$level.'</h2>';
+				if ($my_query->have_posts()) { 
 				
-				if (!$my_query->have_posts()) { ?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					echo '<h2 class="sponsor_level">'.$level.'</h2>';
 					
-					<header class="entry-header">
-						<h1 class="entry-title"><a href="<?php echo home_url(); ?>/sponsor/sponsor-packages/">Sponsorships</a> are available at this level</h1>
-					</header>
-                </article>
-				<? }
-				while ( $my_query->have_posts() ) : $my_query->the_post(); 
-					$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
-					$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true );?>
+					while ( $my_query->have_posts() ) : $my_query->the_post(); 
+						$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
+						$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true );?>
+		
+					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+						
+						<header class="entry-header">
+							<h1 class="entry-title"><a href="<?php the_permalink(); ?> "><?php the_title(); ?></a></h1>
+						</header>
+				
+						<div class="entry-content">
+							<?php if ( has_post_thumbnail() ) { 
+								 echo the_post_thumbnail( 'medium' ); 
+							} 
+							the_content(); ?>
+							<p><a href="<?php echo $external_link;?>"><?php echo $external_link;?></a></p>
+						</div><!-- .entry-content -->
+					</article><!-- #post -->	
 	
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					
-					<header class="entry-header">
-						<h1 class="entry-title"><a href="<?php the_permalink(); ?> "><?php the_title(); ?></a></h1>
-					</header>
-			
-					<div class="entry-content">
-						<?php if ( has_post_thumbnail() ) { 
-							 echo the_post_thumbnail( 'medium' ); 
-						} 
-						the_content(); ?>
-						<p><a href="<?php echo $external_link;?>"><?php echo $external_link;?></a></p>
-					</div><!-- .entry-content -->
-				</article><!-- #post -->	
-
-			<?php 	wp_reset_postdata();
-				endwhile;
+				<?php 	wp_reset_postdata();
+					endwhile;
+				}
 			}
 		endif; ?>
 			
