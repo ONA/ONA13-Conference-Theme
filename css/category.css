@@ -35,10 +35,11 @@ border-bottom:1px dotted #ccc;
 }
 .news_item div {
 margin-left:75px;
+padding: 0 5px;
 }
 .news_item div.Sponsored {
 background: #F0F0F0;
-padding: 5px 0 13px;
+padding: 2px 5px 13px;
 border-radius: 5px;
 }
 .news_item .excerpt {
