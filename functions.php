@@ -469,9 +469,9 @@ function ONA_display_related_by_tag(){
 		$tagged = "Other content related to ";
 		foreach($tags as $each_tag) {
 			$tag_ids[] = $each_tag->term_id;
-			$tagged .= '"<b>'.$each_tag->name.'</b>,"';
+			$tagged .= '"<a href="'.get_site_url().'/tag/'.$each_tag->slug.'/">'.$each_tag->name.'</a>," ';
 		}
-		$tagged = substr($tagged, 0, -2);
+		$tagged = substr($tagged, 0, -3);
 		echo "<div class='topics'>".$tagged.'":</div>';
 		// Two queries
 		$queries = array('post' => 'Posts', 'ona_session' => 'Sessions');

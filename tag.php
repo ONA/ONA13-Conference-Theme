@@ -1,10 +1,10 @@
 <?php
 /**
- * The template for displaying Category pages.
+ * The template for displaying Tag pages.
  *
  * @subpackage Twenty_Twelve_Child for ONA
  *
- * EXACTLY LIKE THE TAG TEMPLATE, EXCEPT FOR H1
+ * EXACTLY LIKE THE CATEGORY TEMPLATE, EXCEPT FOR H1
  */
 get_header(); ?>
 
@@ -15,7 +15,7 @@ get_header(); ?>
 		<?php 
 		if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php echo  single_cat_title( '', false ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'twentytwelve' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php if ( category_description() ) : // Show an optional category description ?>
 				<div class="archive-meta"><?php echo category_description(); ?></div>
