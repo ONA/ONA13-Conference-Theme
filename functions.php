@@ -24,7 +24,7 @@ if( is_admin() ) {
 		$screens = array( 'post', 'ona_session' );
 		remove_meta_box('formatdiv', 'post', 'side');
 		foreach ($screens as $screen) {
-			add_meta_box( 'myplugin_sectionid', __( 'Featured Sponsor', 'myplugin_textdomain' ),
+			add_meta_box( 'sponsor_metabox', __( 'Featured Sponsor', 'myplugin_textdomain' ),
 				'featured_sponsor_print', $screen, 'side'
 			);
 		}
@@ -73,7 +73,7 @@ if( is_admin() ) {
 	function post_featured_image_position_metabox() {
 		$screens = array( 'post' );
 		foreach ($screens as $screen) {
-			add_meta_box( 'myplugin_sectionid', __( 'Position Featured Image', 'myplugin_textdomain' ),
+			add_meta_box( 'featured_image_position_metabox', __( 'Position Featured Image', 'myplugin_textdomain' ),
 				'post_featured_image_position_print', $screen, 'side'
 			);
 		}
@@ -109,7 +109,7 @@ if( is_admin() ) {
 	function sponsor_extras_metabox() {
 		$screens = array( 'sponsors' );
 		foreach ($screens as $screen) {
-			add_meta_box( 'myplugin_sectionid', __( 'Sponsor Metadata', 'myplugin_textdomain' ),
+			add_meta_box( 'sponsor_extras', __( 'Sponsor Metadata', 'myplugin_textdomain' ),
 				'sponsor_extras_print', $screen
 			);
 		}
