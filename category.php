@@ -31,12 +31,12 @@ get_header(); ?>
                     } else { ?>
                     	<img class="attachment-thumbnail wp-post-image" src="<?php echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" width="55" height="55"/>
                     <?php } ?>
-                    <div<? if($sponsor) { ?> class="Sponsored"<? } ?>>
+                    <div<?php if(is_numeric($sponsor[0])) { ?> class="Sponsored"<?php } ?>>
                         <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>" ><?php the_title();?></a></h2>
                         <p class="date"><?php the_time('M j, Y'); ?> | <span><?php echo $category[0]->cat_name;?></span>
-                        <? if($sponsor) { ?>
+                        <?php if(is_numeric($sponsor[0])) { ?>
 						<span class="Sponsored">Sponsored</span>	
-						<? } ?>
+						<?php } ?>
                         </p>
                         <!--<p class="excerpt"><?php the_excerpt_max_charlength(280);?></p>-->
                     </div>

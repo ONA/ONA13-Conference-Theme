@@ -35,7 +35,7 @@ get_header(); ?>
 					echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/>';
 					echo '<p class="date">'.get_the_time('M j, Y', $recent["ID"]);
 					echo ' | <span>'.$category[0]->cat_name.'</span>';
-					if($sponsor) {
+					if(is_numeric($sponsor[0])) {
 						echo '<span class="Sponsored">Sponsored</span>';	
 					}
 					echo '</p>';
