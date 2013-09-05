@@ -6,4 +6,16 @@
 }
 .sponsor-level {
 margin-bottom:10px;	
+padding: 2px 5px 3px;
+border-radius: 4px;
+background: #99C;
+color: #FFF;
+display: inline-block;
 }
+.ONAngel { background: #fff; border: 1px solid #999; color: #999; box-sizing:content-box;}
+.Diamond { background: #EEEEE9; color: #999; }
+.Platinum { background: #D2D8E2; }
+.Gold { background: #DAD169; }
+.Silver { background: #ADADAD; }
+.Bronze { background: #DAB169; }
+.Supporters { background: #E99595; }

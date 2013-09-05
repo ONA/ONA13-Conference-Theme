@@ -20,8 +20,10 @@ get_header(); ?>
                         <h1 class="entry-title"><?php the_title();?></h1>
                     </header>
                     <div class="entry-content">
-						<?php if($sponsor_level!="Exhibitors"){ ?>
-                        <div class="sponsor-level"><?php echo $sponsor_level;?> Sponsor</div>
+						<?php if($sponsor_level!="Exhibitors" && $sponsor_level!="Supporters"){ ?>
+                        <div class="sponsor-level <?php echo $sponsor_level;?>"><?php echo $sponsor_level;?> Sponsor</div>
+                        <?php } else if($sponsor_level=="Supporters"){ ?>
+                        <div class="sponsor-level <?php echo $sponsor_level;?>">Supporter</div>
                         <?php } else { ?>
                         <div class="sponsor-level">Exhibitor</div>
                         <?php } ?>
