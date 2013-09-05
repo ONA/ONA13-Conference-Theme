@@ -39,8 +39,8 @@
 				
 					$recent_posts = wp_get_recent_posts( $args );
 					foreach( $recent_posts as $recent ){
-						echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
-						echo get_the_time(get_option('date_format'), $recent["ID"]);
+						echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span class="date">';
+						echo get_the_time("M j, Y", $recent["ID"]);
 						echo '</span></a></li> ';
 					}
 					echo '<li class="more"><a href="'.home_url().'/category/news/">More news &rarr;</a></li>';

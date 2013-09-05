@@ -629,8 +629,6 @@ section[role="banner"] {
 .widget-area .widget p,
 .widget-area .widget li,
 .widget-area .widget .textwidget {
-	font-size: 13px;
-	font-size: 0.928571429rem;
 	line-height: 1.846153846;
 }
 .widget-area .widget p {
@@ -2133,7 +2131,8 @@ font-weight: 700;
 
 /* Page styling */
 
-p.date {
+p.date,
+span.date {
 	color: #bbb;
 	font-size: 0.8em;
 	padding-top: 3px;

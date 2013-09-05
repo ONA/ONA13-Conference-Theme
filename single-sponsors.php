@@ -49,8 +49,9 @@ get_header(); ?>
 								echo '<h4 class="widget-title">Sponsored Sessions</h4>'; 
 							}
 							foreach( $recent_posts as $recent ){
-								echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
-								echo get_the_time(get_option('date_format'), $recent["ID"]);
+								$session = new ONA_Session( $recent["ID"] );
+								echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span class="date">';
+								echo $session->get_start_time( 'l - g:i A' );
 								echo '</span></a></li> ';
 							} 
 							if(count($recent_posts) > 0) { 
@@ -72,8 +73,8 @@ get_header(); ?>
 								echo '<h4 class="widget-title">Sponsored Posts</h4>'; 
 							}
 							foreach( $recent_posts as $recent ){
-								echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span>';
-								echo get_the_time(get_option('date_format'), $recent["ID"]);
+								echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="'.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'<br/><span class="date">';
+								echo get_the_time("M j, Y", $recent["ID"]);
 								echo '</span></a></li> ';
 							} 
 							if(count($recent_posts) > 0) { 
