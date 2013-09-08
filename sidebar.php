@@ -6,7 +6,7 @@
 		<div id="secondary" class="widget-area" role="complementary">
         	<?php if ( is_singular() ) { ?>
         	<aside id="pagenav" class="widget widget_text">
-            <?php 	if ( is_page() ) {
+            <?php 	if ( is_page() && get_the_title() != "About") {
 					echo '<ul>';
 					echo '<h3 class="widget-title">Related pages</h3>';
 					global $post;
@@ -24,7 +24,7 @@
 						'child_of' => $top_page,
 						'title_li' => ''
 					));
-				} else if (in_category( 'news' ) && is_single() ) {
+				} else if ((in_category( 'news' ) && is_single()) || get_the_title() == "About") {
 					echo '<ul class="headlines">';
 					echo '<h3 class="widget-title">Recent News</h3>';
 					$category_id = get_cat_ID('News');
