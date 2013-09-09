@@ -2175,8 +2175,10 @@ div.button {
 .site-content h3 {
 	text-align: center;
 	font-size:22px;
-	border-bottom:1px dotted #ccc;
 	margin:20px 0 30px;
+}
+.home .site-content h3 {
+	border-bottom:1px dotted #ccc;
 	height:4px;	
 }
 h3 span {
