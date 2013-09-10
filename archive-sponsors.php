@@ -49,7 +49,7 @@
 				
 						<div class="entry-content">
 							<?php if ( has_post_thumbnail() ) { 
-								 echo '<a href="'.$external_link.'">';
+								 echo '<a href="'.$external_link.'" target="_blank">';
 								 echo the_post_thumbnail( 'medium' );
 								 echo '</a>'; 
 							} 

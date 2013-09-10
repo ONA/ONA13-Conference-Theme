@@ -289,7 +289,7 @@ class Sponsor_Logo extends WP_Widget {
       echo preg_replace('/widget_count/i', 'position-'.$this->widget_count, $before_widget);
 	  if ($instance['sponsor'] != '') {
 		  $sponsor_link = get_post_meta( $instance['sponsor'], '_sponsor_url', true );?>
-		  <a href="<?php echo $sponsor_link?>">
+		  <a href="<?php echo $sponsor_link?>" target="_blank">
 		  <?php if ( has_post_thumbnail($instance['sponsor']) ) { 
 				echo get_the_post_thumbnail($instance['sponsor'], 'sponsor-row' ); 
 			} ?>
@@ -430,6 +430,7 @@ function ona13_wp_enqueue_scripts() {
 	wp_register_style("schedule", get_stylesheet_directory_uri()."/css/schedule.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("sponsor", get_stylesheet_directory_uri()."/css/sponsor.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("session", get_stylesheet_directory_uri()."/css/session.css", array("twentytwelve-fonts", "twentytwelve-style"));
+	wp_register_style("midway", get_stylesheet_directory_uri()."/css/midway.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("session_archive", get_stylesheet_directory_uri()."/css/session_archive.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	
 	wp_register_script("schedule-filter", get_stylesheet_directory_uri()."/js/schedule-filter.js", array("jquery"));
@@ -451,6 +452,8 @@ function ona13_wp_enqueue_scripts() {
 	} else if( is_page('schedule') ) {
 		wp_enqueue_style("schedule");
 		wp_enqueue_script("schedule-filter");
+	} else if( is_page('midway') ) {
+		wp_enqueue_style("midway");
 	}
 		
 	wp_enqueue_script( 'jquery-isotope', get_stylesheet_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ) );

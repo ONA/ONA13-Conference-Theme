@@ -36,7 +36,7 @@ get_header(); ?>
 						$tagline = get_post_meta( $sponsor[0], '_sponsor_tagline', true );?>
                     <div class="sponsor">
                         <?php if ( has_post_thumbnail($sponsor[0]) ) { 
-							echo "<a href='".$external_link."'>".get_the_post_thumbnail($sponsor[0], 'sponsor-banner' )."</a>"; 
+							echo "<a href='".$external_link."'  target='_blank'>".get_the_post_thumbnail($sponsor[0], 'sponsor-banner' )."</a>"; 
 						} ?>
                         <div>Sponsor</div>
                         <p>ONA13 is sponsored by <a href="<?php echo $sponsor_link?>"><?php echo $sponsor_name?></a><?php if($tagline){?>, <?php echo $tagline; } ?></p>

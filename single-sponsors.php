@@ -28,7 +28,7 @@ get_header(); ?>
                         <div class="sponsor-level">Exhibitor</div>
                         <?php } ?>
                     	<?php if ( has_post_thumbnail() ) { 
-							 echo "<a href='".$external_link."'>";
+							 echo "<a href='".$external_link."' target='_blank'>";
 							 echo the_post_thumbnail( 'medium' ); 
 							 echo "</a>";
 						} ?>

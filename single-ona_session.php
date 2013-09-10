@@ -28,12 +28,19 @@
                         	<p class="sponsored">Sponsor</p>
                             <p>ONA13 is sponsored by <a href="<?php echo $sponsor_link?>"><?php echo $sponsor_name?></a><?php if($tagline){?>, <?php echo $tagline; } ?></p>
                             <?php if ( has_post_thumbnail($sponsor[0]) ) { 
-								 echo "<a href='".$external_link."'>".get_the_post_thumbnail($sponsor[0], 'sponsor-shoulder' )."</a>"; 
+								 echo "<a href='".$external_link."'  target='_blank'>".get_the_post_thumbnail($sponsor[0], 'sponsor-shoulder' )."</a>"; 
 							} ?>
                         </div>
                         <?php } ?>
                         <p><?php echo $session->get_description();?></p>
                         <div class="resources"></div>
+                        <div class="liveblogging">
+                        <? 
+						$url = 'https://www.rebelmouse.com/static/js-build/embed/embed.js?site=nekolaweb2%2Fdfsdfsf&height=1500&flexible=1';
+print_r(get_headers($url, 1));
+?>
+                        <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=nekolaweb2%2Fsdsdgsg&height=1500&flexible=1"></script>
+                        </div>
                         <?php ONA_display_related_by_tag(); ?>
                         <!-- AddThis Button BEGIN -->
                         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
