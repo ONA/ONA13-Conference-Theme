@@ -144,6 +144,8 @@ if( is_admin() ) {
             <option value="Silver"<?php if($level=="Silver"){?> selected="selected"<?php }?>>Silver</option>
             <option value="Bronze"<?php if($level=="Bronze"){?> selected="selected"<?php }?>>Bronze</option>
             <option value="Supporters"<?php if($level=="Supporters"){?> selected="selected"<?php }?>>Supporters</option>
+            <option value="Midway Sponsor"<?php if($level=="Midway Sponsor"){?> selected="selected"<?php }?>>Midway Sponsor</option>
+            <option value="Midway Participant"<?php if($level=="Midway Participant"){?> selected="selected"<?php }?>>Midway Participant</option>
 		</select>
 	<?php }
 	
