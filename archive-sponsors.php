@@ -54,7 +54,7 @@
 								 echo '</a>'; 
 							} 
 							the_content(); ?>
-							<p><a href="<?php echo $external_link;?>"><?php echo $external_link;?></a></p>
+							<p><a href="<?php echo $external_link;?>"  target='_blank'><?php echo $external_link;?></a></p>
 						</div><!-- .entry-content -->
 					</article><!-- #post -->	
 	

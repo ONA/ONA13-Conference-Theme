@@ -33,7 +33,7 @@ get_header(); ?>
 							 echo "</a>";
 						} ?>
                         <?php the_content();?>
-                        <p><a href="<?php echo $external_link;?>"><?php echo $external_link;?></a></p>
+                        <p><a href="<?php echo $external_link;?>"  target='_blank'><?php echo $external_link;?></a></p>
                         <div class="related">
                             <?	// Column for SPONSORED SESSIONS by this sponsor
 							$args = array(
