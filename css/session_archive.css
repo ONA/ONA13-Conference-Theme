@@ -163,7 +163,7 @@ opacity: 0.7;
 .schedule_nav .labels div {
 	float:left;
 	text-align:center;
-	background:#ddd;
+	background:#bbb;
 	color:#fff;
 	padding:5px 0;
 	margin-bottom:6px;
@@ -185,7 +185,7 @@ opacity: 0.7;
 	color:#fff;	
 	margin-left:1%;
 	text-align:center;
-	background:#ccc;
+	background:#bbb;
 	float:left;
 	zoom: 1;
 	filter: alpha(opacity=50);
@@ -225,7 +225,19 @@ opacity: 0.7;
 }
 @media screen and (max-width:650px) {
 		
-	/* Change nav here too */
+	.days, .types { display:none; }
+	.schedule_nav .buttons .day {width: 30%}
+	.schedule_nav .buttons .type {width: 14%; margin-top:8px;}
+	.schedule_nav .buttons div:first-of-type,
+	.schedule_nav .buttons div:nth-of-type(2) {
+		width: 31%;
+	}
+	.schedule_nav .buttons div:nth-of-type(4) {
+		margin-left:0%;
+	}
+	.schedule_nav .buttons div:last-of-type {
+		width:13%;	
+	}
 	
 	.session-list > a > li {
 	width:98%;
