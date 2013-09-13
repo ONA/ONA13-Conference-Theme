@@ -2203,6 +2203,7 @@ text-align:center;
 }
 .sponsor-row .sponsor_widget  {
 	display:inline-block;
+	vertical-align: middle;
 	margin:0 8px;
 	margin-bottom:10px;
 }
