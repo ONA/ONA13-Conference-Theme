@@ -3,3 +3,19 @@
 	width:65%;
 	margin-top: -20px;
 }
+.lead_text p {
+	font-size: 1.7em;
+	line-height: 170%;
+	font-family: 'Roboto Slab', serif;
+	font-family: 'Source Sans Pro', serif;
+	font-weight: 300;
+}
+.sponsor-row {
+	margin-bottom:40px;
+	margin-top:0;
+}
+.sponsor-row > p {
+	font-size: 0.8em;
+color: #CCC;
+text-transform: uppercase;	
+}

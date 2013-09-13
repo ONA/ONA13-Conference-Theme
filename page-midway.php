@@ -22,7 +22,19 @@ get_header(); ?>
     
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
-
+        <div class="lead_text">
+		<p>An experimental space for journalism and technology and the conference playground, the Midway is the place for hands-on learning and experimentation with the most innovative tech and tools in digital journalism.</p>
+        </div>
+        <div class="sponsor-row">
+        	<p>The Midway is sponsored by:</p>
+            <div class="logos">
+                <div id="sponsor_logo-2" class="sponsor_widget widget_sponsor_logo">
+                    <a href="http://diederich.marquette.edu/" target="_blank"><img width="140" height="49" src="http://adam.ona/ona13/wp-content/uploads/2013/08/marquette-140x49.png" class="attachment-sponsor-row wp-post-image" alt="marquette"></a>
+                </div>
+                <div id="sponsor_logo-3" class="sponsor_widget widget_sponsor_logo"><div class="more">Your logo here</div></div>
+            </div>
+		</div>
+        
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 		<div class="featured-post">
