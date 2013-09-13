@@ -30,6 +30,8 @@ jQuery(document).ready(function(){
 			jQuery('.single-session.Midway').parent().show();
 		} else if (button==7){
 			jQuery('.single-session.Other').parent().show();
+		} else if (button==8){
+			jQuery('.single-session').parent().show();
 		}
     });
 	jQuery('.buttons .day').click(function(e) {

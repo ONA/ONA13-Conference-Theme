@@ -176,11 +176,11 @@ opacity: 0.7;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
-.days {width: 35%; margin-left:0%;}
-.types {width: 64%; margin-left: 1%;}
+.days {width: 32%; margin-left:0%;}
+.types {width: 65%; margin-left: 3%;}
 .schedule_nav .buttons div {
 	padding:10px 1%;
-	width:9%;
+	width:8%;
 	font-weight:bold;
 	color:#fff;	
 	margin-left:1%;
@@ -191,11 +191,11 @@ opacity: 0.7;
 	filter: alpha(opacity=50);
 	opacity: 0.5;
 }
-.schedule_nav .buttons .type {
-	width:10%;
-}
 .schedule_nav .buttons div:first-of-type {
 	margin-left:0%;
+}
+.schedule_nav .buttons div:nth-of-type(4) {
+	margin-left:3%;
 }
 .schedule_nav .buttons div:hover {
 	zoom: 1;
@@ -212,11 +212,7 @@ opacity: 0.7;
 .schedule_nav div.make {background: #DCBE62;}
 .schedule_nav div.midway {background: #8DCB86;}
 
-@media screen and (max-width:650px) {	
-	.session-list > a > li {
-		width:98%;
-	}
-}
+
 @media screen and (max-width:900px){
 	h3.schedule_day {
 	font-size:36px;
@@ -225,5 +221,13 @@ opacity: 0.7;
 @media screen and (max-width:530px){
 	h3.schedule_day {
 	font-size:25px;
+	}
+}
+@media screen and (max-width:650px) {
+		
+	/* Change nav here too */
+	
+	.session-list > a > li {
+	width:98%;
 	}
 }

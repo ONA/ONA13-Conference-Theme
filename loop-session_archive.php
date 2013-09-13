@@ -135,6 +135,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
             <div class="type make" data:name="Make">M</div>
             <div class="type midway" data:name="Midway">Mw</div>
             <div class="type other" data:name="Other">Other</div>
+            <div class="type all" data:name="All">All</div>
         </div>
     </div>
     
