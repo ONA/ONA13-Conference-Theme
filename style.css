@@ -2198,17 +2198,13 @@ text-align:center;
 .sponsor-row .logos {
 	overflow:auto;	
 	margin: 0 auto;
-	display: table;
+	text-align:center;
 	margin-bottom:10px;
 }
-.sponsor-row .logos > img,
-.sponsor-row .logos .more,
 .sponsor-row .sponsor_widget  {
-	float:left;
-	margin-left:15px;
-}
-.sponsor-row .logos div:first-child {
-	margin-left:0;	
+	display:inline-block;
+	margin:0 8px;
+	margin-bottom:10px;
 }
 .sponsor-row .more {
 	padding:18px;

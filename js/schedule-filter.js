@@ -34,7 +34,7 @@ jQuery(document).ready(function(){
     });
 	jQuery('.buttons .day').click(function(e) {
 		var day = jQuery(this).index();
-		jQuery("html, body").animate({ scrollTop: jQuery('#title'+day).offset().top - 70 }, 1000);
+		jQuery("html, body").animate({ scrollTop: jQuery('#title'+day).offset().top - 40 }, 1000);
 	});
 
 });

@@ -120,6 +120,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
             <?php dynamic_sidebar( 'sponsors'.$i ); ?>
         </div>
     </div>
+    <h3 id="title<?php echo $i;?>" class="schedule_day"><span>Day <?php echo ($i+1);?> - <?php echo $day_full_name;?></span></h3>
     <div class="schedule_nav">
     	<div class="labels">
         	<div class="days">Move to <span>a day</span></div>
@@ -136,7 +137,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
             <div class="type other" data:name="Other">Other</div>
         </div>
     </div>
-    <h3 id="title<?php echo $i;?>"><span>Day <?php echo ($i+1);?> - <?php echo $day_full_name;?></span></h3>
+    
     
 	<div class="day-sessions">
 	<?php foreach( $days_sessions as $start_time => $posts ): ?>
