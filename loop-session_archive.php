@@ -92,6 +92,10 @@
                     	<label class="make">Make</label>
                         <div>Workshops</div>
                     </div>
+                    <div>
+                    	<label class="midway">Midway</label>
+                        <div>Sponsored Sessions</div>
+                    </div>
                 </div>
             </div>
             <div class="right">
@@ -104,7 +108,7 @@
 
 <?php $i = -1;
 foreach( $all_sessions as $session_day => $days_sessions ):
-	$day_full_name = date( 'l n.d', strtotime( $session_day ) );
+	$day_full_name = date( 'l, F d', strtotime( $session_day ) );
 	$i++;
 	$day_slugify = sanitize_title( $day_full_name );
 ?>
@@ -117,26 +121,22 @@ foreach( $all_sessions as $session_day => $days_sessions ):
         </div>
     </div>
     <div class="schedule_nav">
-        <div>
-            <label>Day 1</label>
-            <div class="listen">L</div>
-            <div class="solve">S</div>
-            <div class="make">M</div>
+    	<div class="labels">
+        	<div class="days">Move to <span>a day</span></div>
+            <div class="types">Filter to <span>a session type</span></div>
         </div>
-        <div>
-            <label>Day 2</label>
-            <div class="listen">L</div>
-            <div class="solve">S</div>
-            <div class="make">M</div>
-        </div>
-        <div>
-            <label>Day 3</label>
-            <div class="listen">L</div>
-            <div class="solve">S</div>
-            <div class="make">M</div>
+        <div class="buttons">
+            <div class="day">Day 1</div>
+            <div class="day">Day 2</div>
+            <div class="day">Day 3</div>
+            <div class="type listen" data:name="Listen">L</div>
+            <div class="type solve" data:name="Solve">S</div>
+            <div class="type make" data:name="Make">M</div>
+            <div class="type midway" data:name="Midway">Mw</div>
+            <div class="type other" data:name="Other">Other</div>
         </div>
     </div>
-    <h3 id="title<?php echo $i;?>"><span><?php echo $day_full_name;?></span></h3>
+    <h3 id="title<?php echo $i;?>"><span>Day <?php echo ($i+1);?> - <?php echo $day_full_name;?></span></h3>
     
 	<div class="day-sessions">
 	<?php foreach( $days_sessions as $start_time => $posts ): ?>
@@ -147,7 +147,12 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 				setup_postdata( $post ); 
 				$session = new ONA_Session( get_the_ID() ); ?>
                 <a href="<?php the_permalink(); ?>">
-				<li class="single-session <?php echo $session->get_session_type_name();?>">
+                <?php if ($session->get_session_type_name() == ''){ 
+					$session_type = "Other";
+				} else {
+					$session_type = $session->get_session_type_name();
+				} ?>
+				<li class="single-session <?php echo $session_type;?>">
 					<h4 class="session-title"><?php echo $session->get_title(); ?></h4>
 					<!--<div class="session-description"><?php the_excerpt(); ?></div>-->
 				</li>

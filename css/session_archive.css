@@ -120,9 +120,7 @@ h1 {
 	border-bottom: 1px dotted #ccc;
 }
 .key {margin-top:15px;}
-.key label,
-.schedule_nav label,
-.schedule_nav div {
+.key label {
 	float:left;
 }
 .key label,
@@ -130,15 +128,6 @@ h1 {
 	padding:6px 0;
 	font-weight:bold;
 	font-size:22px;
-}
-.schedule_nav label {
-	width: 29%;
-	cursor:pointer;
-}
-.schedule_nav label:hover {
-	zoom: 1;
-	filter: alpha(opacity=80);
-	opacity: 0.8;
 }
 .key > div {
 	overflow:auto;
@@ -154,37 +143,63 @@ h1 {
 	border-right: 1px dotted #ccc;
 	font-size:22px;
 }
-.key div:last-of-type,
-.schedule_nav > div:last-of-type {
+.key div:last-of-type {
 	border-right: 0;
 	margin-right: 0;
 	padding-right: 0;	
 }
-.schedule_nav > div {
-	padding:0 1%;
-	width: 31%;
-	border-right: 1px dotted #ccc;
+
+.schedule_nav .labels div {
+	float:left;
+	text-align:center;
+	background:#ddd;
+	color:#fff;
+	padding:5px 0;
+	margin-bottom:6px;
+	font-size:0.8em;
+	text-transform:uppercase;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
-.schedule_nav div div {
+.days {width: 35%; margin-left:0%;}
+.types {width: 64%; margin-left: 1%;}
+.schedule_nav .buttons div {
 	padding:10px 1%;
-	width:18%;
+	width:9%;
 	font-weight:bold;
 	color:#fff;	
-	margin-right:3%;
+	margin-left:1%;
 	text-align:center;
-}
-.schedule_nav div div:hover {
+	background:#ccc;
+	float:left;
 	zoom: 1;
-	filter: alpha(opacity=70);
-	opacity: 0.7;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+.schedule_nav .buttons .type {
+	width:10%;
+}
+.schedule_nav .buttons div:first-of-type {
+	margin-left:0%;
+}
+.schedule_nav .buttons div:hover {
+	zoom: 1;
+	filter: alpha(opacity=100);
+	opacity: 1;
 	cursor: pointer;	
 }
 .key .listen {color: #4D3881;}
 .key .solve {color: #A92A00;}
 .key .make {color: #DCBE62;}
-.schedule_nav .listen {background: #4D3881;}
-.schedule_nav .solve {background: #A92A00;}
-.schedule_nav .make {background: #DCBE62;}
+.key .midway {color: #8DCB86;}
+.schedule_nav div.listen {background: #4D3881;}
+.schedule_nav div.solve {background: #A92A00;}
+.schedule_nav div.make {background: #DCBE62;}
+.schedule_nav div.midway {background: #8DCB86;}
 
 @media screen and (max-width:650px) {	
 	.session-list > a > li {
@@ -192,15 +207,5 @@ h1 {
 	}
 }
 @media screen and (max-width:900px){
-	.schedule_nav label {
-		width: 100%;
-		text-align:center
-	}
-	.schedule_nav div div:first-of-type {
-		clear:left;
-	}
-	.schedule_nav div div{
-		width:29%;
-		margin:0 1%;
-	}
+	
 }
