@@ -50,6 +50,11 @@ class ONA13_CLI_Command extends WP_CLI_Command {
 					'pre_sanitize_callback' => 'ONA13_CLI_Command::prepare_time_field',
 					'sanitize_callback'  => 'strtotime',
 				),
+			array(
+					'csv_field'          => 'RebelMouse',
+					'object_field'       => 'rebelmouse',
+					'sanitize_callback'  => 'sanitize_key',
+				),
 		);
 
 	/**

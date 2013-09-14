@@ -240,6 +240,24 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get the RebelMouse value
+	 * 
+	 * @return string
+	 */
+	public function get_rebelmouse() {
+		$this->get_meta( 'rebelmouse' );
+	}
+
+	/**
+	 * Set the RebelMouse value
+	 * 
+	 * @param string
+	 */
+	public function set_rebelmouse( $rebelmouse ) {
+		$this->set_meta( 'rebelmouse', $rebelmouse );
+	}
+
+	/**
 	 * Get the start time of a session
 	 * 
 	 * @param string       $format     Format for the start time to be returned
