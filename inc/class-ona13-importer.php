@@ -9,7 +9,7 @@ class ONA13_Importer {
 					'csv_field'          => 'L-S-M Type',
 					'object_field'       => 'session_type',
 					'sanitize_callback'  => 'sanitize_title',
-					'comparison_callback'=> 'ONA13_Importer::compare_to_term',
+					'comparison_callback'=> 'self::compare_to_term_slug',
 				),
 			array(
 					'csv_field'          => 'Session Name',
@@ -30,16 +30,19 @@ class ONA13_Importer {
 					'csv_field'          => 'Room',
 					'object_field'       => 'room',
 					'sanitize_callback'  => 'sanitize_title',
-					'comparison_callback'=> 'self::compare_to_term',
+					'comparison_callback'=> 'self::compare_to_term_slug',
 				),
-
-
-
 			array(
 					'csv_field'          => 'Session Format',
 					'object_field'       => 'session_format',
 					'sanitize_callback'  => 'sanitize_title',
-					'comparison_callback'=> 'self::compare_to_term',
+					'comparison_callback'=> 'self::compare_to_term_slug',
+				),
+			array(
+					'csv_field'          => 'Tags',
+					'object_field'       => 'tags',
+					'sanitize_callback'  => 'sanitize_text_field',
+					'comparison_callback'=> 'self::compare_to_array_values',
 				),
 			array(
 					'csv_field'          => 'Start Time',
@@ -131,15 +134,14 @@ class ONA13_Importer {
 					if ( $session_field['csv_field'] != $key )
 						continue;
 
-					if ( ! is_callable( $session_field['sanitize_callback'] ) )
-						continue;
+					$value = str_replace( '\"', '"', $value );
+					$value = str_replace( "\'", "'", $value );
 
-					$value = stripslashes( $value );
 					if ( isset( $session_field['pre_sanitize_callback'] ) && is_callable( $session_field['pre_sanitize_callback'] ) )
 						$value = call_user_func_array( $session_field['pre_sanitize_callback'], array( $value, $csv_session ) );
 
-
-					$new_value = call_user_func_array( $session_field['sanitize_callback'], array( $value ) );
+					if ( is_callable( $session_field['sanitize_callback'] ) )
+						$new_value = call_user_func_array( $session_field['sanitize_callback'], array( $value ) );
 
 					$get_method = 'get_' . $session_field['object_field'];
 					$set_method = 'set_' . $session_field['object_field'];
@@ -172,15 +174,33 @@ class ONA13_Importer {
 	}
 
 	/**
-	 * Compare a value to a term
+	 * Compare a value to a term slug
 	 * 
 	 * @return bool     True to update, false to not
 	 */
-	public static function compare_to_term( $new_value, $old_value ) {
+	public static function compare_to_term_slug( $new_value, $old_value ) {
 		if ( ! is_object( $old_value ) )
 			return true;
 
 		if ( $new_value != $old_value->slug )
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * Compare two arrays of values
+	 * 
+	 * @return bool     True to update, false to not
+	 */
+	public static function compare_to_array_values( $new_value, $old_value ) {
+		if ( ! is_array( $old_value ) )
+			return true;
+
+		if ( ! is_array( $new_value ) )
+			$new_value = array_map( 'trim', explode( ',', $new_value ) );
+
+		if ( array_diff( $old_value, $new_value ) )
 			return true;
 		else
 			return false;

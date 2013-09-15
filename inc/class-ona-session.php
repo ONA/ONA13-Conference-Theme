@@ -418,5 +418,33 @@ class ONA_Session {
 	public function set_hashtag( $hashtag ) {
 		$this->set_meta( 'hashtag', $hashtag );
 	}
+
+	/**
+	 * Get the tags for a session
+	 * 
+	 * @return array
+	 */
+	public function get_tags() {
+		return wp_list_pluck( $this->get_tag_objects(), 'name' );
+	}
+
+	/**
+	 * Get the tag objects for a session
+	 * 
+	 * @return array
+	 */
+	public function get_tag_objects() {
+		if ( $tags = get_the_terms( $this->get_id(), 'post_tag' ) )
+			return $tags;
+		else
+			return array();
+	}
+
+	/**
+	 * Set the tags for a session
+	 */
+	public function set_tags( $tag_names ) {
+		wp_set_post_terms( $this->get_id(), $tag_names, 'post_tag' );
+	}
 	
 }
