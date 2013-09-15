@@ -211,7 +211,7 @@ class ONA_Session {
 	 * @return string
 	 */
 	public function get_slug() {
-		$this->get_value( 'post_name' );
+		return $this->get_value( 'post_name' );
 	}
 
 	/**
