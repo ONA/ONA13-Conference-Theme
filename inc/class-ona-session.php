@@ -420,6 +420,27 @@ class ONA_Session {
 	}
 
 	/**
+	 * Get the Speakers for a session
+	 * 
+	 * @return string
+	 */
+	public function get_speakers() {
+		if ( $speakers = $this->get_meta( 'speakers' ) )
+			return $speakers;
+		else
+			return array();
+	}
+
+	/**
+	 * Set the Speakers for a session
+	 * 
+	 * @param string
+	 */
+	public function set_speakers( $speakers ) {
+		$this->set_meta( 'speakers', $speakers );
+	}
+
+	/**
 	 * Get the tags for a session
 	 * 
 	 * @return array

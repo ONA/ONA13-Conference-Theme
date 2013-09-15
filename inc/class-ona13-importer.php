@@ -45,6 +45,12 @@ class ONA13_Importer {
 					'comparison_callback'=> 'self::compare_to_array_values',
 				),
 			array(
+					'csv_field'          => 'Speakers',
+					'object_field'       => 'speakers',
+					'pre_sanitize_callback' => 'self::prepare_speakers_field',
+					'sanitize_callback'  => false,
+				),
+			array(
 					'csv_field'          => 'Start Time',
 					'object_field'       => 'start_time',
 					'pre_sanitize_callback' => 'self::prepare_time_field',
@@ -142,6 +148,8 @@ class ONA13_Importer {
 
 					if ( is_callable( $session_field['sanitize_callback'] ) )
 						$new_value = call_user_func_array( $session_field['sanitize_callback'], array( $value ) );
+					else
+						$new_value = $value;
 
 					$get_method = 'get_' . $session_field['object_field'];
 					$set_method = 'set_' . $session_field['object_field'];
@@ -210,10 +218,21 @@ class ONA13_Importer {
 	 * Output any change made to a Session.
 	 */
 	private static function output_diff( $key, $new_value = false, $output_callback ) {
+		if ( is_array( $new_value ) )
+			$new_value = implode( ',', $new_value );
 		if ( false !== $new_value )
 			$output_callback( sprintf( " - %s: %s", $key, $new_value ) );
 		else
 			$output_callback( sprintf( " - %s: NO CHANGE", $key ) );
+	}
+
+	/**
+	 * Prepare the speakers field
+	 */
+	public static function prepare_speakers_field( $new_value, $csv_row ) {
+
+		$speakers = array_map( 'sanitize_text_field', explode( ';', $new_value ) );
+		return $speakers;
 	}
 
 	/**
