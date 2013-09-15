@@ -30,24 +30,27 @@ class ONA13_Importer {
 					'csv_field'          => 'Room',
 					'object_field'       => 'room',
 					'sanitize_callback'  => 'sanitize_title',
-					'comparison_callback'=> 'ONA13_Importer::compare_to_term',
+					'comparison_callback'=> 'self::compare_to_term',
 				),
+
+
+
 			array(
 					'csv_field'          => 'Session Format',
 					'object_field'       => 'session_format',
 					'sanitize_callback'  => 'sanitize_title',
-					'comparison_callback'=> 'ONA13_Importer::compare_to_term',
+					'comparison_callback'=> 'self::compare_to_term',
 				),
 			array(
 					'csv_field'          => 'Start Time',
 					'object_field'       => 'start_time',
-					'pre_sanitize_callback' => 'ONA13_Importer::prepare_time_field',
+					'pre_sanitize_callback' => 'self::prepare_time_field',
 					'sanitize_callback'  => 'strtotime',
 				),
 			array(
 					'csv_field'          => 'End Time',
 					'object_field'       => 'end_time',
-					'pre_sanitize_callback' => 'ONA13_Importer::prepare_time_field',
+					'pre_sanitize_callback' => 'self::prepare_time_field',
 					'sanitize_callback'  => 'strtotime',
 				),
 			array(
@@ -76,12 +79,31 @@ class ONA13_Importer {
 
 		$output_callback();
 
-		$rows = explode( ',' . PHP_EOL, $data );
+		// Ugly hack to split the CSV into rows
+		$rows = array();
+		$do_split = true;
+		$last_split = 0;
+		$data_array = str_split( $data );
+		foreach( $data_array as $i => $character ) {
+
+			if ( '"' == $character && ',' == $data_array[$i-1] )
+				$do_split = false;
+			else if ( '"' == $character && ',' == $data_array[$i+1] )
+				$do_split = true;
+
+			if ( $do_split && PHP_EOL == $character ) {
+				$rows[] = ltrim( substr( $data, $last_split, $i - $last_split ) );
+
+				$last_split = $i;
+			}
+		}
+
 		$keys = str_getcsv( array_shift( $rows ) );
 
 		foreach ( $rows as $i => $csv_session ) {
 
 			$values = str_getcsv( $csv_session );
+
 			while( count( $values ) < count( $keys ) ) {
 				$values[] = '';
 			}
