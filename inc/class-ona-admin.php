@@ -43,7 +43,7 @@ class ONA_Admin {
 		|| ! current_user_can( 'manage_options' ) )
 			wp_die( "You shouldn't be here..." );
 
-		ONA13_Importer::import_sessions( ABSPATH . '/sessions.csv' , array( $this, 'output') );
+		ONA13_Importer::import_sessions( 'https://docs.google.com/spreadsheet/pub?key=0AgtyAD_1PrgVdFU4OGtsdUc5cHRSYlBGVE9qdUF4N3c&single=true&gid=0&output=csv' , array( $this, 'output') );
 		exit;
 	}
 
