@@ -211,7 +211,7 @@ class ONA_Session {
 	 * @return string
 	 */
 	public function get_slug() {
-		$this->get_value( 'post_name' );
+		return $this->get_value( 'post_name' );
 	}
 
 	/**
@@ -237,6 +237,24 @@ class ONA_Session {
 	 */
 	public function set_description( $description ) {
 		return $this->set_value( 'post_content', $description );
+	}
+
+	/**
+	 * Get the RebelMouse value
+	 * 
+	 * @return string
+	 */
+	public function get_rebelmouse() {
+		$this->get_meta( 'rebelmouse' );
+	}
+
+	/**
+	 * Set the RebelMouse value
+	 * 
+	 * @param string
+	 */
+	public function set_rebelmouse( $rebelmouse ) {
+		$this->set_meta( 'rebelmouse', $rebelmouse );
 	}
 
 	/**
@@ -399,6 +417,55 @@ class ONA_Session {
 	 */
 	public function set_hashtag( $hashtag ) {
 		$this->set_meta( 'hashtag', $hashtag );
+	}
+
+	/**
+	 * Get the Speakers for a session
+	 * 
+	 * @return string
+	 */
+	public function get_speakers() {
+		if ( $speakers = $this->get_meta( 'speakers' ) )
+			return $speakers;
+		else
+			return array();
+	}
+
+	/**
+	 * Set the Speakers for a session
+	 * 
+	 * @param string
+	 */
+	public function set_speakers( $speakers ) {
+		$this->set_meta( 'speakers', $speakers );
+	}
+
+	/**
+	 * Get the tags for a session
+	 * 
+	 * @return array
+	 */
+	public function get_tags() {
+		return wp_list_pluck( $this->get_tag_objects(), 'name' );
+	}
+
+	/**
+	 * Get the tag objects for a session
+	 * 
+	 * @return array
+	 */
+	public function get_tag_objects() {
+		if ( $tags = get_the_terms( $this->get_id(), 'post_tag' ) )
+			return $tags;
+		else
+			return array();
+	}
+
+	/**
+	 * Set the tags for a session
+	 */
+	public function set_tags( $tag_names ) {
+		wp_set_post_terms( $this->get_id(), $tag_names, 'post_tag' );
 	}
 	
 }
