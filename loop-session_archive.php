@@ -79,30 +79,34 @@
                 	<h1 class="entry-title">Program Schedule</h1>
                 </header>
                 <p>Welcome to the first edition of our program. For a complete description of <strong>Listen</strong>, <strong>Solve</strong> and <strong>Make</strong> and details on the conference, take a look at our <a href="http://ona13.journalists.org/2013/07/12/join-us-at-ona13-the-town-hall-for-journalism/" target="_blank">blog post</a>. You can organize your view by clicking on  Day 1, 2 or 3 or the L, S, and M buttons at the top of the schedule. Look for more sessions and speakers in the coming weeks and an interactive version will be rolled out in August.</p>
-                <div class="key">
-                    <div>
-                    	<label class="listen">Listen</label>
-                    	<div>Core sessions</div>
-                    </div>
-                    <div>
-                    	<label class="solve">Solve</label>
-                        <div>Interactive conversations</div>
-                    </div>
-                    <div>
-                    	<label class="make">Make</label>
-                        <div>Workshops</div>
-                    </div>
-                    <div>
-                    	<label class="midway">Midway</label>
-                        <div>Sponsored Sessions</div>
-                    </div>
-                </div>
             </div>
             <div class="right">
                 <p><strong>ONA13 Guiding Principles</strong></p>
             	<p><strong>Engage</strong> with technology, the journalism community and each other.</p>
                 <p><strong>Innovate</strong> ideas and approaches to challenges and creating compelling stories.</p>
                 <p><strong>Inspire</strong> through conversations with dedicated professionals who remind us why we do what we do.</p>
+            </div>
+            <div class="key">
+                <div>
+                    <div class="label listen">Listen</div>
+                    <div>Core sessions</div>
+                </div>
+                <div>
+                    <div class="label solve">Solve</div>
+                    <div>Interactive conversations</div>
+                </div>
+                <div>
+                    <div class="label make">Make</div>
+                    <div>Workshops</div>
+                </div>
+                <div>
+                    <div class="label midway">Midway</div>
+                    <div>Sponsored Sessions</div>
+                </div>
+                <div>
+                    <div class="label other">Other</div>
+                    <div>Keynotes, Lunches</div>
+                </div>
             </div>
 		<?php endif; ?>
 
