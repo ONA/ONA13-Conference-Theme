@@ -31,3 +31,19 @@ padding: 5px 0;
 border-right: 0;
 margin-right: 0;	
 }
+.track div {
+background: #ccc;
+padding: 4px 8px;
+color: #FFF;
+border-radius: 5px;
+}
+.track .Listen {background: #4D3881;}
+.track .Solve {background: #A92A00;}
+.track .Make {background: #DCBE62;}
+.track .Midway {background: #8DCB86;}
+
+/* Speakers */
+.speakers h4 {
+margin:0;
+line-height: 1;
+}
