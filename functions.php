@@ -498,7 +498,7 @@ function ONA_display_related_by_tag(){
 				echo '<h4 class="widget-title">Related '.$value.'</h4>';		 
 				while ($query->have_posts()) {
 					$query->the_post(); ?>
-					<li><a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>" ><?php the_title(); ?><br/><span><?php the_time('M d, Y'); ?></span></a></li>
+					<li><a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>" ><?php the_title(); ?><br/><span class="date"><?php the_time('M d, Y'); ?></span></a></li>
 				<?php }
 			} else {
 				echo '<h4 class="widget-title">No related '.$value.'</h4>';
