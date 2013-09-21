@@ -101,7 +101,7 @@
                 </div>
                 <div>
                     <div class="label midway">Midway</div>
-                    <div>Sponsored Sessions</div>
+                    <div>Immersive learning</div>
                 </div>
                 <div>
                     <div class="label other">Other</div>
@@ -137,7 +137,7 @@ foreach( $all_sessions as $session_day => $days_sessions ):
             <div class="type listen" data:name="Listen">L</div>
             <div class="type solve" data:name="Solve">S</div>
             <div class="type make" data:name="Make">M</div>
-            <div class="type midway" data:name="Midway">Mw</div>
+            <div class="type midway" data:name="Midway">MW</div>
             <div class="type other" data:name="Other">Other</div>
             <div class="type all" data:name="All">All</div>
         </div>
