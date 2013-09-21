@@ -446,7 +446,7 @@ function ona13_wp_enqueue_scripts() {
 		wp_enqueue_style("homepage");
 	} else if( is_single() ) {
 		wp_enqueue_style("post");
-		if (get_post_type() == 'ona_session'){
+		if (get_post_type() == 'ona_session' || get_post_type() == 'ona_presenter'){
 			wp_enqueue_style("session");
 		} else if (get_post_type() == 'sponsors'){
 			wp_enqueue_style("sponsor");

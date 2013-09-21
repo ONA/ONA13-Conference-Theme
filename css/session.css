@@ -47,3 +47,10 @@ border-radius: 5px;
 margin:0;
 line-height: 1;
 }
+
+/* Speaker template */
+.presenter-avatar {
+float:right;
+margin-left:2%;
+margin-bottom:10px;	
+}
