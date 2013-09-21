@@ -148,6 +148,9 @@ if( is_admin() ) {
             <option value="Supporters"<?php if($level=="Supporters"){?> selected="selected"<?php }?>>Supporters</option>
             <option value="Midway Sponsor"<?php if($level=="Midway Sponsor"){?> selected="selected"<?php }?>>Midway Sponsor</option>
             <option value="Midway Participant"<?php if($level=="Midway Participant"){?> selected="selected"<?php }?>>Midway Participant</option>
+            <option value="Digital Sponsor"<?php if($level=="Digital Sponsor"){?> selected="selected"<?php }?>>Digital Sponsor</option>
+            
+            
 		</select>
 	<?php }
 	
