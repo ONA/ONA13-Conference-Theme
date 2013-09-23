@@ -74,50 +74,13 @@ class ONA13_Importer {
 	 */
 	public static function import_sessions( $file, $output_callback ) {
 
-		// The file might actually be a remote CSV (aka Google Doc)
-		if ( ! file_exists( $file ) ) {
-			$file_data = wp_remote_get( $file );
-			if ( ! wp_remote_retrieve_body( $file_data ) ) {
-				$output_callback( sprintf( "Couldn't retrieve: %s", $file ), 'error' );
-			} else {
-				$data = wp_remote_retrieve_body( $file_data );
-			}
-		} else {
-			$data = file_get_contents( $file );
-		}
+		$data = self::get_file_data( $file );
 
 		$output_callback();
 
-		// Ugly hack to split the CSV into rows
-		$rows = array();
-		$do_split = true;
-		$last_split = 0;
-		$data_array = str_split( $data );
-		foreach( $data_array as $i => $character ) {
+		$csv_rows = self::parse_csv_from_string( $data );
 
-			if ( '"' == $character && ',' == $data_array[$i-1] )
-				$do_split = false;
-			else if ( '"' == $character && ',' == $data_array[$i+1] )
-				$do_split = true;
-
-			if ( $do_split && PHP_EOL == $character ) {
-				$rows[] = ltrim( substr( $data, $last_split, $i - $last_split ) );
-
-				$last_split = $i;
-			}
-		}
-
-		$keys = str_getcsv( array_shift( $rows ) );
-
-		foreach ( $rows as $i => $csv_session ) {
-
-			$values = str_getcsv( $csv_session );
-
-			while( count( $values ) < count( $keys ) ) {
-				$values[] = '';
-			}
-
-			$csv_session = array_combine( $keys, $values );
+		foreach ( $csv_rows as $i => $csv_session ) {
 
 			// Uh oh, someone messed up the rows
 			if ( empty( $csv_session['Session Slug'] ) )
@@ -212,6 +175,59 @@ class ONA13_Importer {
 			return true;
 		else
 			return false;
+	}
+
+	protected function get_file_data( $file ) {
+		// The file might actually be a remote CSV (aka Google Doc)
+		if ( ! file_exists( $file ) ) {
+			$file_data = wp_remote_get( $file );
+			if ( ! wp_remote_retrieve_body( $file_data ) ) {
+				$output_callback( sprintf( "Couldn't retrieve: %s", $file ), 'error' );
+			} else {
+				$data = wp_remote_retrieve_body( $file_data );
+			}
+		} else {
+			$data = file_get_contents( $file );
+		}
+		return $data;
+	}
+
+	/**
+	 * Parse a string into its CSV
+	 * Ugly hack to split the CSV into rows
+	 */
+	protected static function parse_csv_from_string( $data) {
+
+		$rows = array();
+		$do_split = true;
+		$last_split = 0;
+		$data_array = str_split( $data );
+		foreach( $data_array as $i => $character ) {
+
+			if ( '"' == $character && ',' == $data_array[$i-1] )
+				$do_split = false;
+			else if ( '"' == $character && ',' == $data_array[$i+1] )
+				$do_split = true;
+
+			if ( $do_split && PHP_EOL == $character ) {
+				$rows[] = ltrim( substr( $data, $last_split, $i - $last_split ) );
+
+				$last_split = $i;
+			}
+		}
+
+		$keys = str_getcsv( array_shift( $rows ) );
+
+		foreach( $rows as $i => $row ) {
+			$values = str_getcsv( $row );
+
+			while( count( $values ) < count( $keys ) ) {
+				$values[] = '';
+			}
+
+			$rows[$i] = array_combine( $keys, $values );
+		}
+		return $rows;
 	}
 
 	/**
