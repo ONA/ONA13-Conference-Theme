@@ -260,5 +260,55 @@ class ONA_Speaker {
 	public function set_bio( $bio ) {
 		return $this->set_value( 'post_content', $bio );
 	}
+
+	/**
+	 * Get the profile url of a speaker.
+	 * 
+	 * @return string
+	 */
+	public function get_profile_url() {
+		if ( $src = wp_get_attachment_image_src( get_post_thumbnail_id( $this->get_id() ), 'full' ) )
+			return $src[0];
+		else
+			return '';
+	}
+
+	/**
+	 * Set the profile url of a speaker.
+	 */
+	public function set_profile_url( $file ) {
+
+		if ( empty( $file ) ) {
+			delete_post_thumbnail( $this->get_id() );
+			return;
+		}
+
+		require_once(ABSPATH . 'wp-admin/includes/media.php');
+		require_once(ABSPATH . 'wp-admin/includes/file.php');
+		require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+		$tmp = download_url( $file );
+
+		// Set variables for storage
+		// fix file filename for query strings
+		preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches );
+		$file_array['name'] = basename($matches[0]);
+		$file_array['tmp_name'] = $tmp;
+
+		// If error storing temporarily, unlink
+		if ( is_wp_error( $tmp ) ) {
+			@unlink($file_array['tmp_name']);
+			$file_array['tmp_name'] = '';
+		}
+	
+		// do the validation and storage stuff
+		$id = media_handle_sideload( $file_array, $this->get_id(), '' );
+		// If error storing permanently, unlink
+		if ( is_wp_error($id) ) {
+			@unlink($file_array['tmp_name']);
+			return $id;
+		}
+		set_post_thumbnail( $this->get_id(), $id );
+	}
 	
 }
