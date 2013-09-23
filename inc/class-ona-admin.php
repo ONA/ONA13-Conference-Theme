@@ -7,7 +7,7 @@ class ONA_Admin {
 	function __construct() {
 
 		add_action( 'admin_bar_menu', array( $this, 'action_admin_bar_menu' ), 99 );
-		add_action( 'wp_ajax_ona_run_importer', array( $this, 'handle_ajax_run_importer' ) );
+		add_action( 'wp_ajax_ona_run_session_importer', array( $this, 'handle_ajax_run_importer' ) );
 
 	}
 
@@ -20,16 +20,23 @@ class ONA_Admin {
 		if ( ! current_user_can( 'manage_options' ) )
 			return;
 
+		$args = array(
+			'id'      => 'ona-importer',
+			'title'   => 'Importer',
+			);
+		$wp_admin_bar->add_node( $args );
+
 		$query_args = array(
-			'action' => 'ona_run_importer',
-			'nonce'  => wp_create_nonce( 'ona-importer' ),
+			'action' => 'ona_run_session_importer',
+			'nonce'  => wp_create_nonce( 'ona-session-importer' ),
 			);
 		$href = add_query_arg( $query_args, admin_url( 'admin-ajax.php' ) );
 
 		$args = array(
-			'id'      => 'ona-run-importer',
-			'title'   => "Run Importer",
+			'id'      => 'ona-session-importer',
+			'title'   => "Import Sessions",
 			'href'    => $href,
+			'parent'  => 'ona-importer',
 			);
 		$wp_admin_bar->add_node( $args );
 	}
@@ -39,7 +46,7 @@ class ONA_Admin {
 	 */
 	public function handle_ajax_run_importer() {
 
-		if ( ! wp_verify_nonce( $_GET['nonce'], 'ona-importer' )
+		if ( ! wp_verify_nonce( $_GET['nonce'], 'ona-session-importer' )
 		|| ! current_user_can( 'manage_options' ) )
 			wp_die( "You shouldn't be here..." );
 
