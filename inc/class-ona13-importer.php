@@ -24,7 +24,7 @@ class ONA13_Importer {
 			array(
 					'csv_field'          => 'Session Description',
 					'object_field'       => 'description',
-					'sanitize_callback'  => 'wp_filter_post_kses',
+					'sanitize_callback'  => 'strip_tags',
 				),
 			array(
 					'csv_field'          => 'Room',
@@ -103,7 +103,7 @@ class ONA13_Importer {
 			array(
 					'csv_field'          => 'Bio',
 					'object_field'       => 'bio',
-					'sanitize_callback'  => 'wp_filter_nohtml_kses',
+					'sanitize_callback'  => 'strip_tags',
 				),
 		);
 
@@ -140,9 +140,6 @@ class ONA13_Importer {
 
 					if ( $session_field['csv_field'] != $key )
 						continue;
-
-					$value = str_replace( '\"', '"', $value );
-					$value = str_replace( "\'", "'", $value );
 
 					if ( isset( $session_field['pre_sanitize_callback'] ) && is_callable( $session_field['pre_sanitize_callback'] ) )
 						$value = call_user_func_array( $session_field['pre_sanitize_callback'], array( $value, $csv_session ) );
@@ -215,9 +212,6 @@ class ONA13_Importer {
 
 					if ( $speaker_field['csv_field'] != $key )
 						continue;
-
-					$value = str_replace( '\"', '"', $value );
-					$value = str_replace( "\'", "'", $value );
 
 					if ( isset( $speaker_field['pre_sanitize_callback'] ) && is_callable( $speaker_field['pre_sanitize_callback'] ) )
 						$value = call_user_func_array( $speaker_field['pre_sanitize_callback'], array( $value, $csv_speaker ) );
