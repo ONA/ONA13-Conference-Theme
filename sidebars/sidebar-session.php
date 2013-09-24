@@ -4,6 +4,15 @@
             $args = array(
                 'meta_key' => 'start_time',
                 'meta_value' => $session_start,
+				/* 'meta_query' => array(
+					array(
+					'meta_key' => 'start_time',
+					'meta_value' => $session_start
+					),array(
+					'meta_key' => 'start_time',
+					'meta_value' => $session_start
+					)
+				), */
                 'numberposts' => 5,
                 'exclude' => get_the_ID(),
                 'orderby' => 'post_date',
@@ -17,7 +26,7 @@
                 	<h3 class="widget-title">Concurrent sessions</h3>
                     <?php foreach( $concurrent_sessions as $post ){
                         $session = new ONA_Session( $post['ID'] );
-						echo '<li><a href="' . get_permalink( $session->get_id() ) . '" title="'.esc_attr( $session->get_title() ).'" >' . $session->get_title() . '<br/><span>';
+						echo '<li><a href="' . get_permalink( $session->get_id() ) . '" title="'.esc_attr( $session->get_title() ).'" >' . $session->get_title() . '<br/><span class="date">Room: ';
 						echo $session->get_room_name();
 						echo '</span></a></li> ';
 					} ?>
