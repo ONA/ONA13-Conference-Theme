@@ -25,7 +25,9 @@
 			
 			<div class="entry-content">
             	<div class="presenter-avatar">
-					<?php // echo ONA12_Presenter::get_avatar( 'ona12-medium-tall-avatar' ); ?>
+            	<?php if ( $profile_url = $speaker->get_profile_url() ) : ?>
+            		<img src="<?php echo esc_url( $profile_url ); ?>" />
+            	<?php endif; ?>
                 </div>
 				<?php echo wpautop( $speaker->get_bio() ); ?>
 			</div>
