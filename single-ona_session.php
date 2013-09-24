@@ -34,17 +34,17 @@
                         <?php } ?>
                         <p><?php echo $session->get_description();?></p>
                         <?php $speakers = $session->get_speakers(); 
-						if ($speakers) { ?>
+						if ($speakers[0]) { ?>
                     	<div class="speakers">
                         	<h4>Speakers</h4>
-							<?php foreach ($speakers as $speaker){
-                                $speaker_parts = explode( ',', $speaker );
-                                $speaker_name = $speaker_parts[0];
+							<?php $speakers = explode( ',', $speakers[0]);
+							foreach ($speakers as $speaker){
+                                $speaker_name = trim($speaker);
                                 ?>
                             <?php if ( $speaker_obj = ONA_Speaker::get_by_name( $speaker_name ) ) : ?>
                                 <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a></p>
                             <?php else : ?>
-                                <p><?php echo $speaker;?></p>
+                                <p><?php echo $speaker_name;?></p>
                             <?php endif; ?>
                             <?php } ?>
                         </div>

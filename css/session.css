@@ -20,7 +20,7 @@ margin-bottom:10px;
 margin-bottom:15px;	
 }
 .session-meta li {
-display: inline-block;
+display: inline-table;
 padding: 5px 10px 5px 0;
 border-right: 1px solid #ccc;
 margin-right: 10px;	
@@ -53,4 +53,8 @@ line-height: 1;
 float:right;
 margin-left:2%;
 margin-bottom:10px;	
+}
+.presenter-avatar img {
+max-width: 160px;
+height: auto;
 }
