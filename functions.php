@@ -2,6 +2,7 @@
 
 require_once dirname( __FILE__ ) . '/inc/class-ona-admin.php';
 require_once dirname( __FILE__ ) . '/inc/class-ona-session.php';
+require_once dirname( __FILE__ ) . '/inc/class-ona-speaker.php';
 require_once dirname( __FILE__ ) . '/inc/class-ona13-importer.php';
 require_once dirname( __FILE__ ) . '/inc/post-types.php';
 require_once dirname( __FILE__ ) . '/inc/taxonomies.php';

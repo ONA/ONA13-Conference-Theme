@@ -37,8 +37,15 @@
 						if ($speakers) { ?>
                     	<div class="speakers">
                         	<h4>Speakers</h4>
-							<?php foreach ($speakers as $speaker){ ?>
-                            <p><?php echo $speaker;?></p>
+							<?php foreach ($speakers as $speaker){
+                                $speaker_parts = explode( ',', $speaker );
+                                $speaker_name = $speaker_parts[0];
+                                ?>
+                            <?php if ( $speaker_obj = ONA_Speaker::get_by_name( $speaker_name ) ) : ?>
+                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a></p>
+                            <?php else : ?>
+                                <p><?php echo $speaker;?></p>
+                            <?php endif; ?>
                             <?php } ?>
                         </div>
                         <?php } ?>
