@@ -101,6 +101,12 @@ class ONA13_Importer {
 					'sanitize_callback'  => 'esc_url_raw',
 				),
 			array(
+					'csv_field'          => 'Photo Link',
+					'object_field'       => 'profile_url',
+					'sanitize_callback'  => 'esc_url_raw',
+					'comparison_callback'=> 'self::compare_url_to_attachment',
+				),
+			array(
 					'csv_field'          => 'Bio',
 					'object_field'       => 'bio',
 					'sanitize_callback'  => 'strip_tags',
@@ -279,6 +285,20 @@ class ONA13_Importer {
 			$new_value = array_map( 'trim', explode( ',', $new_value ) );
 
 		if ( array_diff( $old_value, $new_value ) )
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * Compare a remote URL to the local attachment.
+	 */
+	public static function compare_url_to_attachment( $new_value, $old_value ) {
+
+		$new_basename = sanitize_file_name( strtolower( basename( $new_value ) ) );
+		$old_basename = sanitize_file_name( strtolower( basename( $old_value ) ) );
+
+		if ( $new_basename != $old_basename )
 			return true;
 		else
 			return false;
