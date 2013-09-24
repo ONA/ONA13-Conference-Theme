@@ -24,7 +24,7 @@ class ONA13_Importer {
 			array(
 					'csv_field'          => 'Session Description',
 					'object_field'       => 'description',
-					'sanitize_callback'  => 'wp_filter_post_kses',
+					'sanitize_callback'  => 'strip_tags',
 				),
 			array(
 					'csv_field'          => 'Room',
@@ -69,55 +69,62 @@ class ONA13_Importer {
 				),
 		);
 
+		static public $speaker_fields = array(
+			array(
+					'csv_field'          => 'Speaker Name',
+					'object_field'       => 'name',
+					'sanitize_callback'  => 'sanitize_text_field',
+				),
+			array(
+					'csv_field'          => 'Title',
+					'object_field'       => 'title',
+					'sanitize_callback'  => 'sanitize_text_field',
+				),
+			array(
+					'csv_field'          => 'Company/Organization',
+					'object_field'       => 'organization',
+					'sanitize_callback'  => 'sanitize_text_field',
+				),
+			array(
+					'csv_field'          => 'Email',
+					'object_field'       => 'email',
+					'sanitize_callback'  => 'sanitize_text_field',
+				),
+			array(
+					'csv_field'          => 'Twitter',
+					'object_field'       => 'twitter',
+					'sanitize_callback'  => 'sanitize_text_field',
+				),
+			array(
+					'csv_field'          => 'Website',
+					'object_field'       => 'website',
+					'sanitize_callback'  => 'esc_url_raw',
+				),
+			array(
+					'csv_field'          => 'Photo Link',
+					'object_field'       => 'profile_url',
+					'sanitize_callback'  => 'esc_url_raw',
+					'comparison_callback'=> 'self::compare_url_to_attachment',
+				),
+			array(
+					'csv_field'          => 'Bio',
+					'object_field'       => 'bio',
+					'sanitize_callback'  => 'strip_tags',
+				),
+		);
+
 	/**
 	 * Import or update sessions from CSV.
 	 */
 	public static function import_sessions( $file, $output_callback ) {
 
-		// The file might actually be a remote CSV (aka Google Doc)
-		if ( ! file_exists( $file ) ) {
-			$file_data = wp_remote_get( $file );
-			if ( ! wp_remote_retrieve_body( $file_data ) ) {
-				$output_callback( sprintf( "Couldn't retrieve: %s", $file ), 'error' );
-			} else {
-				$data = wp_remote_retrieve_body( $file_data );
-			}
-		} else {
-			$data = file_get_contents( $file );
-		}
+		$data = self::get_file_data( $file );
 
 		$output_callback();
 
-		// Ugly hack to split the CSV into rows
-		$rows = array();
-		$do_split = true;
-		$last_split = 0;
-		$data_array = str_split( $data );
-		foreach( $data_array as $i => $character ) {
+		$csv_rows = self::parse_csv_from_string( $data );
 
-			if ( '"' == $character && ',' == $data_array[$i-1] )
-				$do_split = false;
-			else if ( '"' == $character && ',' == $data_array[$i+1] )
-				$do_split = true;
-
-			if ( $do_split && PHP_EOL == $character ) {
-				$rows[] = ltrim( substr( $data, $last_split, $i - $last_split ) );
-
-				$last_split = $i;
-			}
-		}
-
-		$keys = str_getcsv( array_shift( $rows ) );
-
-		foreach ( $rows as $i => $csv_session ) {
-
-			$values = str_getcsv( $csv_session );
-
-			while( count( $values ) < count( $keys ) ) {
-				$values[] = '';
-			}
-
-			$csv_session = array_combine( $keys, $values );
+		foreach ( $csv_rows as $i => $csv_session ) {
 
 			// Uh oh, someone messed up the rows
 			if ( empty( $csv_session['Session Slug'] ) )
@@ -140,9 +147,6 @@ class ONA13_Importer {
 					if ( $session_field['csv_field'] != $key )
 						continue;
 
-					$value = str_replace( '\"', '"', $value );
-					$value = str_replace( "\'", "'", $value );
-
 					if ( isset( $session_field['pre_sanitize_callback'] ) && is_callable( $session_field['pre_sanitize_callback'] ) )
 						$value = call_user_func_array( $session_field['pre_sanitize_callback'], array( $value, $csv_session ) );
 
@@ -162,6 +166,78 @@ class ONA13_Importer {
 
 					if ( $update ) {
 						$session->$set_method( $new_value );
+						self::output_diff( $key, $new_value, $output_callback );
+					} else {
+						self::output_diff( $key, false, $output_callback );
+					}
+
+				}
+	
+			}
+
+			$output_callback();
+			$output_callback();
+		}
+
+		if ( ! empty( $tmp_file ) )
+			@unlink( $tmp_file );
+
+		$output_callback( "Import complete", 'success' );
+	}
+
+	/**
+	 * Import or update speakers from CSV.
+	 */
+	public static function import_speakers( $file, $output_callback ) {
+
+		$data = self::get_file_data( $file );
+
+		$output_callback();
+
+		$csv_rows = self::parse_csv_from_string( $data );
+
+		foreach ( $csv_rows as $i => $csv_speaker ) {
+
+			// Uh oh, someone messed up the rows
+			if ( empty( $csv_speaker['Speaker Name'] ) )
+				continue;
+
+			// If the speaker doesn't exist, let's create it first.
+			$speaker_name = sanitize_text_field( $csv_speaker['Speaker Name'] );
+			if ( false === ( $speaker = ONA_Speaker::get_by_name( $speaker_name ) ) ) {
+				$post_id = wp_insert_post( array( 'post_type' => ONA_Speaker::$post_type, 'post_title' => $speaker_name, 'post_status' => 'publish' ) );
+				$speaker = new ONA_Speaker( $post_id );
+				$output_callback( sprintf( "Inserting speaker '%s' as post #%d", $speaker_name, $speaker->get_id() ) );
+			} else {
+				$output_callback( sprintf( "Updating speaker '%s' (post #%d)", $speaker_name, $speaker->get_id() ) );
+			}
+
+			foreach( $csv_speaker as $key => $value ) {
+
+				foreach( self::$speaker_fields as $speaker_field ) {
+
+					if ( $speaker_field['csv_field'] != $key )
+						continue;
+
+					if ( isset( $speaker_field['pre_sanitize_callback'] ) && is_callable( $speaker_field['pre_sanitize_callback'] ) )
+						$value = call_user_func_array( $speaker_field['pre_sanitize_callback'], array( $value, $csv_speaker ) );
+
+					if ( is_callable( $speaker_field['sanitize_callback'] ) )
+						$new_value = call_user_func_array( $speaker_field['sanitize_callback'], array( $value ) );
+					else
+						$new_value = $value;
+
+					$get_method = 'get_' . $speaker_field['object_field'];
+					$set_method = 'set_' . $speaker_field['object_field'];
+
+					// See whether the values should be updated
+					if ( isset( $speaker_field['comparison_callback'] ) && is_callable( $speaker_field['comparison_callback'] ) )
+						$update = call_user_func_array( $speaker_field['comparison_callback'], array( $new_value, $speaker->$get_method() ) );
+					else
+						$update = ( $new_value != $speaker->$get_method() );
+
+					if ( $update ) {
+						$speaker->$set_method( $new_value );
 						self::output_diff( $key, $new_value, $output_callback );
 					} else {
 						self::output_diff( $key, false, $output_callback );
@@ -212,6 +288,73 @@ class ONA13_Importer {
 			return true;
 		else
 			return false;
+	}
+
+	/**
+	 * Compare a remote URL to the local attachment.
+	 */
+	public static function compare_url_to_attachment( $new_value, $old_value ) {
+
+		$new_basename = sanitize_file_name( strtolower( basename( $new_value ) ) );
+		$old_basename = sanitize_file_name( strtolower( basename( $old_value ) ) );
+
+		if ( $new_basename != $old_basename )
+			return true;
+		else
+			return false;
+	}
+
+	protected function get_file_data( $file ) {
+		// The file might actually be a remote CSV (aka Google Doc)
+		if ( ! file_exists( $file ) ) {
+			$file_data = wp_remote_get( $file );
+			if ( ! wp_remote_retrieve_body( $file_data ) ) {
+				$output_callback( sprintf( "Couldn't retrieve: %s", $file ), 'error' );
+			} else {
+				$data = wp_remote_retrieve_body( $file_data );
+			}
+		} else {
+			$data = file_get_contents( $file );
+		}
+		return $data;
+	}
+
+	/**
+	 * Parse a string into its CSV
+	 * Ugly hack to split the CSV into rows
+	 */
+	protected static function parse_csv_from_string( $data) {
+
+		$rows = array();
+		$do_split = true;
+		$last_split = 0;
+		$data_array = str_split( $data );
+		foreach( $data_array as $i => $character ) {
+
+			if ( '"' == $character && ',' == $data_array[$i-1] )
+				$do_split = false;
+			else if ( '"' == $character && ',' == $data_array[$i+1] )
+				$do_split = true;
+
+			if ( $do_split && PHP_EOL == $character ) {
+				$rows[] = ltrim( substr( $data, $last_split, $i - $last_split ) );
+
+				$last_split = $i;
+			}
+		}
+
+		$keys = str_getcsv( array_shift( $rows ) );
+
+		foreach( $rows as $i => $row ) {
+			$values = str_getcsv( $row );
+
+			while( count( $values ) < count( $keys ) ) {
+				$values[] = '';
+			}
+
+			$rows[$i] = array_combine( $keys, $values );
+		}
+		return $rows;
 	}
 
 	/**
