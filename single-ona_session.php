@@ -7,14 +7,31 @@
 				$session = new ONA_Session( get_the_ID() );
                 ?>
                 <article>
+                	<ul class="session-meta">
+                    	<li class="track">
+                        	<div class="<?php echo $session->get_session_type_name();?>"><?php echo ( $session->get_session_type_name() ) ? $session->get_session_type_name() : 'Other'; ?></div>
+                        </li>
+                        <?php if ( $session->get_session_format_name() != "" ) { ?>
+                        <li>
+                        <?php echo $session->get_session_format_name();?>
+                        </li>
+                        <?php } ?>
+                    </ul>
                     <header class="entry-header">
                         <h1 class="entry-title"><?php echo $session->get_title(); ?></h1>
                     </header>
                     <ul class="session-meta">
-                    	<li class="day"><?php echo $session->get_start_time( 'l - g:i A' ); ?></li>
+                    	<li class="day"><?php echo $session->get_start_time( 'l - g:i A' ); ?> - <?php echo $session->get_end_time( 'g:i A' );?></li>
                         <li class="room"><?php echo ( $session->get_room_name() ) ? $session->get_room_name() : '<em>No Room</em>'; ?></li>
-                        <li class="track"><div class="<?php echo $session->get_session_type_name();?>"><?php echo ( $session->get_session_type_name() ) ? $session->get_session_type_name() : 'Other'; ?></div></li>
-                        <li class="hash"><?php echo ( $session->get_hashtag() ) ? $session->get_hashtag() : '<em>No Hashtag</em>'; ?></li>
+                        <li class="hash">
+                        <?php if ( $session->get_hashtag() != "" ) {
+							$hash = $session->get_hashtag(); 
+							$urlhash = str_replace("#", "%23", $hash); ?>
+                        <a href="https://twitter.com/search?q=<?php echo $urlhash;?>" target="_blank"><?php echo $hash;?></a>
+                        <?php } else { ?>
+                        <a href="https://twitter.com/search?q=%23ONA13" target="_blank">#ONA13</a>
+                        <?php } ?>
+                        </li>
                     </ul>
                     <div class="entry-content">
                     	
@@ -41,15 +58,24 @@
 							foreach ($speakers as $speaker){
                                 $speaker_name = trim($speaker);
                                 ?>
-                            <?php if ( $speaker_obj = ONA_Speaker::get_by_name( $speaker_name ) ) : ?>
-                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a></p>
+                            <div class="speaker">
+                            <?php if ( $speaker_obj = ONA_Speaker::get_by_name( $speaker_name ) ) : 
+								$twitterlink = str_replace("@", "", $speaker_obj->get_twitter()); 
+								$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $speaker_obj->get_id() ), "thumbnail" );
+								$thumburl = $thumb[0];?>
+                                <?php if ( $thumburl ) : ?>
+                                <img src="<?php echo esc_url( $thumburl ); ?>" />
+                                <?php endif; ?>
+                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a> - <?php echo $speaker_obj->get_title().', '.$speaker_obj->get_organization();?><br /><?php echo '<a href="https://twitter.com/'.$twitterlink.'">'.$speaker_obj->get_twitter().'</a> | <a href="'.$speaker_obj->get_website().'">'.$speaker_obj->get_website().'</a>';?></p>
                             <?php else : ?>
                                 <p><?php echo $speaker_name;?></p>
                             <?php endif; ?>
+                            </div>
                             <?php } ?>
                         </div>
                         <?php } ?>
-                        <?php $rebelmouse = $session->get_rebelmouse(); 
+                        <?php  // Liveblogging begins
+						$rebelmouse = $session->get_rebelmouse(); 
 						if ($rebelmouse) { ?>
                         <div class="liveblogging">
                         <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=ona13%2F<?php echo $rebelmouse;?>&height=1500&flexible=1"></script>
@@ -75,8 +101,6 @@
                     
                     </footer>
 				</article>
-
-				<?php comments_template( '', true ); ?>
 
 			<?php endwhile; // end of the loop. ?>
 

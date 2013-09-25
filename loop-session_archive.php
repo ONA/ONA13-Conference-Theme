@@ -160,6 +160,11 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 				} ?>
 				<li class="single-session <?php echo $session_type;?>">
 					<h4 class="session-title"><?php echo $session->get_title(); ?></h4>
+                    <div class="meta"><?php echo $session->get_room_name();
+                    if ( $session->get_hashtag() != "" ) {
+						$hash = $session->get_hashtag(); 
+						echo ' | '.$hash;
+					} ?></div>
 					<!--<div class="session-description"><?php the_excerpt(); ?></div>-->
 				</li>
                 </a>

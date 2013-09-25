@@ -26,9 +26,13 @@
                 	<h3 class="widget-title">Concurrent sessions</h3>
                     <?php foreach( $concurrent_sessions as $post ){
                         $session = new ONA_Session( $post['ID'] );
-						echo '<li><a href="' . get_permalink( $session->get_id() ) . '" title="'.esc_attr( $session->get_title() ).'" >' . $session->get_title() . '<br/><span class="date">Room: ';
-						echo $session->get_room_name();
-						echo '</span></a></li> ';
+						echo '<li><a href="' . get_permalink( $session->get_id() ) . '" title="'.esc_attr( $session->get_title() ).'" >' . $session->get_title() . '<br/>';
+						if( $session->get_room_name() ){
+							echo '<span class="date">Room: ';
+							echo $session->get_room_name();
+							echo '</span>';
+						}
+						echo '</a></li> ';
 					} ?>
                     <li class="more"><a href="<?php echo home_url(); ?>/sessions/">More sessions &rarr;</a></li>
                 </ul>

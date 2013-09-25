@@ -18,8 +18,9 @@
             <ul class="session-meta">
                 <li class="title"><?php echo $speaker->get_title(); ?></li>
                 <li class="org"><?php echo $speaker->get_organization(); ?></li>
-                <?php if ( $twitter = $speaker->get_twitter() ) : ?>
-                <li class="twitter"><?php echo $twitter; ?></li>
+                <?php if ( $twitter = $speaker->get_twitter() ) : 
+				$twitterlink = str_replace("@", "", $speaker->get_twitter()); ?>
+                <li class="twitter"><a href="https://twitter.com/<?php echo $twitterlink;?>" target="_blank"><?php echo $twitter; ?></a></li>
                 <?php endif; ?>
             </ul>
 			

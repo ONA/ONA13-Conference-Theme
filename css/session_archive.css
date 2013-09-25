@@ -72,8 +72,15 @@ background: #DCBE62;
 h4.session-title {
 	font-family:'Source Sans Pro', serif;
 	color:#222;
-	font-weight:400;
+	font-weight:600;
 	text-transform:none;
+}
+a .single-session .meta {
+	font-weight:400;
+	color:#666;
+}
+a .single-session:hover .meta {
+	color:#ccc;
 }
 ul.session-details {}
 

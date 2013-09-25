@@ -58,3 +58,18 @@ margin-bottom:10px;
 max-width: 160px;
 height: auto;
 }
+.speakers {
+margin-bottom:20px;	
+}
+.speaker {	
+overflow:auto;
+}
+.speaker p {
+margin-bottom:0;	
+}
+.speaker img {
+max-width:60px;	
+float:left; 
+margin-right:15px;
+margin-bottom:15px;
+}
