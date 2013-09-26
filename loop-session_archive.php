@@ -4,7 +4,7 @@
 	<?php
 		$args = array(
 			'post_type' => 'ona_session',		
-			'posts_per_page' => 100,
+			'posts_per_page' => -1,
 			'meta_key' => 'start_time',
 			'orderby' => 'meta_value',
 			'order' => 'asc',
@@ -24,39 +24,14 @@
 	
 		$sessions = new WP_Query( $args );
 	
-		$session_days = array(
-			'10/17/2013',
-			'10/18/2013',
-			'10/19/2013',
-		);
-
-		// Some crafty shit to put the current date at the top
-		$today = date( 'm/d/Y', ( time() - 25200 ) );
-		if ( in_array( $today, $session_days ) ) {
-			if ( 1 == array_search( $today, $session_days ) ) {
-				$yesterday = array_shift( $session_days );
-				$session_days[] = $yesterday;
-			} else if ( 2 == array_search( $today, $session_days ) ) {
-				$saturday = array_pop( $session_days );
-				array_unshift( $session_days, $saturday );
-			}
-		}
-	
-		// Load all of the sessions into an array based on start date and time
-		$all_sessions = array(
-				$session_days[0] => array(),
-				$session_days[1] => array(),
-				$session_days[2] => array(),
-			);
 		while( $sessions->have_posts() ) {
 			$sessions->the_post();
 			$start_timestamp = get_post_meta( get_the_ID(), 'start_time', true );
 			$start_date = date( 'm/d/Y', $start_timestamp );
 			$start_time = date( 'g:i a', $start_timestamp );
 			$all_sessions[$start_date][$start_time][$post->ID] = $post;
-		}
-		?>
-
+		}?>
+        
 		<?php if ( is_tax() ): ?>
 			<?php $queried_object = get_queried_object(); ?>
 			<h2><a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All Sessions' ); ?></a>
