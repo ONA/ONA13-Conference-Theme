@@ -1,18 +1,9 @@
 		<div id="secondary" class="widget-area" role="complementary">
 		<?php // Get sessions with same start time
-            global $session_start;
+            global $session;
             $args = array(
                 'meta_key' => 'start_time',
-                'meta_value' => $session_start,
-				/* 'meta_query' => array(
-					array(
-					'meta_key' => 'start_time',
-					'meta_value' => $session_start
-					),array(
-					'meta_key' => 'start_time',
-					'meta_value' => $session_start
-					)
-				), */
+                'meta_value' => $session->get_start_time(),
                 'numberposts' => 5,
                 'exclude' => get_the_ID(),
                 'orderby' => 'post_date',
