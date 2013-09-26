@@ -289,7 +289,7 @@ class ONA13_Importer {
 		if ( ! is_array( $new_value ) )
 			$new_value = array_map( 'trim', explode( ',', $new_value ) );
 
-		if ( array_diff( $old_value, $new_value ) )
+		if ( count( array_intersect( $old_value, $new_value ) ) == count( $old_value ) )
 			return true;
 		else
 			return false;
