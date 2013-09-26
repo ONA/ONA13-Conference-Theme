@@ -11,6 +11,11 @@
 		<?php $speaker = new ONA_Speaker( get_the_ID() ); ?>
 
 		<article class="post session" id="post-<?php the_ID(); ?>">
+        	<ul class="session-meta">
+                <li>
+                <a href="<?php echo home_url(); ?>/speakers/">All speakers &rarr;</a>
+                </li>
+            </ul>
 			<header class="entry-header">
                 <h1 class="entry-title"><?php echo $speaker->get_name(); ?></h1>
             </header>
@@ -30,7 +35,11 @@
             		<img src="<?php echo esc_url( $profile_url ); ?>" />
             	<?php endif; ?>
                 </div>
-				<?php echo wpautop( $speaker->get_bio() ); ?>
+				<?php echo wpautop( $speaker->get_bio() );
+				$websites = explode(",", $speaker->get_website());
+				foreach($websites as $website){
+					echo '<p><a href="'.trim($website).'">'.trim($website).'</a></p>';
+				}?>
 			</div>
 
 			<? // We will eventually add the sessions in which they are speaking here ?>

@@ -16,6 +16,9 @@
                         <?php echo $session->get_session_format_name();?>
                         </li>
                         <?php } ?>
+                        <li>
+                        <a href="<?php echo home_url(); ?>/sessions/">All sessions &rarr;</a>
+                        </li>
                     </ul>
                     <header class="entry-header">
                         <h1 class="entry-title"><?php echo $session->get_title(); ?></h1>
@@ -26,7 +29,7 @@
                         <li class="hash">
                         <?php if ( $session->get_hashtag() != "" ) {
 							$hash = $session->get_hashtag(); ?>
-                        <a href="https://twitter.com/search?q=%23<?php echo $urlhash;?>" target="_blank">#<?php echo $hash;?></a>
+                        <a href="https://twitter.com/search?q=%23<?php echo $hash;?>" target="_blank">#<?php echo $hash;?></a>
                         <?php } else { ?>
                         <a href="https://twitter.com/search?q=%23ONA13" target="_blank">#ONA13</a>
                         <?php } ?>
@@ -65,7 +68,10 @@
                                 <?php if ( $thumburl ) : ?>
                                 <img src="<?php echo esc_url( $thumburl ); ?>" />
                                 <?php endif; ?>
-                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a> - <?php echo $speaker_obj->get_title().', '.$speaker_obj->get_organization();?><br /><?php echo '<a href="https://twitter.com/'.$twitterlink.'">'.$speaker_obj->get_twitter().'</a> | <a href="'.$speaker_obj->get_website().'">'.$speaker_obj->get_website().'</a>';?></p>
+                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a> - <?php echo $speaker_obj->get_title().', '.$speaker_obj->get_organization();?><br /><?php echo '<a href="https://twitter.com/'.$twitterlink.'">'.$speaker_obj->get_twitter().'</a>';
+								$websites = explode(",", $speaker_obj->get_website());
+								foreach($websites as $website){
+								echo ' | <a href="'.trim($website).'">'.trim($website).'</a>';}?></p>
                             <?php else : ?>
                                 <p><?php echo $speaker_name;?></p>
                             <?php endif; ?>

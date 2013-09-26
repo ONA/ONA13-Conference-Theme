@@ -26,12 +26,17 @@ img.wp-post-image {
 float: left;
 margin-right:20px;	
 }
-
+.post-type-archive-ona_speaker h2 {
+padding-bottom:5px;	
+}
 .news_item {
 overflow:auto;
 margin-bottom:20px;	
 padding-bottom:20px;
 border-bottom:1px dotted #ccc;
+}
+.news_item p {
+line-height: 1.5;
 }
 .news_item div {
 margin-left:75px;
