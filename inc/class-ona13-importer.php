@@ -45,6 +45,11 @@ class ONA13_Importer {
 					'comparison_callback'=> 'self::compare_to_array_values',
 				),
 			array(
+					'csv_field'          => 'Hashtag',
+					'object_field'       => 'hashtag',
+					'sanitize_callback'  => 'sanitize_key'
+				),
+			array(
 					'csv_field'          => 'Speakers',
 					'object_field'       => 'speakers',
 					'pre_sanitize_callback' => 'self::prepare_speakers_field',

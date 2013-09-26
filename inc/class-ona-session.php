@@ -407,7 +407,7 @@ class ONA_Session {
 	 * @return string
 	 */
 	public function get_hashtag() {
-		$this->get_meta( 'hashtag' );
+		return $this->get_meta( 'hashtag' );
 	}
 
 	/**
@@ -416,7 +416,7 @@ class ONA_Session {
 	 * @param string
 	 */
 	public function set_hashtag( $hashtag ) {
-		$this->set_meta( 'hashtag', $hashtag );
+		return $this->set_meta( 'hashtag', $hashtag );
 	}
 
 	/**

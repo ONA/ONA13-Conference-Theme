@@ -25,9 +25,8 @@
                         <li class="room"><?php echo ( $session->get_room_name() ) ? $session->get_room_name() : '<em>No Room</em>'; ?></li>
                         <li class="hash">
                         <?php if ( $session->get_hashtag() != "" ) {
-							$hash = $session->get_hashtag(); 
-							$urlhash = str_replace("#", "%23", $hash); ?>
-                        <a href="https://twitter.com/search?q=<?php echo $urlhash;?>" target="_blank"><?php echo $hash;?></a>
+							$hash = $session->get_hashtag(); ?>
+                        <a href="https://twitter.com/search?q=%23<?php echo $urlhash;?>" target="_blank">#<?php echo $hash;?></a>
                         <?php } else { ?>
                         <a href="https://twitter.com/search?q=%23ONA13" target="_blank">#ONA13</a>
                         <?php } ?>
