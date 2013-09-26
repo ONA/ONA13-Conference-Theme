@@ -236,6 +236,9 @@ opacity: 0.7;
 }
 @media screen and (max-width:650px) {
 		
+	.left {width:100%; margin-bottom:0; float:none;}
+	.right {display:none;}
+	.key > div { padding:0; }
 	.days, .types { display:none; }
 	.schedule_nav .buttons .day {width: 30%}
 	.schedule_nav .buttons .type {width: 14%; margin-top:8px;}
