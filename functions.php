@@ -751,4 +751,16 @@ function twentytwelve_content_nav( $html_id ) {
 		</nav><!-- #<?php echo $html_id; ?> .navigation -->
 	<?php endif;
 }
+
+add_filter('pre_get_posts', 'change_post_type');
+function change_post_type($myquery) {
+  if(is_tag()) {
+	if ( ! $myquery->is_main_query() )
+      return $myquery;
+    $post_type = array('post','ona_session'); // replace cpt to your custom post type
+    $myquery->set('post_type',$post_type);
+	return $myquery;
+  }
+}
+
 ?>

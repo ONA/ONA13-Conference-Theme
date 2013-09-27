@@ -6,11 +6,11 @@
  *
  * EXACTLY LIKE THE CATEGORY TEMPLATE, EXCEPT FOR H1
  */
-get_header(); ?>
+get_header(); 
+?>
 
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
-       
 
 		<?php 
 		if ( have_posts() ) : ?>
@@ -25,9 +25,10 @@ get_header(); ?>
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post(); 
+				$type = get_post_type();
 				$category = get_the_category(); 
 				$sponsor = get_post_meta( get_the_ID(), '_assigned_sponsor' ); ?>
-				<div class="news_item">
+				<div class="news_item <?=$type;?>">
                 	<?php if ( has_post_thumbnail() ) {
                     	the_post_thumbnail(array(55,55));
                     } else { ?>
