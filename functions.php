@@ -760,6 +760,13 @@ function change_post_type($myquery) {
     $post_type = array('post','ona_session'); // replace cpt to your custom post type
     $myquery->set('post_type',$post_type);
 	return $myquery;
+  } else if( is_post_type_archive('ona_speaker') ) {
+	if ( ! $myquery->is_main_query() )
+      return $myquery;
+    $myquery->set('orderby','title');
+	$myquery->set('order',"ASC");
+	$myquery->set('posts_per_page',-1);
+	return $myquery;
   }
 }
 
