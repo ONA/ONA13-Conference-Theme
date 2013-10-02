@@ -21,6 +21,7 @@
 				$args = array (
 					'post_type'=> 'sponsors',
 					'post_status'  => 'publish',
+					'posts_per_page' => -1,
 					'orderby'=> 'title',
 					'order'=> 'ASC',
 					'pagination' => false,
