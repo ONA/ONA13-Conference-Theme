@@ -20,7 +20,7 @@ margin:0 auto 15px;
 .news_item:nth-child(5n+2) {
 clear:left;
 }
-h2 {
+#content h2 {
 width:90%;
 margin:10px 5% 0;	
 }

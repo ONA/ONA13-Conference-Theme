@@ -13,7 +13,7 @@ background: rgb(207, 207, 207);
 color: #fff;
 padding: 0 10px;
 }
-h2 {
+#content h2 {
 clear:none;
 text-transform: none;
 padding-bottom:10px;
