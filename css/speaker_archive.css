@@ -1,0 +1,29 @@
+.news_item {
+width:20%;
+float:left;	
+text-align:center;
+margin-bottom:0;
+border-bottom:0;
+padding-top:25px;
+border-top:1px dotted #ccc;
+}
+.news_item div {
+margin-left:0;
+padding:0;
+}
+div.speaker_img {
+width:120px;
+height:160px;
+background:#eee;
+margin:0 auto 15px;
+}
+.news_item:nth-child(5n+2) {
+clear:left;
+}
+h2 {
+width:90%;
+margin:10px 5% 0;	
+}
+h2 a {
+font-size: 1.7em;
+}

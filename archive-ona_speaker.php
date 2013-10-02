@@ -1,16 +1,14 @@
 <?php
-/**
- * The template for displaying Category pages.
- *
- * @subpackage Twenty_Twelve_Child for ONA
- *
- * EXACTLY LIKE THE TAG TEMPLATE, EXCEPT FOR H1
- */
+add_filter( 'body_class', 'session_body' );
+function session_body( $classes ) {
+	$classes[] = 'full-width';
+	return $classes;
+}
+
 get_header(); ?>
 
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
-       
 
 		<?php 
 		if ( have_posts() ) : ?>
@@ -28,16 +26,22 @@ get_header(); ?>
 				$category = get_the_category();
 				$speaker = new ONA_Speaker( get_the_ID() ); ?>
 				<div class="news_item">
-                	<?php if ( has_post_thumbnail() ) {
-                    	the_post_thumbnail(array(55,55));
-                    } else { ?>
+                	<?php if ( has_post_thumbnail() ) { ?>
+                    	<div class="speaker_img">
+                    	<?php the_post_thumbnail(array(120,160,true)); ?>
+                        </div>
+                    <?php } else { ?>
                     	<img class="attachment-thumbnail wp-post-image" src="<?php echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" width="55" height="55"/>
                     <?php } ?>
                     <div<?php if(is_numeric($sponsor[0])) { ?> class="Sponsored"<?php } ?>>
+                        
+                        <?php if( $speaker->get_twitter() != '' ) { 
+							echo '<p>';
+							$twitterlink = str_replace("@", "", $speaker->get_twitter());
+							echo '<a href="'.$twitterlink.'" target="_blank">'.$speaker->get_twitter().'</a>'; 
+							echo '</p>';
+						}?>
                         <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>" ><?php the_title();?></a></h2>
-                        <p><?php echo $speaker->get_title().', '.$speaker->get_organization(); if( $speaker->get_twitter() != '' ) { 
-						$twitterlink = str_replace("@", "", $speaker->get_twitter());
-						echo ' | <a href="'.$twitterlink.'" target="_blank">'.$speaker->get_twitter().'</a>'; }?></p>
                     </div>
                 </div>
 			<?php endwhile;
@@ -52,5 +56,4 @@ get_header(); ?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
