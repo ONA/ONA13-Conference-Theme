@@ -19,6 +19,9 @@ jQuery(document).ready(function(){
 	});
 	jQuery('.buttons .type').click(function(e) {
         var button = jQuery(this).index();
+		var day = jQuery(this).parent().parent().parent().index(".session-day");
+		var dayPosition =  jQuery('#title'+day).offset().top - jQuery("body").scrollTop();
+		
 		jQuery('.single-session').parent().hide();
 		if (button==3){
 			jQuery('.single-session.Listen').parent().show();
@@ -33,6 +36,8 @@ jQuery(document).ready(function(){
 		} else if (button==8){
 			jQuery('.single-session').parent().show();
 		}
+		var newOffset = jQuery('#title'+day).offset().top - dayPosition;
+		jQuery("html, body").scrollTop(newOffset);
     });
 	jQuery('.buttons .day').click(function(e) {
 		var day = jQuery(this).index();
