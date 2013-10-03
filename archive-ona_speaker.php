@@ -26,21 +26,20 @@ get_header(); ?>
 				$category = get_the_category();
 				$speaker = new ONA_Speaker( get_the_ID() ); ?>
 				<div class="news_item">
-                	<?php if ( has_post_thumbnail() ) { ?>
-                    	<div class="speaker_img">
-                    	<?php the_post_thumbnail(array(120,160,true)); ?>
-                        </div>
-                    <?php } else { ?>
-                    	<img class="attachment-thumbnail wp-post-image" src="<?php echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" width="55" height="55"/>
-                    <?php } ?>
+                    <div class="speaker_img">
+                    <a href="<?php the_permalink();?>" title="<?php the_title();?>">
+                    	<?php the_post_thumbnail(array(300,160,true)); ?>
+                    </a>
+                    </div>
                     <div<?php if(is_numeric($sponsor[0])) { ?> class="Sponsored"<?php } ?>>
-                        
+                        <p>
                         <?php if( $speaker->get_twitter() != '' ) { 
-							echo '<p>';
 							$twitterlink = str_replace("@", "", $speaker->get_twitter());
 							echo '<a href="'.$twitterlink.'" target="_blank">'.$speaker->get_twitter().'</a>'; 
-							echo '</p>';
-						}?>
+						} else { 
+							echo "---";
+						} ?>
+                        </p>
                         <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>" ><?php the_title();?></a></h2>
                     </div>
                 </div>

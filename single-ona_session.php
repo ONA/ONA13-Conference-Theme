@@ -65,13 +65,15 @@
 								$twitterlink = str_replace("@", "", $speaker_obj->get_twitter()); 
 								$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $speaker_obj->get_id() ), "thumbnail" );
 								$thumburl = $thumb[0];?>
-                                <?php if ( $thumburl ) : ?>
+                                <?php if ( $thumburl ) { ?>
                                 <img src="<?php echo esc_url( $thumburl ); ?>" />
-                                <?php endif; ?>
                                 <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a> - <?php echo $speaker_obj->get_title().', '.$speaker_obj->get_organization();?><br /><?php echo '<a href="https://twitter.com/'.$twitterlink.'">'.$speaker_obj->get_twitter().'</a>';
 								$websites = explode(",", $speaker_obj->get_website());
 								foreach($websites as $website){
 								echo ' | <a href="'.trim($website).'">'.trim($website).'</a>';}?></p>
+                                <?php } else { ?>
+                                <p><?php echo $speaker.' - '.$speaker_obj->get_organization();?></p>
+                                <?php } ?>
                             <?php else : ?>
                                 <p><?php echo $speaker_name;?></p>
                             <?php endif; ?>
