@@ -53,7 +53,7 @@
             	<header class="entry-header">
                 	<h1 class="entry-title">Program Schedule</h1>
                 </header>
-                <p>Welcome to the first edition of our program. For a complete description of <strong>Listen</strong>, <strong>Solve</strong> and <strong>Make</strong> and details on the conference, take a look at our <a href="http://ona13.journalists.org/2013/07/12/join-us-at-ona13-the-town-hall-for-journalism/" target="_blank">blog post</a>. You can organize your view by clicking on  Day 1, 2 or 3 or the L, S, and M buttons at the top of the schedule. Look for more sessions and speakers in the coming weeks and an interactive version will be rolled out in August.</p>
+                <p>Welcome to the interactive version of our program. For a complete description of <b>Listen</b>, <b>Solve</b> and <b>Make</b> and details on the conference, take a look at our <a href="http://ona13.journalists.org/2013/07/12/join-us-at-ona13-the-town-hall-for-journalism/" target="_blank">blog post</a>. You can organize your view by clicking on a day or by filtering to a session type.</p>
             </div>
             <div class="right">
                 <p><strong>ONA13 Guiding Principles</strong></p>
@@ -93,12 +93,14 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 ?>
 
 <div id="session-day-<?php echo $day_slugify; ?>" class="session-day">
+	<? if(is_active_sidebar( 'sponsors'.$i )) { ?>
 	<div class="sponsor-row">
     	<p>ONA13 is sponsored in part by:</p>
         <div class="logos">
             <?php dynamic_sidebar( 'sponsors'.$i ); ?>
         </div>
     </div>
+    <? } ?>
     <h3 id="title<?php echo $i;?>" class="schedule_day"><span>Day <?php echo ($i+1);?> - <?php echo $day_full_name;?></span></h3>
     <div class="schedule_nav">
     	<div class="labels">
