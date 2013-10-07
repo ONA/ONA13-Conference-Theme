@@ -67,6 +67,9 @@ overflow:auto;
 .speaker p {
 margin-bottom:0;	
 }
+.speaker .noinfo {
+margin-bottom: 16px;	
+}
 .speaker img {
 max-width:60px;	
 float:left; 

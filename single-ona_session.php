@@ -86,7 +86,7 @@
 								foreach($websites as $website){
 								echo ' | <a href="'.trim($website).'">'.trim($website).'</a>';}?></p>
                                 <?php } else { ?>
-                                <p><?php echo $speaker.' - '.$speaker_obj->get_organization();?></p>
+                                <p class="noinfo"><?php echo $speaker.' - '.$speaker_obj->get_organization();?></p>
                                 <?php } ?>
                             <?php else : ?>
                                 <p><?php echo $speaker_name;?></p>
