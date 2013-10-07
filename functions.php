@@ -413,6 +413,14 @@ function ona13_widgets_init() {
 		'after_widget' => '</div>'
 	) );
 	
+	register_sidebar( array(
+		'name' => __( 'Midway', 'twentytwelve' ),
+		'id' => 'midway',
+		'description' => __( 'Content tiles on midway page', 'twentytwelve' ),
+		'before_widget' => '<div id="%1$s" class="home_widget %2$s">',
+		'after_widget' => '</div>'
+	) );
+	
 	unregister_sidebar( "sidebar-2" );
 	unregister_sidebar( "sidebar-3" );
 	unregister_widget( "WP_Widget_Calendar" );
