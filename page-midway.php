@@ -29,7 +29,7 @@ get_header(); ?>
         	<p>The Midway is brought to you with the generous support of:</p>
             <div class="logos">
                 <div id="sponsor_logo-2" class="sponsor_widget widget_sponsor_logo">
-                    <a href="http://knightfoundation.org/" target="_blank"><img width="140" height="49" src="http://ona13.journalists.org/wp-content/uploads/2013/10/knight-foundation-300x42.png" class="attachment-sponsor-row wp-post-image" alt="Knight Foundation"></a>
+                    <a href="http://knightfoundation.org/" target="_blank"><img src="http://ona13.journalists.org/wp-content/uploads/2013/10/knight-foundation-300x42.png" class="attachment-sponsor-row wp-post-image" alt="Knight Foundation"></a>
                 </div>
             </div>
 		</div>
