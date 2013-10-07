@@ -34,6 +34,20 @@
                         <a href="https://twitter.com/search?q=%23ONA13" target="_blank">#ONA13</a>
                         <?php } ?>
                         </li>
+                        <li>
+                        <a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent">
+                            Add to Calendar
+                            <span class="_start"><?php echo $session->get_start_time( 'm-d-Y H:i' ); ?></span>
+                            <span class="_end"><?php echo $session->get_end_time( 'm-d-Y H:i' ); ?></span>
+                            <span class="_zonecode">15</span>
+                            <span class="_summary"><?php echo $session->get_title(); ?></span>
+                            <span class="_description"><?php echo $session->get_description();?></span>
+                            <span class="_location">Atlanta Marriott - <?php echo ( $session->get_room_name() ) ? $session->get_room_name() : '<em>No Room</em>'; ?></span>
+                            <span class="_organizer">ONA13</span>
+                            <span class="_all_day_event">false</span>
+                            <span class="_date_format">DD/MM/YYYY</span>
+                        </a>
+                        </li>
                     </ul>
                     <div class="entry-content">
                     	

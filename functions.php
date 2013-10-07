@@ -454,6 +454,7 @@ function ona13_wp_enqueue_scripts() {
 	
 	wp_register_script("schedule-filter", get_stylesheet_directory_uri()."/js/schedule-filter.js", array("jquery"));
 	wp_register_script("session-filter", get_stylesheet_directory_uri()."/js/session-filter.js", array("jquery"));
+	wp_register_script("add-this-event", get_stylesheet_directory_uri()."/js/addthisevent.js", array("jquery"));
 	
 	if( is_front_page() ) {
 		wp_enqueue_style("homepage");
@@ -462,6 +463,7 @@ function ona13_wp_enqueue_scripts() {
 		wp_enqueue_style("post");
 		if (get_post_type() == 'ona_session' || get_post_type() == 'ona_speaker'){
 			wp_enqueue_style("session");
+			wp_enqueue_script("add-this-event");
 		} else if (get_post_type() == 'sponsors'){
 			wp_enqueue_style("sponsor");
 		}
