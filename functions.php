@@ -88,13 +88,13 @@ if( is_admin() ) {
 		$value = get_post_meta( $post->ID, '_featured_image_position', true );
 		echo '<label for="featured_image_position">';
 		   _e("Position Featured Image:", 'myplugin_textdomain' );
-		echo '</label> ';
-		echo '<select id="featured_image_position" name="featured_image_position" style="width: 100%;">';
-			echo '<option value="">Normal, within body</option>';
-			echo '<option value="big">Big, above headline</option>';
-			echo '<option value="hide">Category feed only</option>';
-		echo '</select>';
-	}
+		echo '</label> ' ?>
+        <select id="featured_image_position" name="featured_image_position" style="width: 100%;">
+			<option value="" <?php selected( $value, '' ); ?>>Normal, within body</option>
+			<option value="big" <?php selected( $value, 'big' ); ?>>Big, above headline</option>
+			<option value="hide" <?php selected( $value, 'hide' ); ?>>Category feed only</option>
+		</select>
+	<? }
 	
 	/* Saves "FEATURED IMAGE POSITION" content */
 	function post_featured_image_position_save( $post_id ) {

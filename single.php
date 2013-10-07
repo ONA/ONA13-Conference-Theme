@@ -14,11 +14,15 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<?php if (has_post_thumbnail( $post->ID ) ): 
-					$featured_pos = get_post_meta( $sponsor[0], '_featured_image_position', true );
+					$featured_pos = get_post_meta( $post->ID, '_featured_image_position', true );
 					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); 
 					if ($featured_pos == 'big') { ?>
-                <div id="article_img">
-                	<img src="<?php echo $image[0];?>" width="<?php echo $image[1];?>" height="<?php echo $image[2];?>"/>
+                <div class="wp-caption">
+                    <div id="article_img">
+                        <img src="<?php echo $image[0];?>" width="<?php echo $image[1];?>" height="<?php echo $image[2];?>"/>
+                    </div>
+					<?php if (get_post(get_post_thumbnail_id())->post_content){ ?>
+                    <p class="wp-caption-text"><?php echo get_post(get_post_thumbnail_id())->post_content; ?></p><?php } ?>
                 </div>
                 <?php 	} endif; ?>
                 <article>
@@ -45,7 +49,11 @@ get_header(); ?>
                     <div class="entry-content">
                     	<?php if (isset($image) && ($featured_pos == '' || !isset($featured_pos))) { 
 							// Small featured ?>
+                        <div class="wp-caption alignright">
                         	<img src="<?php echo $image[0];?>" class="small-featured"/>
+                            <?php if (get_post(get_post_thumbnail_id())->post_content){ ?>
+                    <p class="wp-caption-text"><?php echo get_post(get_post_thumbnail_id())->post_content; ?></p><?php } ?>
+                    	</div>
                         <?php } ?>
                         <?php the_content();?>
                         <!-- AddThis Button BEGIN -->
