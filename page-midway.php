@@ -11,16 +11,18 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
-
+add_filter('body_class','scheduleClass');
+function scheduleClass($classes) {
+	$classes[] = 'full-width';
+	return $classes;
+}
 get_header(); ?>
 
 	<div class="midway_logo">
     	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/midway.png" />
     </div>
-    
-    <?php get_sidebar(); ?>
-    
-	<div id="primary" class="site-content">
+        
+	<div id="primary" class="site-content midway">
 		<div id="content" role="main">
         <div class="lead_text">
 		<p>An experimental space for journalism and technology and the conference playground, the Midway is the place for hands-on learning and experimentation with the most innovative tech and tools in digital journalism.</p>
@@ -37,25 +39,13 @@ get_header(); ?>
         	<?php dynamic_sidebar( 'midway' ); ?>
         </div>
         
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-		<div class="featured-post">
-			<?php _e( 'Featured post', 'twentytwelve' ); ?>
-		</div>
-		<?php endif; ?>
-		<header class="entry-header" style="display:none;">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
-		</header><!-- .entry-header -->
+		<h1 class="entry-title" style="display:none;"><?php the_title(); ?></h1>
 		
-		<div class="entry-content">
-			<?php the_content(); ?>
-		</div><!-- .entry-content -->
+        <div class="entry-summary">
+		<?php the_content(); ?>
+		</div>
 
 		<div id="participants">
-        
-        <select name="participants">
-        	<option>Find a Midway participant</option>
-        
         
 		<?	$args = array (
 				'post_type'=> 'sponsors',
@@ -74,29 +64,89 @@ get_header(); ?>
 			 ); 
 			$my_query = new WP_Query($args);
 			if ($my_query->have_posts()) { 
-				
-				
 				while ( $my_query->have_posts() ) : $my_query->the_post(); 
-					$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
-					echo '<option value="">'.get_the_title().'</option>';
-				endwhile;
-				echo '</select>';
-				
-				while ( $my_query->have_posts() ) : $my_query->the_post(); 
-					$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
+					$external_link = get_permalink(get_the_ID());
 					if ( has_post_thumbnail() ) { 
-						 echo '<a href="'.$external_link.'" target="_blank">';
+						 echo '<a href="'.$external_link.'">';
 						 echo the_post_thumbnail( 'medium' );
 						 echo '</a>'; 
 					} 				
-				endwhile; ?>
-				
-				
-			<? wp_reset_postdata(); } ?>
+				endwhile; 
+				wp_reset_postdata(); 
+			} ?>
 			</div>
 
-	</article><!-- #post -->
 
+		<? $args = array(
+                // 'meta_key' => 'start_time',
+                // 'meta_value' => 'Midway',
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'session-type',
+						'field' => 'slug',
+						'terms' => 'make' // <-- Needs to be "midway"
+					)
+				),
+                'posts_per_page' => -1,
+				'meta_key' => 'start_time',
+				'orderby' => 'meta_value',
+                'order' => 'ASC',
+                'post_type' => 'ona_session',
+				'no_found_rows' => true
+				);
+			
+			$sessions = new WP_Query( $args );
+			while( $sessions->have_posts() ) {
+				$sessions->the_post();
+				$start_timestamp = get_post_meta( get_the_ID(), 'start_time', true );
+				$start_date = date( 'm/d/Y', $start_timestamp );
+				$start_time = date( 'g:i a', $start_timestamp );
+				$all_sessions[$start_date][$start_time][$post->ID] = $post;
+			}
+			$i = -1;
+			if (count($all_sessions) == 0) {
+				echo '<h3 class="schedule_day">Midway schedule coming soon</h3>';
+			}
+			foreach( $all_sessions as $session_day => $days_sessions ):
+				$day_full_name = date( 'l, F d', strtotime( $session_day ) );
+				$i++;
+				$day_slugify = sanitize_title( $day_full_name );
+			?>
+            <div id="session-day-<?php echo $day_slugify; ?>" class="session-day">
+            <h3 id="title<?php echo $i;?>" class="schedule_day"><span>Day <?php echo ($i+1);?> - <?php echo $day_full_name;?></span></h3>
+            <div class="schedule_nav"></div>
+            <div class="day-sessions">
+			<?php foreach( $days_sessions as $start_time => $posts ): ?>
+                <div class="session-time-block">
+                    <div class="session-start-time"><?php echo $start_time; ?></div>			
+                    <ul class="session-list session-count-<?php echo count( $posts ); ?>">
+                    <?php foreach( $posts as $post ): 
+                        setup_postdata( $post ); 
+                        $session = new ONA_Session( get_the_ID() ); ?>
+                        <a href="<?php the_permalink(); ?>">
+                        <?php if ($session->get_session_type_name() == ''){ 
+                            $session_type = "Other";
+                        } else {
+                            $session_type = $session->get_session_type_name();
+                        } ?>
+                        <li class="single-session <?php echo $session_type;?>">
+                            <h4 class="session-title"><?php echo $session->get_title(); ?></h4>
+                            <div class="meta"><?php echo $session->get_room_name();
+                            if ( $session->get_hashtag() != "" ) {
+                                $hash = $session->get_hashtag(); 
+                                echo ' | #'.$hash;
+                            } ?></div>
+                            <!--<div class="session-description"><?php the_excerpt(); ?></div>-->
+                        </li>
+                        </a>
+                    <?php endforeach; ?>
+                    </ul>
+                    <div class="clear-left"></div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+            </div>
+        	<?php endforeach; ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->

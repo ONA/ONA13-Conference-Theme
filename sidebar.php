@@ -2,8 +2,6 @@
 			include ('sidebars/sidebar-session.php');
 	   elseif ( get_post_type() == 'sponsors' && is_singular() ) : 
 			include ('sidebars/sidebar-sponsor.php');
-	   elseif ( is_page() && get_the_title() == "Midway" ) : 
-			include ('sidebars/sidebar-midway.php');
 	   elseif ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
         	<?php if ( is_singular() ) { ?>

@@ -477,6 +477,8 @@ function ona13_wp_enqueue_scripts() {
 	} else if( is_page('midway') ) {
 		wp_enqueue_style("midway");
 		wp_enqueue_style("home-widget");
+		wp_enqueue_style("session_archive");
+		wp_enqueue_script("session-filter");
 	}
 		
 	wp_enqueue_script( 'jquery-isotope', get_stylesheet_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ) );
