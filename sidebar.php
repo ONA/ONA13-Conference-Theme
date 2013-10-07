@@ -24,7 +24,7 @@
 						'child_of' => $top_page,
 						'title_li' => ''
 					));
-				} else if ((in_category( 'news' ) && is_single()) || get_the_title() == "About") {
+				} else if (is_single()) || get_the_title() == "About") {
 					echo '<ul class="headlines">';
 					echo '<h3 class="widget-title">Recent News</h3>';
 					$category_id = get_cat_ID('News');
