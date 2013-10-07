@@ -92,6 +92,7 @@ if( is_admin() ) {
 		echo '<select id="featured_image_position" name="featured_image_position" style="width: 100%;">';
 			echo '<option value="">Normal, within body</option>';
 			echo '<option value="big">Big, above headline</option>';
+			echo '<option value="hide">Category feed only</option>';
 		echo '</select>';
 	}
 	
