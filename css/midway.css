@@ -1,7 +1,9 @@
 .midway_logo {
 	margin-top: -20px;
-	margin-left: 25px;
 	margin-bottom: -2px;
+}
+.midway_logo img {
+max-width:100%;	
 }
 .lead_text p {
 	font-size: 1.7em;
@@ -32,4 +34,10 @@ max-height: 60px;
 width: auto;
 margin-bottom: 20px;
 margin-right: 30px;
+}
+
+@media (max-width:670px) {
+	.midway_logo {
+	margin-bottom:20px;	
+	}
 }

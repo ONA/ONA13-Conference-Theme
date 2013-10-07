@@ -19,7 +19,7 @@ function scheduleClass($classes) {
 get_header(); ?>
 
 	<div class="midway_logo">
-    	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/midway.png" />
+    	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/midway2.png" />
     </div>
         
 	<div id="primary" class="site-content midway">
