@@ -24,9 +24,9 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class="news_item">
                 	<?php if ( has_post_thumbnail() ) {
-                    	the_post_thumbnail('thumbnail');
+                    	the_post_thumbnail( array(55,55) );
                     } else { ?>
-                    
+                    	<img class="attachment-thumbnail wp-post-image" src="<?php echo get_stylesheet_directory_uri(); ?>/images/category-filler.png" width="55" height="55"/>
                     <?php } ?>
                     <div>
                         <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>" ><?php the_title();?></a></h2>
