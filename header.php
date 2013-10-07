@@ -36,11 +36,16 @@
 
 <?php if (is_singular()){ 
 $image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'single-post-thumbnail' );
+if ($image[0]){
+	$ogimage = $image[0];
+} else {
+	$ogimage = get_stylesheet_directory_uri().'/images/category-filler.png';
+}
 setup_postdata( $post );
 $excerpt = get_the_excerpt();?>
 <meta property="og:title" content="<?php the_title();?> | ONA13 - Atlanta, GA" />
 <meta property="og:type" content="article" />
-<meta property="og:image" content="<?php echo $image[0];?>" />
+<meta property="og:image" content="<?php echo $ogimage;?>" />
 <meta property="og:url" content="<?php the_permalink(); ?>" />
 <meta property="og:description" content="<?php echo $excerpt; ?>" />
 <?php } ?>
