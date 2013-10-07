@@ -34,21 +34,30 @@
 <?php wp_head(); ?>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/isotope/jquery.isotope.min.js"></script>
 
-<?php if (is_singular()){ 
+<?php 
 $image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'single-post-thumbnail' );
 if ($image[0]){
 	$ogimage = $image[0];
 } else {
-	$ogimage = get_stylesheet_directory_uri().'/images/category-filler.png';
+	$ogimage = get_stylesheet_directory_uri().'/images/ona_fbk.png';
 }
-setup_postdata( $post );
-$excerpt = get_the_excerpt();?>
-<meta property="og:title" content="<?php the_title();?> | ONA13 - Atlanta, GA" />
+if (is_singular()){ 
+	setup_postdata( $post );
+	$excerpt = get_the_excerpt();
+	$title = get_the_title().' | ONA13 - Atlanta, GA';
+	$permalink = get_permalink();
+} else {
+	$excerpt = "";
+	$title = "";
+	$permalink = "";
+	$ogimage = get_stylesheet_directory_uri().'/images/ona_fbk.png';
+} ?>
+
+<meta property="og:title" content="<?php echo $title;?>" />
 <meta property="og:type" content="article" />
 <meta property="og:image" content="<?php echo $ogimage;?>" />
-<meta property="og:url" content="<?php the_permalink(); ?>" />
+<meta property="og:url" content="<?php echo $permalink; ?>" />
 <meta property="og:description" content="<?php echo $excerpt; ?>" />
-<?php } ?>
 
 </head>
 

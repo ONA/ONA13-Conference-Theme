@@ -32,23 +32,6 @@
 			$all_sessions[$start_date][$start_time][$post->ID] = $post;
 		}?>
         
-		<?php if ( is_tax() ): ?>
-			<?php $queried_object = get_queried_object(); ?>
-			<h2><a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All Sessions' ); ?></a>
-			<?php
-				$term_title_html = ' &rarr; <a href="' . get_term_link( $queried_object ) . '">' . esc_html( $queried_object->name ) . '</a>';
-				if ( $queried_object->parent ) {
-					$parent_term = get_term_by( 'id', $queried_object->parent, $queried_object->taxonomy );
-					$term_title_html = ' &rarr; <a href="' . get_term_link( $parent_term ) . '">' . esc_html( $parent_term->name ) . '</a>' . $term_title_html;
-				}
-				echo $term_title_html;
-			?></h2>
-			<?php if ( $queried_object->description ): ?>
-			<div class="term-description">
-			<?php echo wpautop( $queried_object->description ); ?>	
-			</div>
-			<?php endif; ?>
-		<?php else: ?>
 			<div class="left">
             	<header class="entry-header">
                 	<h1 class="entry-title">Program Schedule</h1>
@@ -83,7 +66,6 @@
                     <div>Keynotes, Lunches</div>
                 </div>
             </div>
-		<?php endif; ?>
 
 <?php $i = -1;
 foreach( $all_sessions as $session_day => $days_sessions ):
