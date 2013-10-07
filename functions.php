@@ -433,6 +433,7 @@ function ona13_widgets_init() {
 
 function ona13_wp_enqueue_scripts() {
 	wp_register_style("homepage", get_stylesheet_directory_uri()."/css/homepage.css", array("twentytwelve-fonts", "twentytwelve-style"));
+	wp_register_style("home-widget", get_stylesheet_directory_uri()."/css/home-widget.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("post", get_stylesheet_directory_uri()."/css/post.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("category", get_stylesheet_directory_uri()."/css/category.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("schedule", get_stylesheet_directory_uri()."/css/schedule.css", array("twentytwelve-fonts", "twentytwelve-style"));
@@ -447,6 +448,7 @@ function ona13_wp_enqueue_scripts() {
 	
 	if( is_front_page() ) {
 		wp_enqueue_style("homepage");
+		wp_enqueue_style("home-widget");
 	} else if( is_single() ) {
 		wp_enqueue_style("post");
 		if (get_post_type() == 'ona_session' || get_post_type() == 'ona_speaker'){
@@ -466,6 +468,7 @@ function ona13_wp_enqueue_scripts() {
 		wp_enqueue_script("schedule-filter");
 	} else if( is_page('midway') ) {
 		wp_enqueue_style("midway");
+		wp_enqueue_style("home-widget");
 	}
 		
 	wp_enqueue_script( 'jquery-isotope', get_stylesheet_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ) );

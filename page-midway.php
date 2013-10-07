@@ -26,14 +26,16 @@ get_header(); ?>
 		<p>An experimental space for journalism and technology and the conference playground, the Midway is the place for hands-on learning and experimentation with the most innovative tech and tools in digital journalism.</p>
         </div>
         <div class="sponsor-row">
-        	<p>The Midway is sponsored by:</p>
+        	<p>The Midway is brought to you with the generous support of:</p>
             <div class="logos">
                 <div id="sponsor_logo-2" class="sponsor_widget widget_sponsor_logo">
                     <a href="http://diederich.marquette.edu/" target="_blank"><img width="140" height="49" src="http://adam.ona/ona13/wp-content/uploads/2013/08/marquette-140x49.png" class="attachment-sponsor-row wp-post-image" alt="marquette"></a>
                 </div>
-                <div id="sponsor_logo-3" class="sponsor_widget widget_sponsor_logo"><div class="more">Your logo here</div></div>
             </div>
 		</div>
+        <div>
+        	<?php dynamic_sidebar( 'midway' ); ?>
+        </div>
         
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
@@ -44,22 +46,64 @@ get_header(); ?>
 		<header class="entry-header" style="display:none;">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 		</header><!-- .entry-header -->
-
-		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
-		<div class="entry-summary">
-			<?php the_excerpt(); ?>
-		</div><!-- .entry-summary -->
-		<?php else : ?>
+		
 		<div class="entry-content">
-			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
-			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
+			<?php the_content(); ?>
 		</div><!-- .entry-content -->
-		<?php endif; ?>
 
-		<footer class="entry-meta">
-			<?php twentytwelve_entry_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?>
-		</footer><!-- .entry-meta -->
+		<div id="participants">
+		<?	$args = array (
+				'post_type'=> 'sponsors',
+				'post_status'  => 'publish',
+				'posts_per_page' => -1,
+				'orderby'=> 'title',
+				'order'=> 'ASC',
+				'pagination' => false,
+				'meta_query' => array(
+					array(
+						'key' => '_sponsor_level',
+						'compare' => '=',
+						'value' => 'Midway Participant'
+					)
+				)
+			 ); 
+			$my_query = new WP_Query($args);
+			if ($my_query->have_posts()) { 
+			
+				echo '<h2 class="sponsor_level">'.$level.'</h2>';
+				
+				while ( $my_query->have_posts() ) : $my_query->the_post(); 
+					$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
+					$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true );?>
+	
+				<!--<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="<?php the_permalink(); ?> "><?php the_title(); ?></a></h1>
+					</header>
+			
+					<div class="entry-content">
+						<?php if ( has_post_thumbnail() ) { 
+							 echo '<a href="'.$external_link.'" target="_blank">';
+							 echo the_post_thumbnail( 'medium' );
+							 echo '</a>'; 
+						} 
+						the_content(); ?>
+						<p><a href="<?php echo $external_link;?>"  target='_blank'><?php echo $external_link;?></a></p>
+					</div>
+				</article>-->	
+
+				<?php if ( has_post_thumbnail() ) { 
+						 echo '<a href="'.$external_link.'" target="_blank">';
+						 echo the_post_thumbnail( 'medium' );
+						 echo '</a>'; 
+					} ?>
+
+			<?php 	wp_reset_postdata();
+				endwhile;
+			} ?>
+			</div>
+
 	</article><!-- #post -->
 
 
