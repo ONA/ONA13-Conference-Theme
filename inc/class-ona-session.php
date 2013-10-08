@@ -245,7 +245,7 @@ class ONA_Session {
 	 * @return string
 	 */
 	public function get_rebelmouse() {
-		$this->get_meta( 'rebelmouse' );
+		return $this->get_meta( 'rebelmouse' );
 	}
 
 	/**

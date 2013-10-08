@@ -5,6 +5,7 @@
 
 			<?php while ( have_posts() ) : the_post(); 
 				$session = new ONA_Session( get_the_ID() );
+				$rebelmouse = $session->get_rebelmouse();
                 ?>
                 <article>
                 	<ul class="session-meta">
@@ -96,10 +97,9 @@
                         </div>
                         <?php } ?>
                         <?php  // Liveblogging begins
-						$rebelmouse = $session->get_rebelmouse(); 
 						if ($rebelmouse) { ?>
                         <div class="liveblogging">
-                        <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=ona13%2F<?php echo $rebelmouse;?>&height=1500&flexible=1"></script>
+                        <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=<?php echo $rebelmouse;?>&height=1500&flexible=1"></script>
                         </div>
                         <?php } ?>
                         <?php ONA_display_related_by_tag(); ?>
