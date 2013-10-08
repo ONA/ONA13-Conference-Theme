@@ -348,6 +348,9 @@ class ONA13_Importer {
 			}
 		}
 
+		// Grab the last row of data
+		$rows[] = ltrim( substr( $data, $last_split, strlen( $data ) - $last_split ) );
+
 		$keys = str_getcsv( array_shift( $rows ) );
 
 		foreach( $rows as $i => $row ) {
