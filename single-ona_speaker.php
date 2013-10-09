@@ -38,7 +38,7 @@
 				<?php echo wpautop( $speaker->get_bio() );
 				$websites = explode(",", $speaker->get_website());
 				foreach($websites as $website){
-					echo '<p><a href="'.trim($website).'">'.trim($website).'</a></p>';
+					echo '<p><a href="'.trim($website).'" target="_blank">'.trim($website).'</a></p>';
 				}?>
 			</div>
 
@@ -57,5 +57,5 @@
 	</div><!-- #content -->
 
 </div><!-- #primary -->
-
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

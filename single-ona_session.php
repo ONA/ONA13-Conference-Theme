@@ -82,10 +82,10 @@
 								$thumburl = $thumb[0];?>
                                 <?php if ( $thumburl ) { ?>
                                 <img src="<?php echo esc_url( $thumburl ); ?>" />
-                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a> - <?php echo $speaker_obj->get_title().', '.$speaker_obj->get_organization();?><br /><?php echo '<a href="https://twitter.com/'.$twitterlink.'">'.$speaker_obj->get_twitter().'</a>';
+                                <p><a href="<?php echo get_permalink( $speaker_obj->get_id() ); ?>"><?php echo $speaker;?></a> - <?php echo $speaker_obj->get_title().', '.$speaker_obj->get_organization();?><br /><?php echo '<a href="https://twitter.com/'.$twitterlink.'" target="_blank">'.$speaker_obj->get_twitter().'</a>';
 								$websites = explode(",", $speaker_obj->get_website());
 								foreach($websites as $website){
-								echo ' | <a href="'.trim($website).'">'.trim($website).'</a>';}?></p>
+								echo ' | <a href="'.trim($website).'" target="_blank">'.trim($website).'</a>';}?></p>
                                 <?php } else { ?>
                                 <p class="noinfo"><?php echo $speaker.' - '.$speaker_obj->get_organization();?></p>
                                 <?php } ?>
@@ -96,13 +96,7 @@
                             <?php } ?>
                         </div>
                         <?php } ?>
-                        <?php  // Liveblogging begins
-						if ($rebelmouse) { ?>
-                        <div class="liveblogging">
-                        <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=<?php echo $rebelmouse;?>&height=1500&flexible=1"></script>
-                        </div>
-                        <?php } ?>
-                        <?php ONA_display_related_by_tag(); ?>
+                        
                         <!-- AddThis Button BEGIN -->
                         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                         <a class="addthis_button_preferred_1"></a>
@@ -115,6 +109,13 @@
                         <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
                         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=onlinenewsassociation"></script>
                         <!-- AddThis Button END -->
+                        <?php  // Liveblogging begins
+						if ($rebelmouse) { ?>
+                        <div class="liveblogging">
+                        <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=<?php echo $rebelmouse;?>&height=1500&flexible=1"></script>
+                        </div>
+                        <?php } ?>
+                        <?php ONA_display_related_by_tag(); ?>
                     </div>
                     
                     
