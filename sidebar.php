@@ -1,5 +1,7 @@
 	<?php if ( get_post_type() == 'ona_session' && is_single() ) : 
 			include ('sidebars/sidebar-session.php');
+	   elseif ( get_post_type() == 'ona_speaker' && is_single() ) : 
+			include ('sidebars/sidebar-speaker.php');
 	   elseif ( get_post_type() == 'sponsors' && is_singular() ) : 
 			include ('sidebars/sidebar-sponsor.php');
 	   elseif ( is_active_sidebar( 'sidebar-1' ) ) : ?>
