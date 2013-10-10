@@ -46,17 +46,17 @@ if (is_singular()){
 	$excerpt = get_the_excerpt();
 	$title = get_the_title().' | ONA13 - Atlanta, GA';
 	$permalink = get_permalink();
+	echo '<meta property="og:url" content="'.$permalink.'" />';
+	echo '<meta property="og:type" content="article" />';
 } else {
 	$excerpt = "";
 	$title = "";
 	$permalink = "";
 	$ogimage = get_stylesheet_directory_uri().'/images/ona_fbk.png';
+	echo '<meta property="og:type" content="website" />';
 } ?>
-
 <meta property="og:title" content="<?php echo $title;?>" />
-<meta property="og:type" content="article" />
 <meta property="og:image" content="<?php echo $ogimage;?>" />
-<meta property="og:url" content="<?php echo $permalink; ?>" />
 <meta property="og:description" content="<?php echo $excerpt; ?>" />
 
 </head>
