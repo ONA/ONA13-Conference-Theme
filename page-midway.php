@@ -84,7 +84,7 @@ get_header(); ?>
 					array(
 						'taxonomy' => 'session-type',
 						'field' => 'slug',
-						'terms' => 'make' // <-- Needs to be "midway"
+						'terms' => 'midway' // <-- Needs to be "midway"
 					)
 				),
                 'posts_per_page' => -1,
@@ -106,7 +106,7 @@ get_header(); ?>
 			$i = -1;
 			if (count($all_sessions) == 0) {
 				echo '<h3 class="schedule_day">Midway schedule coming soon</h3>';
-			}
+			} else {
 			foreach( $all_sessions as $session_day => $days_sessions ):
 				$day_full_name = date( 'l, F d', strtotime( $session_day ) );
 				$i++;
@@ -146,7 +146,8 @@ get_header(); ?>
             <?php endforeach; ?>
             </div>
             </div>
-        	<?php endforeach; ?>
+        	<?php endforeach; 
+			} ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
