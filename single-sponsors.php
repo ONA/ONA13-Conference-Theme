@@ -20,12 +20,14 @@ get_header(); ?>
                         <h1 class="entry-title"><?php the_title();?></h1>
                     </header>
                     <div class="entry-content">
-						<?php if($sponsor_level!="Exhibitors" && $sponsor_level!="Supporters"){ ?>
+						<?php if($sponsor_level!="Exhibitors" && $sponsor_level!="Supporters" && $sponsor_level!="Midway Participant"){ ?>
                         <div class="sponsor-level <?php echo $sponsor_level;?>"><?php echo $sponsor_level;?> Sponsor</div>
                         <?php } else if($sponsor_level=="Supporters"){ ?>
                         <div class="sponsor-level <?php echo $sponsor_level;?>">Supporter</div>
-                        <?php } else { ?>
+                        <?php } else if($sponsor_level=="Exhibitors"){ ?>
                         <div class="sponsor-level">Exhibitor</div>
+                        ><?php } else { ?>
+                        <div class="sponsor-level">Midway Participant</div>
                         <?php } ?>
                     	<?php if ( has_post_thumbnail() ) { 
 							 echo "<a href='".$external_link."' target='_blank'>";
