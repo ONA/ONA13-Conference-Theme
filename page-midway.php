@@ -46,6 +46,7 @@ get_header(); ?>
             </div>
         </div>
         <div class="sponsor-row">
+        	<h4>Innovators</h4>
         	<p>The Midway is brought to you with the generous support of:</p>
             <div class="logos">
                 <div id="sponsor_logo-2" class="sponsor_widget widget_sponsor_logo">
@@ -60,7 +61,6 @@ get_header(); ?>
 		<h1 class="entry-title" style="display:none;"><?php the_title(); ?></h1>
 
 		<div id="participants">
-        	<h3>Innovators</h3>
 		<?	$args = array (
 				'post_type'=> 'sponsors',
 				'post_status'  => 'publish',
