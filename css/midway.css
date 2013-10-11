@@ -16,7 +16,8 @@ max-width:100%;
 #icons {
 	
 }
-#icons h3 {
+#icons h3,
+#participants h3 {
 	font-size: 52px;
 	font-weight: 300;
 	font-family: 'Source Sans Pro', sans-serif;

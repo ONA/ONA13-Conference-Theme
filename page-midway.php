@@ -25,7 +25,7 @@ get_header(); ?>
 	<div id="primary" class="site-content midway">
 		<div id="content" role="main">
         <div class="lead_text">
-		<p>The Midway is where ONA13 comes to life. In this participatory space, we connect people, technology and journalism. The place where innovative ideas are born at the conference- this is a home to collaborate, explore, play and build.</p>
+		<p>The Midway is where ONA13 comes to life. In this participatory space, we connect people, technology and journalism. The place where innovative ideas are born at the conference &mdash; this is a home to...</p>
         </div>
         <div id="icons">
         	<h3>Explore, Play, Build, Repeat.</h3>
@@ -58,13 +58,9 @@ get_header(); ?>
         </div>-->
         
 		<h1 class="entry-title" style="display:none;"><?php the_title(); ?></h1>
-		
-        <div class="entry-summary">
-		<?php the_content(); ?>
-		</div>
 
 		<div id="participants">
-        
+        	<h3>Innovators</h3>
 		<?	$args = array (
 				'post_type'=> 'sponsors',
 				'post_status'  => 'publish',
