@@ -25,7 +25,25 @@ get_header(); ?>
 	<div id="primary" class="site-content midway">
 		<div id="content" role="main">
         <div class="lead_text">
-		<p>An experimental space for journalism and technology and the conference playground, the Midway is the place for hands-on learning and experimentation with the most innovative tech and tools in digital journalism.</p>
+		<p>The Midway is where ONA13 comes to life. In this participatory space, we connect people, technology and journalism. The place where innovative ideas are born at the conference- this is a home to collaborate, explore, play and build.</p>
+        </div>
+        <div id="icons">
+        	<h3>Explore, Play, Build, Repeat.</h3>
+        	<div>
+            	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/midway-icon-explore.png" />
+                <h4>Explore</h4>
+                <p>We discover and connect with the most creative innovators of digital journalism.</p>
+            </div>
+            <div>
+            	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/midway-icon-play.png" />
+                <h4>Play</h4>
+                <p>We bring a child-like curiosity using crafts, blinky lights and games to create new solutions for journalism.</p>
+            </div>
+            <div>
+            	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/midway-icon-repeat.png" />
+                <h4>Build</h4>
+                <p>We collaborate with experts in the space to design, iterate and create. Then repeat.</p>
+            </div>
         </div>
         <div class="sponsor-row">
         	<p>The Midway is brought to you with the generous support of:</p>
@@ -35,9 +53,9 @@ get_header(); ?>
                 </div>
             </div>
 		</div>
-        <div>
+        <!--<div>
         	<?php dynamic_sidebar( 'midway' ); ?>
-        </div>
+        </div>-->
         
 		<h1 class="entry-title" style="display:none;"><?php the_title(); ?></h1>
 		

@@ -1,6 +1,7 @@
 .midway_logo {
 	margin-top: 0px;
 	margin-bottom: 15px;
+	text-align: center;
 }
 .midway_logo img {
 max-width:100%;	
@@ -12,14 +13,41 @@ max-width:100%;
 	font-family: 'Source Sans Pro', serif;
 	font-weight: 300;
 }
+#icons {
+	
+}
+#icons h3 {
+	font-size: 52px;
+	font-weight: 300;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-transform: uppercase;
+}
+#icons h4 {
+	font-size: 2.6em;
+	margin: 20px 5% 0;
+	text-align: center;
+}
+#icons p {
+	text-align:center;
+	margin: 0 5%;
+	line-height:1.4;
+}
+#icons > div {
+	float:left;	
+	width:33%;
+}
+#icons img {
+	max-width:100%;
+}
 .sponsor-row {
 	margin-bottom:40px;
 	margin-top:0;
 }
 .sponsor-row > p {
 	font-size: 0.8em;
-color: #CCC;
-text-transform: uppercase;	
+	color: #CCC;
+	text-transform: uppercase;	
+	padding-top:40px;
 }
 #participants {
 text-align:center;	
@@ -39,5 +67,27 @@ margin-right: 30px;
 @media (max-width:670px) {
 	.midway_logo {
 	margin-bottom:20px;	
+	}
+}
+
+@media (max-width:600px) {
+	#icons > div {
+	float:none;
+	width:auto;
+	overflow: auto;
+margin-bottom: 20px;
+	}
+	#icons img {
+	float:left;
+	margin-right:20px;
+	max-width:30%;
+	}
+	#icons h4 {
+	clear:none;	
+	}
+	#icons h4,
+	#icons p {
+	margin:0;
+	text-align:left;
 	}
 }
