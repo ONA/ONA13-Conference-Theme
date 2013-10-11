@@ -52,7 +52,7 @@ max-width:100%;
 }
 .sponsor-row > p {
 	font-size: 0.8em;
-	color: #CCC;
+	color: #9C9C9C;
 	text-transform: uppercase;	
 }
 #participants {
@@ -75,7 +75,12 @@ margin-right: 30px;
 	margin-bottom:20px;	
 	}
 }
-
+@media screen and (min-width: 670px) {
+	.site-content {
+		background-color: transparent;
+		box-shadow: none;
+	}
+}
 @media (max-width:600px) {
 	#icons > div {
 	float:none;
