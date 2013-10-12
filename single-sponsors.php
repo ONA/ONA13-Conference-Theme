@@ -16,6 +16,17 @@ get_header(); ?>
 				$sponsor_level = get_post_meta( get_the_ID(), '_sponsor_level', true ); ?>
 
                 <article>
+                	<ul class="session-meta">
+                    	<?php if($sponsor_level == "Midway Participant") { ?>
+                        <li>
+                        <a href="<?php echo home_url(); ?>/midway/">More about the Midway &rarr;</a>
+                        </li>
+                        <?php } else { ?>
+                        <li>
+                        <a href="<?php echo home_url(); ?>/sponsors/">All sponsors &rarr;</a>
+                        </li>
+                        <?php } ?>
+                    </ul>
                     <header class="entry-header">
                         <h1 class="entry-title"><?php the_title();?></h1>
                     </header>
