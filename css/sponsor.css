@@ -30,10 +30,10 @@ background: #99C;
 color: #FFF;
 display: inline-block;
 }
-.ONAngel { background: #fff; border: 1px solid #999; color: #999; box-sizing:content-box;}
-.Diamond { background: #EEEEE9; color: #999; }
-.Platinum { background: #D2D8E2; }
-.Gold { background: #DAD169; }
-.Silver { background: #ADADAD; }
-.Bronze { background: #DAB169; }
-.Supporters { background: #E99595; }
+.track div.ONAngel { background: #fff; border: 1px solid #999; color: #999; box-sizing:content-box;}
+.track div.Diamond { background: #EEEEE9; color: #999; }
+.track div.Platinum { background: #D2D8E2; }
+.track div.Gold { background: #DAD169; }
+.track div.Silver { background: #ADADAD; }
+.track div.Bronze { background: #DAB169; }
+.track div.Supporters { background: #E99595; }
