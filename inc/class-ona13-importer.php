@@ -24,7 +24,6 @@ class ONA13_Importer {
 			array(
 					'csv_field'          => 'Session Description',
 					'object_field'       => 'description',
-					'sanitize_callback'  => 'strip_tags',
 				),
 			array(
 					'csv_field'          => 'Room',
