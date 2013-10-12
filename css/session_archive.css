@@ -40,7 +40,7 @@ background: #ffbdb0;
 background: #fff9eb;
 }
 .single-session.Midway {
-background: #8DCB86;
+background: #C6E5C3;
 }
 .single-session:hover {
 background: #C4C4C4;
@@ -58,6 +58,9 @@ background: #A92A00;
 }
 .single-session.Make:hover {
 background: #DCBE62;
+}
+.single-session.Midway:hover {
+background: #8DCB86;
 }
 .session-list > a:nth-of-type(3n+1) .single-session{
 	clear:both;

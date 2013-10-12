@@ -97,8 +97,8 @@ get_header(); ?>
 				'tax_query' => array(
 					array(
 						'taxonomy' => 'session-type',
-						'field' => 'slug',
-						'terms' => 'midway' // <-- Needs to be "midway"
+						'field' => 'name',
+						'terms' => 'Midway' // <-- Needs to be "midway"
 					)
 				),
                 'posts_per_page' => -1,
