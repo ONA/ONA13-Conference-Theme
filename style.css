@@ -2226,3 +2226,15 @@ float:right;
 margin-left:20px;
 margin-bottom:20px;	
 }
+
+
+
+/* CSS Nav overrides for tony nav */
+
+#megaMenu.megaMenuHorizontal ul.megaMenu > li > a, 
+#megaMenu.megaMenuHorizontal ul.megaMenu > li > span.um-anchoremulator {
+padding:10px 0;	
+}
+/* IN UberMenu Options -> Style Generator, change top level font-size to 14 px
+/* Images - change height and width to 19 px 
+/* Deactivate sticky menu extension */
