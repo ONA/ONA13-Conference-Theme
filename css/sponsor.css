@@ -1,3 +1,22 @@
+.session-meta li {
+display: inline-table;
+padding: 5px 10px 5px 0;
+border-right: 1px solid #ccc;
+margin-right: 10px;	
+font-weight:700;
+}
+.session-meta li:last-of-type {
+padding: 5px 0;
+border-right: 0;
+margin-right: 0;	
+}
+.track div {
+background: #ccc;
+padding: 4px 8px;
+color: #FFF;
+border-radius: 5px;
+}
+
 .wp-post-image {
 	float:right;
 	padding-left:20px;
@@ -5,7 +24,6 @@
 	border-left:1px solid #ddd;	
 }
 .sponsor-level {
-margin-bottom:10px;	
 padding: 2px 5px 3px;
 border-radius: 4px;
 background: #99C;
