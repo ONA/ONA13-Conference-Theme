@@ -35,7 +35,7 @@ get_header(); ?>
                         <p>
                         <?php if( $speaker->get_twitter() != '' ) { 
 							$twitterlink = str_replace("@", "", $speaker->get_twitter());
-							echo '<a href="'.$twitterlink.'" target="_blank">'.$speaker->get_twitter().'</a>'; 
+							echo '<a href="http://www.twitter.com/'.$twitterlink.'" target="_blank">'.$speaker->get_twitter().'</a>'; 
 						} else { 
 							echo "---";
 						} ?>
