@@ -66,7 +66,7 @@
 							} ?>
                         </div>
                         <?php } ?>
-                        <p><?php echo $session->get_description();?></p>
+                        <p><?php echo wpautop($session->get_description());?></p>
                         <?php $speakers = $session->get_speakers(); 
 						if ($speakers[0]) { ?>
                     	<div class="speakers">
