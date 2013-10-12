@@ -46,7 +46,7 @@ get_header(); ?>
             </div>
         </div>
         <div class="sponsor-row">
-        	<h4>Innovators</h4>
+        	<h4><a href="<?php echo home_url(); ?>/midway/participants/">Innovators</a></h4>
         	<p>The Midway is brought to you with the generous support of:</p>
             <div class="logos">
                 <div id="sponsor_logo-2" class="sponsor_widget widget_sponsor_logo">

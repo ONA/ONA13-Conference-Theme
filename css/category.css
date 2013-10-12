@@ -13,6 +13,9 @@ background: rgb(207, 207, 207);
 color: #fff;
 padding: 0 10px;
 }
+.entry-content {
+overflow: auto;
+}
 #content h2 {
 clear:none;
 text-transform: none;

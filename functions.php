@@ -472,7 +472,7 @@ function ona13_wp_enqueue_scripts() {
 	} else if( is_post_type_archive('ona_session') ) {
 		wp_enqueue_style("session_archive");
 		wp_enqueue_script("session-filter");
-	} else if( is_category() || is_archive() || is_search()) {
+	} else if( is_category() || is_archive() || is_search() || is_page('participants') ) {
 		wp_enqueue_style("category");
 	} else if( is_page('schedule') ) { // Soon to be deprecated
 		wp_enqueue_style("schedule");

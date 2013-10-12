@@ -36,7 +36,7 @@
 				$my_query = new WP_Query($args);
 				if ($my_query->have_posts()) { 
 				
-					echo '<h2 class="sponsor_level">'.$level.'</h2>';
+					echo '<h2 class="sponsor_level">Innovators</h2>';
 					
 					while ( $my_query->have_posts() ) : $my_query->the_post(); 
 						$external_link = get_post_meta( get_the_ID(), '_sponsor_url', true );
