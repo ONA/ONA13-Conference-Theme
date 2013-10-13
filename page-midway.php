@@ -79,7 +79,7 @@ get_header(); ?>
 			$my_query = new WP_Query($args);
 			if ($my_query->have_posts()) { 
 				while ( $my_query->have_posts() ) : $my_query->the_post(); 
-					$external_link = get_permalink(get_the_ID());
+					$external_link = home_url().'/midway/participants/'.$post->post_name.'/';
 					if ( has_post_thumbnail() ) { 
 						 echo '<a href="'.$external_link.'">';
 						 echo the_post_thumbnail( 'medium' );
@@ -98,7 +98,7 @@ get_header(); ?>
 					array(
 						'taxonomy' => 'session-type',
 						'field' => 'name',
-						'terms' => 'Midway' // <-- Needs to be "midway"
+						'terms' => 'Midway' // <-- Needs to be "Midway"
 					)
 				),
                 'posts_per_page' => -1,

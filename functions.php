@@ -790,4 +790,20 @@ function change_post_type($myquery) {
   }
 }
 
+// Rewrite rule for meidway participants
+add_filter( 'rewrite_rules_array','my_insert_rewrite_rules' );
+add_filter( 'query_vars','my_insert_query_vars' );
+function my_insert_rewrite_rules( $rules )
+{
+	$newrules = array();
+	$newrules['midway/participants/(.+)?/?$'] = 'index.php?sponsors=$matches[1]&post_type=sponsors&name=$matches[1]';
+	return $newrules + $rules;
+}
+function my_insert_query_vars( $vars )
+{
+   // array_push($vars, 'id');
+    return $vars;
+}
+
+
 ?>
