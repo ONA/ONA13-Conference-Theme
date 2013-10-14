@@ -562,7 +562,7 @@ a:hover {
 #header_info {
 	clear: left;
 	margin: 0 2%;
-	padding-bottom:10px;
+	padding-bottom:5px;
 	overflow: auto;
 }
 #header_info > div {
@@ -1815,7 +1815,7 @@ img#wpstats {
 	/* Same breakpoint as UberMenu */
 	#header_info {
 		display:block;
-		padding-top: 10px;
+		padding-top: 5px;
 		clear: none;
 		position: relative;
 		top: 0;
