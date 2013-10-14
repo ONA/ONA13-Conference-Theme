@@ -71,6 +71,18 @@ if (is_singular()){
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</hgroup>
         
+        <div id="header_info">
+            <?php $header_image = get_header_image();
+            if ( ! empty( $header_image ) ) : ?>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_bloginfo('stylesheet_directory'); ?>/images/ona13_19px.png" class="header-image" alt="" /></a>
+            <?php endif; ?>
+            <div class="about">
+                <p>October 17-19, 2013 &bull; Atlanta, GA</p>
+            </div>
+            <div class="searchform">
+                <?php locate_template( array( 'searchform.php' ), true ) ?>
+            </div>
+        </div>
         
         </div>
         </div>
