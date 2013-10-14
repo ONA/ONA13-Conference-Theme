@@ -31,6 +31,36 @@
 	text-transform:uppercase;	
 }
 
+/* Timeline */
+.vco-storyjs .vco-feature h3, .vco-storyjs .vco-feature h4, .vco-storyjs .vco-feature h5, .vco-storyjs .vco-feature h6,
+.vco-timeline .vco-navigation .timenav .content .marker .flag .flag-content h3,
+.vco-storyjs h2.start {
+	border-bottom:0;
+	height:auto;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
+	font-weight: 600;
+}
+.vco-storyjs .vco-feature .pad-left h3, .vco-storyjs .vco-feature .pad-left h4, .vco-storyjs .vco-feature .pad-left h5, .vco-storyjs .vco-feature .pad-left h6,
+.vco-timeline .vco-navigation .timenav .content .marker .flag .flag-content h3 {
+	text-align: left;	
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-weight: 600;
+}
+#page .vco-storyjs { 
+z-index:5;
+}
+#primary {
+	margin-bottom:15px;
+}
+.vco-slider .slider-item .content .content-container .text .container h2.date {
+font-size:12px;	
+}
+#primary .vco-storyjs p, #primary .vco-storyjs blockquote, #primary .vco-storyjs blockquote p, #primary .vco-storyjs .twitter blockquote p {
+	font-family: 'Source Sans Pro', serif !important;
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 150%;
+}
 	
 @media screen and (min-width:670px){
 	body.home .site-content,

@@ -451,14 +451,18 @@ function ona13_wp_enqueue_scripts() {
 	wp_register_style("midway", get_stylesheet_directory_uri()."/css/midway.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("session_archive", get_stylesheet_directory_uri()."/css/session_archive.css", array("twentytwelve-fonts", "twentytwelve-style"));
 	wp_register_style("speaker_archive", get_stylesheet_directory_uri()."/css/speaker_archive.css", array("twentytwelve-fonts", "twentytwelve-style", "category"));
+	wp_register_style("timeline-css", get_stylesheet_directory_uri()."/css/timeline.css");
 	
 	wp_register_script("schedule-filter", get_stylesheet_directory_uri()."/js/schedule-filter.js", array("jquery"));
 	wp_register_script("session-filter", get_stylesheet_directory_uri()."/js/session-filter.js", array("jquery"));
-	wp_register_script("add-this-event", get_stylesheet_directory_uri()."/js/addthisevent.js", array("jquery"));
+	wp_register_script("add-this-event", get_stylesheet_directory_uri()."/js/addthisevent.js", array("jquery")); 
+	wp_register_script("storyjs-embed", get_stylesheet_directory_uri()."/js/storyjs-embed.js", array("jquery"), array(), true); 
 	
 	if( is_front_page() ) {
 		wp_enqueue_style("homepage");
 		wp_enqueue_style("home-widget");
+		wp_enqueue_style("timeline-css");
+		wp_enqueue_script("storyjs-embed");
 	} else if( is_single() ) {
 		wp_enqueue_style("post");
 		if (get_post_type() == 'ona_session' || get_post_type() == 'ona_speaker'){
