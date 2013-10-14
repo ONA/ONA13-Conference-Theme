@@ -28,6 +28,14 @@ get_header(); ?>
         }
     </script>
     
+     <!-- Sponsors -->
+        <div class="sponsor-row">
+        	<h4><span>Sponsors</span></h4>
+            <div class="logos">
+                <?php dynamic_sidebar( 'sponsors' ); ?>
+            </div>
+        </div>
+    
     <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=ona13_broadcast_for_all&height=1500&flexible=1&theme=4880"></script>
     
 <?php get_footer(); ?>
