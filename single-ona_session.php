@@ -128,6 +128,6 @@
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
-
+<?php include('inc/chartbeat.php'); ?>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

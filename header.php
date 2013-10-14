@@ -21,6 +21,7 @@
 <html <?php language_attributes(); ?>>
 <!--<![endif]-->
 <head>
+<script type='text/javascript'>var _sf_startpt=(new Date()).getTime()</script>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,900' rel='stylesheet' type='text/css'>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
