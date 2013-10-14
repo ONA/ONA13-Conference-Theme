@@ -36,13 +36,13 @@
                         <?php } ?>
                         </li>
                         <li>
-                        <a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent">
+                        <a href="<?php the_permalink();?> " title="Add to Calendar" class="addthisevent">
                             Add to Calendar
                             <span class="_start"><?php echo $session->get_start_time( 'm-d-Y H:i' ); ?></span>
                             <span class="_end"><?php echo $session->get_end_time( 'm-d-Y H:i' ); ?></span>
                             <span class="_zonecode">15</span>
                             <span class="_summary"><?php echo $session->get_title(); ?></span>
-                            <span class="_description"><?php echo strip_tags($session->get_description());?></span>
+                            <span class="_description"><?php echo substr(strip_tags($session->get_description()), 0, 500);?>... More at <?php the_permalink();?></span>
                             <span class="_location">Atlanta Marriott - <?php echo ( $session->get_room_name() ) ? $session->get_room_name() : '<em>No Room</em>'; ?></span>
                             <span class="_organizer">ONA13</span>
                             <span class="_all_day_event">false</span>
