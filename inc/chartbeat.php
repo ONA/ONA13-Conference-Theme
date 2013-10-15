@@ -1,6 +1,14 @@
-<?php global $post; 
+<?php 
+if (is_singular()){
+	global $post; 
 	$categories = get_the_category($post->ID); 
-	$user_info = get_userdata($post->post_author); ?>
+	$user_info = get_userdata($post->post_author); 
+	$section = $categories[0]->name;
+	$author = $user_info->user_firstname.' '.$user_info->user_lastname;
+} else { 
+	$section = "";
+	$author = "";
+} ?>
 
 <script type='text/javascript'>
     var _sf_async_config={};
@@ -8,8 +16,8 @@
     _sf_async_config.uid = 50676;
     _sf_async_config.domain = 'ona13.journalists.org';
     _sf_async_config.useCanonical = true;
-    _sf_async_config.sections = '<?php echo $categories[0]->name;?>';
-    _sf_async_config.authors = '<?php echo $user_info->user_firstname.' '.$user_info->user_lastname; ?>';
+    _sf_async_config.sections = '<?php echo $section;?>';
+    _sf_async_config.authors = '<?php echo $author; ?>';
     /** CONFIGURATION END **/
     (function(){
       function loadChartbeat() {

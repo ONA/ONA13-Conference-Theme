@@ -60,5 +60,6 @@
   ga('send', 'pageview');
 
 </script>
+<?php include('inc/chartbeat.php'); ?>
 </body>
 </html>
