@@ -25,7 +25,7 @@ get_header(); ?>
                             <?php } else if($sponsor_level=="Exhibitors"){ ?>
                             <div class="sponsor-level">Exhibitor</div>
                             ><?php } else { ?>
-                            <div class="sponsor-level">Midway Participant</div>
+                            <div class="sponsor-level Midway">Midway Participant</div>
                             <?php } ?>
                         </li>
                     	<?php if($sponsor_level == "Midway Participant") { ?>
