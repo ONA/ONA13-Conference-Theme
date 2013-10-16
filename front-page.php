@@ -42,6 +42,6 @@ get_header(); ?>
             </div>
         </div>
     
-    <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=ona13_broadcast_for_all&height=1500&flexible=1&theme=4880"></script>
+    <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=ona13_front_page&height=1500&flexible=1&theme=4880&show_rebelnav=1"></script>
     
 <?php get_footer(); ?>
