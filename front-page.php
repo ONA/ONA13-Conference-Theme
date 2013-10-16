@@ -13,12 +13,18 @@ get_header(); ?>
     	<div id="my-timeline"></div>
     
 	</div><!-- #primary -->
-
+<?php 
+	if ($_SERVER['SERVER_NAME'] == 'ona13.journalists.org') {
+		$timeline_URL = 'https://docs.google.com/spreadsheet/pub?key=0AliJph1LBLsOdGRyb2NiXzBKMGgwcUpSbWFpd1VDWFE&output=html';
+	} else {
+		$timeline_URL = 'https://docs.google.com/spreadsheet/pub?key=0AliJph1LBLsOdEtSdTBhd3ltMjY3bHhjNUJrTl9xUlE&output=html';
+	} ?>
+    
 	<script type="text/javascript">
         var timeline_config = {
             width:              '100%',
             height:             '600',
-            source:             'https://docs.google.com/spreadsheet/pub?key=0AliJph1LBLsOdEtSdTBhd3ltMjY3bHhjNUJrTl9xUlE&output=html',
+            source:             '<?php echo $timeline_URL;?>',
             embed_id:           'my-timeline',               //OPTIONAL USE A DIFFERENT DIV ID FOR EMBED
             start_at_end:       true,                          //OPTIONAL START AT LATEST DATE
             font:               'Bevan-PotanoSans',             //OPTIONAL FONT
