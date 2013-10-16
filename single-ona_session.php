@@ -71,10 +71,16 @@
 						$av_content = get_post_meta( get_the_ID(), '_av_content' );
 						if( $av_content ) { $av_content = $av_content[0]; }
 						if( $av_content ) { ?>
-							<?php if($av_content['audio']) { ?>
-                            <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-audio.png" height="14" /> &mdash; This session will have recorded audio</p>
-                            <?php } if ($av_content['video']) { ?>
+							<?php if ($av_content['video']) { 
+								if ($now > ($session->get_start_time()-300) && $now < ($session->get_end_time()+300)) { 
+								
+								// LIVESTREAM EMBED CODE HERE
+								
+								} else { ?>
                             <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-video.png" height="14" /> &mdash; This session will have live video</p>
+                            <?php }
+							} if($av_content['audio']) { ?>
+                            <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-audio.png" height="14" /> &mdash; This session will have recorded audio</p>
                             <?php } ?>
                         <?php } ?>
                         <?php $speakers = $session->get_speakers(); 

@@ -1,6 +1,19 @@
 @charset "UTF-8";
 /* CSS Document */
-
+body .site,
+body .site-content {
+	max-width:100%;	
+}
+body .wrapper {
+	margin:0;
+}
+body #megaMenu {
+margin-bottom:0;	
+}
+body.home #primary {
+width: 100%;
+padding: 15px 0;
+}
 
 .lead_text p {
 	font-size:1.7em;
