@@ -110,6 +110,8 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 			<ul class="session-list session-count-<?php echo count( $posts ); ?>">
 			<?php foreach( $posts as $post ): 
 				setup_postdata( $post ); 
+				$av_content = get_post_meta( get_the_ID(), '_av_content' );
+				if( $av_content ) { $av_content = $av_content[0]; }
 				$session = new ONA_Session( get_the_ID() ); ?>
                 <a href="<?php the_permalink(); ?>">
                 <?php if ($session->get_session_type_name() == ''){ 
@@ -118,6 +120,15 @@ foreach( $all_sessions as $session_day => $days_sessions ):
 					$session_type = $session->get_session_type_name();
 				} ?>
 				<li class="single-session <?php echo $session_type;?>">
+                	<?php if($av_content) { ?>
+                    <div class="av_content">
+						<?php if($av_content['audio']) { ?>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-audio.png" height="14" />
+                        <?php } if ($av_content['video']) { ?>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-video.png" height="14" />
+                        <?php } ?>
+                    </div>
+					<?php } ?>
 					<h4 class="session-title"><?php echo $session->get_title(); ?></h4>
                     <div class="meta"><?php echo $session->get_room_name();
                     if ( $session->get_hashtag() != "" ) {

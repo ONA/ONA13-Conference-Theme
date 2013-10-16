@@ -21,6 +21,8 @@ if( is_admin() ) {
 	add_action( 'save_post', 'sponsor_extras_save' );
 	add_action( 'add_meta_boxes', 'post_featured_image_position_metabox' );
 	add_action( 'save_post', 'post_featured_image_position_save' );
+	add_action( 'add_meta_boxes', 'av_content_metabox' );
+	add_action( 'save_post', 'av_content_save' );
 	
 	/* Adds "FEATURED SPONSOR" box to posts and sessions */
 	function featured_sponsor_metabox() {
@@ -177,6 +179,38 @@ if( is_admin() ) {
 			update_post_meta($post_ID, '_sponsor_tagline', $tagline);
 		add_post_meta($post_ID, '_sponsor_level', $level, true) or
 			update_post_meta($post_ID, '_sponsor_level', $level);
+	}
+	
+	/* ----------------------------------------------- */
+	/* Adds "AV/CONTENT" box to sessions */
+	function av_content_metabox() {
+		$screens = array( 'ona_session' );
+		foreach ($screens as $screen) {
+			add_meta_box( 'av_content_metabox', __( 'Audio or Livestream Content?', 'myplugin_textdomain' ),
+				'av_content_print', $screen//, 'side'
+			);
+		}
+	}
+	
+	/* Prints "FEATURED IMAGE POSITION" box */
+	function av_content_print( $post ) {
+		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
+		$value = get_post_meta( $post->ID, '_av_content' ); 
+		$value = $value[0]; ?>
+        <label><input type="checkbox" name="av_content[audio]" value="Audio" <?php checked( 'Audio', $value['audio'] ); ?>>&nbsp;Audio</label><br/><br/>
+		<label><input type="checkbox" name="av_content[video]" value="Livestream" <?php checked( 'Livestream', $value['video'] ); ?>>&nbsp;Livestream</label>
+	<? }
+	
+	/* Saves "FEATURED IMAGE POSITION" content */
+	function av_content_save( $post_id ) {
+		if ( ! current_user_can( 'edit_post', $post_id ) )
+			return;
+		if ( ! isset( $_POST['myplugin_noncename'] ) || ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename( __FILE__ ) ) )
+		  return;
+		$post_ID = $_POST['post_ID'];
+		$mydata =  $_POST['av_content'];
+		add_post_meta($post_ID, '_av_content', $mydata, true) or
+		update_post_meta($post_ID, '_av_content', $mydata);
 	}
 }
 /* End ADMIN */

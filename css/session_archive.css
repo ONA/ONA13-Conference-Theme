@@ -74,12 +74,17 @@ background: #8DCB86;
 }
 .session-count-1 > a > li { width:98%;}
 .session-count-2 > a > li { width:48%; }
-
+.av_content {
+	float:right;
+	margin-left:10px;
+	margin-bottom:8px;	
+}
 h4.session-title {
 	font-family:'Source Sans Pro', serif;
 	color:#222;
 	font-weight:600;
 	text-transform:none;
+	clear:none;
 }
 a .single-session .meta {
 	font-weight:400;
