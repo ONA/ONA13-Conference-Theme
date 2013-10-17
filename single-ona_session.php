@@ -70,12 +70,15 @@
                         <?php 
 						$av_content = get_post_meta( get_the_ID(), '_av_content' );
 						if( $av_content ) { $av_content = $av_content[0]; }
+						echo "<!-- Now: ".(time()-14000)."-->";
+						echo "<!-- Start: ".$session->get_start_time()."-->";
 						if( $av_content ) { ?>
 							<?php if ($av_content['video']) { 
+								$now = time()-14000;
 								if ($now > ($session->get_start_time()-300) && $now < ($session->get_end_time()+300)) { ?>
 							<iframe width="100%" height="400" src="http://cdn.livestream.com/embed/ona13?layout=4&amp;height=400&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>
 							<?php } else { ?>
-                            <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-video.png" height="14" /> &mdash; This session will have live video</p>
+                            <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-video.png" height="14" /> &mdash; This session will have <a href="http://ona13.journalists.org/live/">live video</a></p>
                             <?php }
 							} if($av_content['audio']) { ?>
                             <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-audio.png" height="14" /> &mdash; This session will have recorded audio</p>

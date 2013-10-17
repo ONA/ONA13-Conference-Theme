@@ -108,13 +108,15 @@ padding-right:5px;
                 
                 $sessions = new WP_Query( $args );
                 $lastday = 'Thursday';
+				$now = time()-14000;
+				echo "<!-- Now: ".$now."-->";
                 while( $sessions->have_posts() ) {
                     $sessions->the_post(); 
 					$av_content = get_post_meta( get_the_ID(), '_av_content', true );
 					if ( array_key_exists("video", $av_content) ) {
                     $start_timestamp = get_post_meta( get_the_ID(), 'start_time', true );
-					$end_timestamp = get_post_meta( get_the_ID(), 'start_time', true );
-					$now = time();
+					$end_timestamp = get_post_meta( get_the_ID(), 'end_time', true ) + 900;
+					echo "<!-- Start: ".$start_timestamp."-->";
 					if ($now > $start_timestamp && $now < $end_timestamp) {
 						$nowclass = "now";	
 					} else {
@@ -124,7 +126,7 @@ padding-right:5px;
                         $lastday =	date('l', $start_timestamp);
                         echo '</ul><ul class="headlines"><h4 class="widget-title">'.$lastday.' sessions</h4>';
                     } ?>
-                    <li class="<?php echo $nowclass;?>">
+                    <li class="<?php echo $nowclass;?>" data:start="<?php echo $start_timestamp;?>" data:end="<?php echo $end_timestamp;?>">
                         <a href="<?php the_permalink();?>" title="<?php the_title();?>"><?php the_title();?><br/><span class="date"><?php echo date('g:i a', $start_timestamp);?></span></a>
                     </li>
                 <?php } } ?>
@@ -134,5 +136,29 @@ padding-right:5px;
             </div><!-- .entry-content -->
 		</div><!-- #content -->
 	</div><!-- #primary -->
+    
+<script>
+
+function checkLive() {
+	var currentdate = new Date().getTime();
+	currentdate = (currentdate/1000) - 14000;
+	jQuery('.headlines li').each(function(index, element) {
+		if (jQuery(this).attr("data:start") < currentdate) {
+			if (jQuery(this).attr("data:end") > currentdate) {
+				if ( !jQuery(this).hasClass("now") ) {
+					jQuery(".now").removeClass("now");
+					jQuery(this).addClass("now");
+				} else {
+				}
+			}
+		}
+	});	
+}
+	
+jQuery(function() {	
+	timeout = setTimeout('checkLive()', 1000); // one second after load
+	timeout = setInterval('checkLive()', 5000); // every minute 60000
+});
+</script>
 
 <?php get_footer(); ?>
