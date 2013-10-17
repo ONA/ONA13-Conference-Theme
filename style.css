@@ -1470,7 +1470,7 @@ a.comment-edit-link:hover {
 /* =Nav hacks
 -------------------------------------------------------------- */
 #megaMenu ul.megaMenu > li {
-	width:14%;
+	width:18%;
 }
 #megaMenu li.menu-item.ss-nav-menu-mega-floatRight {
 	width:4%;
@@ -2233,7 +2233,7 @@ margin-bottom:20px;
 
 #megaMenu.megaMenuHorizontal ul.megaMenu > li > a, 
 #megaMenu.megaMenuHorizontal ul.megaMenu > li > span.um-anchoremulator {
-padding:10px 0;	
+padding:10px 0 !important;	
 }
 /* IN UberMenu Options -> Style Generator, change top level font-size to 14 px
 /* Images - change height and width to 19 px 

@@ -1,8 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
 body .site,
-body .site-content {
-	max-width:100%;	
+body .site-content,
+body.template-front-page .site-content {
+	max-width:100% !important;	
 }
 body .wrapper {
 	margin:0;
@@ -83,6 +84,14 @@ font-size:12px;
 	font-weight: 300;
 	font-size: 17px;
 	line-height: 150%;
+}
+.vco-storyjs h1 a, .vco-storyjs h2 a, .vco-storyjs h3 a, .vco-storyjs h4 a, .vco-storyjs h5 a, .vco-storyjs h6 a {
+	color: #306 !important;
+	font-weight: 600;	
+}
+.vco-storyjs h1 a:hover, .vco-storyjs h2 a:hover, .vco-storyjs h3 a:hover, .vco-storyjs h4 a:hover, .vco-storyjs h5 a:hover, .vco-storyjs h6 a:hover {
+	color: #99C !important;
+	text-decoration:none;
 }
 	
 @media screen and (min-width:670px){

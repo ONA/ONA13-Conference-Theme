@@ -72,11 +72,9 @@
 						if( $av_content ) { $av_content = $av_content[0]; }
 						if( $av_content ) { ?>
 							<?php if ($av_content['video']) { 
-								if ($now > ($session->get_start_time()-300) && $now < ($session->get_end_time()+300)) { 
-								
-								// LIVESTREAM EMBED CODE HERE
-								
-								} else { ?>
+								if ($now > ($session->get_start_time()-300) && $now < ($session->get_end_time()+300)) { ?>
+							<iframe width="100%" height="400" src="http://cdn.livestream.com/embed/ona13?layout=4&amp;height=400&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>
+							<?php } else { ?>
                             <p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-video.png" height="14" /> &mdash; This session will have live video</p>
                             <?php }
 							} if($av_content['audio']) { ?>
@@ -126,7 +124,7 @@
                         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=onlinenewsassociation"></script>
                         <!-- AddThis Button END -->
                         <?php  // Liveblogging begins
-						if ($rebelmouse) { ?>
+						if ($rebelmouse && $rebelmouse!='') { ?>
                         <div class="liveblogging">
                         <script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=<?php echo $rebelmouse;?>&height=1500&flexible=1"></script>
                         </div>

@@ -39,11 +39,11 @@ margin: 15px 0 5px;
 #content .headlines {
 float: left;
 width: 32%;
-margin-right: 2%;
+margin-left: 2%;
 list-style: none;
 }
-.headlines.last {
-margin-right:0;
+#content .headlines.first {
+margin-left:0;
 }
 #content .headlines li {
 margin-left:0;
@@ -65,6 +65,13 @@ font-weight:bold;
 color:#c00;
 padding-right:5px;
 }
+@media (max-width:700px){
+	#content .headlines {
+	float:none;
+	margin:0;
+	width:100%;	
+	}
+}
 </style>
 
 	<div id="primary" class="site-content">
@@ -73,10 +80,12 @@ padding-right:5px;
                 <h1 class="entry-title"><?php the_title();?> <span>&bull;</span></h1>
             </header>
             <div class="entry-content">
-                <div class="video"></div>   
+                <div class="video">
+                	<iframe width="100%" height="400" src="http://cdn.livestream.com/embed/ona13?layout=4&amp;height=400&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>
+                </div>   
                    
                 <div class="related">
-                    <ul class="headlines">
+                    <ul class="headlines first">
                         <h4 class="widget-title">Thursday sessions</h4>
                  
                 
@@ -101,6 +110,8 @@ padding-right:5px;
                 $lastday = 'Thursday';
                 while( $sessions->have_posts() ) {
                     $sessions->the_post(); 
+					$av_content = get_post_meta( get_the_ID(), '_av_content', true );
+					if ( array_key_exists("video", $av_content) ) {
                     $start_timestamp = get_post_meta( get_the_ID(), 'start_time', true );
 					$end_timestamp = get_post_meta( get_the_ID(), 'start_time', true );
 					$now = time();
@@ -116,7 +127,7 @@ padding-right:5px;
                     <li class="<?php echo $nowclass;?>">
                         <a href="<?php the_permalink();?>" title="<?php the_title();?>"><?php the_title();?><br/><span class="date"><?php echo date('g:i a', $start_timestamp);?></span></a>
                     </li>
-                <?php } ?>
+                <?php } } ?>
                 
                     </ul>
             	</div><!-- .related -->

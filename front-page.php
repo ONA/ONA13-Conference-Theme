@@ -23,7 +23,7 @@ get_header(); ?>
 	<script type="text/javascript">
         var timeline_config = {
             width:              '100%',
-            height:             '600',
+            height:             '550',
             source:             '<?php echo $timeline_URL;?>',
             embed_id:           'my-timeline',               //OPTIONAL USE A DIFFERENT DIV ID FOR EMBED
             start_at_end:       true,                          //OPTIONAL START AT LATEST DATE
