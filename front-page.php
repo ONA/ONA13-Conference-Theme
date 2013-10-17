@@ -36,7 +36,6 @@ get_header(); ?>
     
      <!-- Sponsors -->
         <div class="sponsor-row">
-        	<h4><span>Sponsors</span></h4>
             <div class="logos">
                 <?php dynamic_sidebar( 'sponsors' ); ?>
             </div>
